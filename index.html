@@ -20,31 +20,45 @@
 
 <body>
     <!--==================== LOADER ====================-->
-    <div class="load" id="load">
+    <!-- <div class="load" id="load">
         <img src="assets/img/loadcoffee.gif" alt="" class="load__gif">
-    </div>
+        <h1 style="position: absolute; margin-bottom: 12%;">Bienvenid@</h1>
+    </div> -->
 
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="#" class="nav__log">
-                <img src="assets/img/logo.png" alt="" class="nav__logo-img">
-                Coffee.
+            <a href="#" class="nav__log" style="margin-bottom: 40px;">
+                <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
+                <!-- <h4><span style="color: hsl(197, 100%, 42%); position: fixed; margin-left: 5rem; margin-top: 0.6rem;">BAJA</span></h4>                
+                <h4 style="color: #fff; mix-blend-mode: difference; margin-left: 7.7rem; margin-top: 0.6rem;" class="">
+                    - Banco Angular Jerárquico Asociado
+                </h4> -->
+                <h2>
+                    <span style="color: hsl(197, 100%, 42%); position: fixed; margin-left: 5rem; margin-top: -0.4rem;">BAJA</span>
+                </h2>
+                
+                <h3 style="color: #fff;  mix-blend-mode: difference; position: fixed; margin-left: 5rem; margin-top: 1.1rem;">
+                    <span style="color: hsl(197, 100%, 42%);">B</span>anco
+                    <span style="color: hsl(197, 100%, 42%);">A</span>ngular
+                    <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
+                    <span style="color: hsl(197, 100%, 42%);">A</span>sociado
+                </h3>
             </a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="#home" class="nav__link active-link">Home</a>
+                        <a href="#home" class="nav__link active-link">Inicio</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#products" class="nav__link">Products</a>
+                        <a href="#products" class="nav__link">Préstamos</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#premium" class="nav__link">Premium</a>
+                        <a href="#premium" class="nav__link">Conceptos</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#blog" class="nav__link">Blog</a>
+                        <a href="#blog" class="nav__link">Contacto</a>
                     </li>
                 </ul>
 
@@ -70,7 +84,8 @@
                         CONVERTIMOS SUS SUEÑOS EN REALIDAD<span>.</span>
                     </h1>
                     <p class="home__description">
-                        CONVERTIMOS SUS SUEÑOS EN REALIDAD x2
+                        Fomentamos el BIENESTAR económico, social y ambiental para nuestros CLIENTES y demás habitantes
+                        del país.
                     </p>
 
                     <div class="home__data">
@@ -97,7 +112,7 @@
                 </div>
             </div>
 
-            <img src="assets/img/home.png" alt="" class="home__img">
+            <img src="assets/img/home.gif" alt="" class="home__img">
         </section>
 
         <!--==================== ESPECIALTY ====================-->
@@ -146,191 +161,189 @@
         <section class="products section" id="products">
             <div class="products__container container">
                 <h2 class="section__title">
-                    Choose our delicious and best products
+                    Elegí el que más te convenga
                 </h2>
 
                 <ul class="products__filters">
-                    <li class="products__item products__line active-product" data-filter=".delicacies">
-                        <h3 class="products__title">New Delicacies</h3>
-                        <span class="products__stock">3 products</span>
+                    <li class="products__item products__line active-product" data-filter=".Personal">
+                        <h3 class="products__title">Personal</h3>
+                        <span class="products__stock">2 Prestamos</span>
                     </li>
 
-                    <li class="products__item products__line" data-filter=".coffee">
-                        <h3 class="products__title">Hot Coffee</h3>
-                        <span class="products__stock">4 products</span>
+                    <li class="products__item products__line" data-filter=".Vivienda">
+                        <h3 class="products__title">Vivienda</h3>
+                        <span class="products__stock">2 Prestamos</span>
                     </li>
 
-                    <li class="products__item" data-filter=".cake">
-                        <h3 class="products__title">Cake And Delicacies</h3>
-                        <span class="products__stock">4 products</span>
+                    <li class="products__item products__line" data-filter=".Vehiculos">
+                        <h3 class="products__title">Vehiculos</h3>
+                        <span class="products__stock">2 Prestamos</span>
+                    </li>
+
+                    <li class="products__item products__line" data-filter=".Viajes">
+                        <h3 class="products__title">Viajes</h3>
+                        <span class="products__stock">2 Prestamos</span>
+                    </li>
+
+                    <li class="products__item" data-filter=".UniDeudas">
+                        <h3 class="products__title">Unificación de Deudas</h3>
+                        <span class="products__stock">2 Prestamos</span>
                     </li>
                 </ul>
 
                 <div class="products__content grid">
-                    <!--========== Delicacies ==========-->
-                    <article class="products__card delicacies">
+                    <!--========== Personal ==========-->
+                    <article class="products__card Personal">
                         <div class="products__shape">
-                            <img src="assets/img/delicacies1.png" alt="" class="products__img">
+                            <img src="https://dalinoinvestments.com/wp-content/uploads/2022/01/miami1.jpg" alt=""
+                                class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$5</h2>
-                            <h3 class="products__name">Cookies</h3>
+                            <h2 class="products__price">Gastos Personales</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card delicacies">
+                    <article class="products__card Personal">
                         <div class="products__shape">
                             <img src="assets/img/delicacies2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$6</h2>
-                            <h3 class="products__name">Croissant</h3>
+                            <h2 class="products__price">Rápidos</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card delicacies">
+                    <!--========== Vivienda ==========-->
+                    <article class="products__card Vivienda">
                         <div class="products__shape">
-                            <img src="assets/img/delicacies3.png" alt="" class="products__img">
+                            <img src="assets/img/delicacies1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$4</h2>
-                            <h3 class="products__name">Croissant</h3>
+                            <h2 class="products__price">Construcción Vivienda</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <!--========== Coffee ==========-->
-                    <article class="products__card coffee">
+                    <article class="products__card Vivienda">
+                        <div class="products__shape">
+                            <img src="assets/img/delicacies2.png" alt="" class="products__img">
+                        </div>
+
+                        <div class="products__data">
+                            <h2 class="products__price">Vivienda Interés Social</h2>
+                            <h3 class="products__name">*Información*</h3>
+
+                            <button class="button products__button">
+                                <i class='bx bxs-calculator'></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!--========== Vehiculos ==========-->
+                    <article class="products__card Vehiculos">
                         <div class="products__shape">
                             <img src="assets/img/coffee1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$7</h2>
-                            <h3 class="products__name">Black Coffee</h3>
+                            <h2 class="products__price">Vehículo Nuevo</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card coffee">
+                    <article class="products__card Vehiculos">
                         <div class="products__shape">
                             <img src="assets/img/coffee2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$12</h2>
-                            <h3 class="products__name">Pure Coffee</h3>
+                            <h2 class="products__price">Vehículo Usado</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card coffee">
-                        <div class="products__shape">
-                            <img src="assets/img/coffee3.png" alt="" class="products__img">
-                        </div>
-
-                        <div class="products__data">
-                            <h2 class="products__price">$9</h2>
-                            <h3 class="products__name">Milk Coffee</h3>
-
-                            <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <article class="products__card coffee">
-                        <div class="products__shape">
-                            <img src="assets/img/coffee4.png" alt="" class="products__img">
-                        </div>
-
-                        <div class="products__data">
-                            <h2 class="products__price">$9</h2>
-                            <h3 class="products__name">Moke Coffee</h3>
-
-                            <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
-                            </button>
-                        </div>
-                    </article>
-
-                    <!--========== Cake ==========-->
-                    <article class="products__card cake">
+                    <!--========== Viajes ==========-->
+                    <article class="products__card Viajes">
                         <div class="products__shape">
                             <img src="assets/img/cake1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$6</h2>
-                            <h3 class="products__name">Cream Cake</h3>
+                            <h2 class="products__price">Viajes Internacionales</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
-                    
-                    <article class="products__card cake">
+
+                    <article class="products__card Viajes">
                         <div class="products__shape">
                             <img src="assets/img/cake2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$5</h2>
-                            <h3 class="products__name">Chocolate Croissant</h3>
+                            <h2 class="products__price">Viajes Nacionales</h2>
+                            <h3 class="products__name">*Información</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card cake">
+                    <!--========== UniDeudas ==========-->
+                    <article class="products__card UniDeudas">
                         <div class="products__shape">
-                            <img src="assets/img/cake3.png" alt="" class="products__img">
+                            <img src="assets/img/cake1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$15</h2>
-                            <h3 class="products__name">Pancake</h3>
+                            <h2 class="products__price">Pagos De Tarjetas De Crédito</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card cake">
+                    <article class="products__card UniDeudas">
                         <div class="products__shape">
-                            <img src="assets/img/cake4.png" alt="" class="products__img">
+                            <img src="assets/img/cake2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">$12</h2>
-                            <h3 class="products__name">Milk Cake</h3>
+                            <h2 class="products__price">Préstamos De Otras Instituciones</h2>
+                            <h3 class="products__name">*Información*</h3>
 
                             <button class="button products__button">
-                                <i class='bx bx-shopping-bag'></i>
+                                <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
@@ -358,8 +371,8 @@
                         <h2 class="quality__price">$94.99</h2>
                         <span class="quality__special">Especial Price</span>
                         <p class="quality__description">
-                            We are delighted with our coffee. That's why you get the best 
-                            premium coffee plus the kettle made of resistant materials that 
+                            We are delighted with our coffee. That's why you get the best
+                            premium coffee plus the kettle made of resistant materials that
                             you see in the image, for a special price.
                         </p>
 
@@ -370,7 +383,7 @@
 
                             <a href="#" class="quality__button">
                                 See more
-                                <i class='bx bx-right-arrow-alt' ></i>
+                                <i class='bx bx-right-arrow-alt'></i>
                             </a>
                         </div>
                     </div>
@@ -401,7 +414,7 @@
                         <div class="blog__image">
                             <img src="assets/img/blog1.png" alt="" class="blog__img">
                             <a href="#" class="blog__button">
-                                <i class='bx bx-right-arrow-alt' ></i>
+                                <i class='bx bx-right-arrow-alt'></i>
                             </a>
                         </div>
                         <div class="blog__data">
@@ -409,29 +422,29 @@
                                 10 Coffee Recommendations
                             </h2>
                             <p class="blog__description">
-                                The blogs about coffee will help you a lot about 
-                                how it is prepared, its waiting time, for a good 
+                                The blogs about coffee will help you a lot about
+                                how it is prepared, its waiting time, for a good
                                 quality coffee.
                             </p>
 
                             <div class="blog__footer">
                                 <div class="blog__reaction">
-                                    <i class='bx bx-comment' ></i>
+                                    <i class='bx bx-comment'></i>
                                     <span>12</span>
                                 </div>
                                 <div class="blog__reaction">
-                                    <i class='bx bx-show' ></i>
+                                    <i class='bx bx-show'></i>
                                     <span>76,5K</span>
                                 </div>
                             </div>
                         </div>
                     </article>
-                    
+
                     <article class="blog__card">
                         <div class="blog__image">
                             <img src="assets/img/blog2.png" alt="" class="blog__img">
                             <a href="#" class="blog__button">
-                                <i class='bx bx-right-arrow-alt' ></i>
+                                <i class='bx bx-right-arrow-alt'></i>
                             </a>
                         </div>
                         <div class="blog__data">
@@ -439,18 +452,18 @@
                                 12 Benefits Of Drinking Coffee
                             </h2>
                             <p class="blog__description">
-                                The blogs about coffee will help you a lot about 
-                                how it is prepared, its waiting time, for a good 
+                                The blogs about coffee will help you a lot about
+                                how it is prepared, its waiting time, for a good
                                 quality coffee.
                             </p>
 
                             <div class="blog__footer">
                                 <div class="blog__reaction">
-                                    <i class='bx bx-comment' ></i>
+                                    <i class='bx bx-comment'></i>
                                     <span>45</span>
                                 </div>
                                 <div class="blog__reaction">
-                                    <i class='bx bx-show' ></i>
+                                    <i class='bx bx-show'></i>
                                     <span>356,5K</span>
                                 </div>
                             </div>
@@ -475,7 +488,7 @@
                     <div class="footer__newsletter">
                         <input type="email" placeholder="Your email address" class="footer__input">
                         <button class="footer__button">
-                            <i class='bx bx-right-arrow-alt' ></i>
+                            <i class='bx bx-right-arrow-alt'></i>
                         </button>
                     </div>
                 </div>
@@ -512,15 +525,15 @@
                         <i class='bx bxl-facebook'></i>
                     </a>
                     <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
-                        <i class='bx bxl-instagram' ></i>
+                        <i class='bx bxl-instagram'></i>
                     </a>
                     <a href="https://twitter.com/" target="_blank" class="footer__social-link">
-                        <i class='bx bxl-twitter' ></i>
+                        <i class='bx bxl-twitter'></i>
                     </a>
                 </ul>
 
                 <span class="footer__copy">
-                    &#169; Bedimcode. All rigths reserved 
+                    &#169; Bedimcode. All rigths reserved
                 </span>
             </div>
         </div>
@@ -529,7 +542,7 @@
 
     <!--========== SCROLL UP ==========-->
     <a href="#" class="scrollup" id="scroll-up">
-        <i class='bx bx-up-arrow-alt' ></i>
+        <i class='bx bx-up-arrow-alt'></i>
     </a>
 
     <!--=============== MIXITUP FILTER ===============-->
