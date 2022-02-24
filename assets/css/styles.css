@@ -407,7 +407,6 @@ button {
 .products__card{
   background-color: var(--container-color);
   /* border-radius: .5rem; */
-  width: 270px;
 
   border-width: 2.5px;
   border-style: solid;  
