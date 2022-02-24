@@ -406,7 +406,32 @@ button {
 
 .products__card{
   background-color: var(--container-color);
-  border-radius: .5rem;
+  /* border-radius: .5rem; */
+  width: 270px;
+
+  border-width: 2.5px;
+  border-style: solid;  
+  border-image: 
+  linear-gradient(
+    to right, 
+    hsl(197, 100%, 60%), 
+    hsl(208, 100%, 25%)
+  ) 1;
+
+}
+
+.products__card:hover{
+  transition: all 175ms ease-in;
+
+  border-width: 2.7px;
+  border-style: solid;  
+  border-image: 
+  linear-gradient(
+    to left, 
+    hsl(197, 100%, 60%), 
+    hsl(208, 100%, 25%)
+  ) 1;
+
 }
 
 .products__img{
@@ -416,7 +441,7 @@ button {
 
 .products__shape{
   background-color: var(--card-color);
-  border-radius: .5rem .5rem 0 0;
+  /* border-radius: .5rem .5rem 0 0; */
   text-align: center;
   padding: .25rem 0;
 }
@@ -445,7 +470,14 @@ button {
   position: absolute;
   right: 1rem;
   top: -1.25rem;
-  box-shadow: 0 4px 12px hsla(206, 4%, 4%, .2);
+  box-shadow: 0 4px 12px hsla(206, 4%, 4%, .5);
+}
+
+.products__button:hover{
+  background-color: hsl(197, 100%, 60%);
+  color: black;
+  font-size: 1.85rem;
+  /* border: 1.2px solid var(--black-color); */
 }
 
 .products__card:hover .products__img{
@@ -938,9 +970,7 @@ button {
   }
   .products__shape{
     padding: 2rem 0;
-    border-radius: .75rem .75rem 0 0;
-  }
-  .products__data{
+    /* border-radius: .75rem .75rem 0 0; */
   }
   .products__name{
     font-size: var(--h3-font-size);
