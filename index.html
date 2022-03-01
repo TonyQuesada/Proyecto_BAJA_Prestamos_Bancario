@@ -1,3 +1,11 @@
+<?php
+include_once('conection.php');
+if(isset($_SESSION['u_ID'])) 
+{ 
+    header('Location: administrador.php');
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +36,7 @@
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="#" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
+            <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
                 <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
                 <!-- <h4><span style="color: hsl(197, 100%, 42%); position: fixed; margin-left: 5rem; margin-top: 0.6rem;">BAJA</span></h4>                
                 <h4 style="color: #fff; mix-blend-mode: difference; margin-left: 7.7rem; margin-top: 0.6rem;" class="">
@@ -203,7 +211,7 @@
                             <h2 class="products__price">Gastos Personales</h2>
                             <h3 class="products__name">*Información*</h3>
 
-                            <button class="button products__button">
+                            <button class="button products__button" onclick="window.location.href='../Prestamos/Personal/gastos_personales.html'">
                                 <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
@@ -522,13 +530,13 @@
             <div class="footer__group">
                 <ul class="footer__social">
                     <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
-                        <i class='bx bxl-facebook'></i>
+                        <!-- <i class='bx bxl-facebook'></i> -->
                     </a>
                     <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
-                        <i class='bx bxl-instagram'></i>
+                        <!-- <i class='bx bxl-instagram'></i> -->
                     </a>
                     <a href="https://twitter.com/" target="_blank" class="footer__social-link">
-                        <i class='bx bxl-twitter'></i>
+                        <!-- <i class='bx bxl-twitter'></i> -->
                     </a>
                 </ul>
 
