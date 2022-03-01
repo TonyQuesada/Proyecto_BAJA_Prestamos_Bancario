@@ -341,7 +341,7 @@ button {
 }
 
 .specialty__img{
-  width: 60px;
+  width: 200px;
   margin-bottom: 1rem;
   transition: .4s;
 }
@@ -353,10 +353,15 @@ button {
 .specialty__title{
   font-size: var(--h2-font-size);
   margin-bottom: .25rem;
+  text-align: center;
 }
 
 .specialty__group:hover .specialty__img{
-  transform: translateY(-.25rem);
+  transform: translateY(-.3rem);
+}
+
+.specialty__description{  
+  text-align: center;
 }
 
 /*=============== PRODUCTS ===============*/
@@ -430,6 +435,8 @@ button {
     hsl(197, 100%, 60%), 
     hsl(208, 100%, 25%)
   ) 1;
+
+  cursor: pointer;
 
 }
 
@@ -926,9 +933,9 @@ button {
     display: grid;
     grid-template-columns: 2fr .5fr;
   }
-  .specialty__group{
+  /* .specialty__group{
     text-align: initial;
-  }
+  } */
   .specialty__category{
     grid-template-columns: repeat(3, 250px);
     column-gap: 8rem;
@@ -948,7 +955,7 @@ button {
     margin: auto 0;
   }
   .specialty__img{
-    width: 80px;
+    /* width: 80px; */
     margin-bottom: 1.5rem;
   }
 

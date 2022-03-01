@@ -38,20 +38,20 @@ if(isset($_SESSION['u_ID']))
         <nav class="nav container">
             <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
                 <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
-                <!-- <h4><span style="color: hsl(197, 100%, 42%); position: fixed; margin-left: 5rem; margin-top: 0.6rem;">BAJA</span></h4>                
-                <h4 style="color: #fff; mix-blend-mode: difference; margin-left: 7.7rem; margin-top: 0.6rem;" class="">
-                    - Banco Angular Jerárquico Asociado
-                </h4> -->
+
                 <h2>
                     <span style="color: hsl(197, 100%, 42%); position: fixed; margin-left: 5rem; margin-top: -0.4rem;">BAJA</span>
                 </h2>
                 
-                <h3 style="color: #fff;  mix-blend-mode: difference; position: fixed; margin-left: 5rem; margin-top: 1.1rem;" class="little">
-                    <span style="color: hsl(197, 100%, 42%);">B</span>anco
-                    <span style="color: hsl(197, 100%, 42%);">A</span>ngular
-                    <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
-                    <span style="color: hsl(197, 100%, 42%);">A</span>sociado
-                </h3>
+                <h3 style="position: fixed; margin-left: 5rem; margin-top: 1.1rem;"><span style="color: hsl(197, 100%, 42%);">B</span></h3>
+                <h3 style="color: #fff;  mix-blend-mode: difference; position: fixed; margin-left: 5.73rem; margin-top: 1.1rem;">anco</h3>
+                <h3 style="position: fixed; margin-left: 8.5rem; margin-top: 1.1rem;"><span style="color: hsl(197, 100%, 42%);">A</span></h3>
+                <h3 style="color: #fff;  mix-blend-mode: difference; position: fixed; margin-left: 9.33rem; margin-top: 1.1rem;">ngular</h3>
+                <h3 style="position: fixed; margin-left: 12.8rem; margin-top: 1.1rem;"><span style="color: hsl(197, 100%, 42%);">J</span></h3>
+                <h3 style="color: #fff;  mix-blend-mode: difference; position: fixed; margin-left: 11.34em; margin-top: 1.1rem;">erárquico</h3>
+                <h3 style="position: fixed; margin-left: 18.6rem; margin-top: 1.1rem;"><span style="color: hsl(197, 100%, 42%);">A</span></h3>
+                <h3 style="color: #fff;  mix-blend-mode: difference; position: fixed; margin-left: 19.43rem; margin-top: 1.1rem;">sociado</h3>
+
             </a>
 
             <div class="nav__menu" id="nav-menu">
@@ -92,8 +92,7 @@ if(isset($_SESSION['u_ID']))
                         CONVERTIMOS SUS SUEÑOS EN REALIDAD<span>.</span>
                     </h1>
                     <p class="home__description">
-                        Fomentamos el BIENESTAR económico, social y ambiental para nuestros CLIENTES y demás habitantes
-                        del país.
+                        Crédito aprobado en menos de 3 horas. Plazos de hasta 60 meses. Fácil y rápido
                     </p>
 
                     <div class="home__data">
@@ -128,37 +127,37 @@ if(isset($_SESSION['u_ID']))
             <div class="specialty__container">
                 <div class="specialty__box">
                     <h2 class="section__title">
-                        ¡Prestamos Más Solicitados!
+                        ¡Te ayudamos a cumplir tus metas!
                     </h2>
 
                     <div>
-                        <a href="#" class="button specialty__button">See more</a>
+                        <a href="#products" class="button specialty__button">Ver más</a>
                     </div>
                 </div>
 
                 <div class="specialty__category">
                     <div class="specialty__group specialty__line">
-                        <img src="assets/img/specialty1.png" alt="" class="specialty__img">
+                        <img src="assets/img/BAJA_online.png" alt="" class="specialty__img">
 
-                        <h3 class="specialty__title">Selected Coffee</h3>
+                        <h3 class="specialty__title">BAJA Online</h3>
                         <p class="specialty__description">
-                            We select the best premium coffee, for a true taste
+                            Administrá tus préstamo por medio de la sucursal BAJA Online.
                         </p>
                     </div>
                     <div class="specialty__group specialty__line">
-                        <img src="assets/img/specialty2.png" alt="" class="specialty__img">
+                        <img src="assets/img/Tramites_Rapidos.png" alt="" class="specialty__img">
 
-                        <h3 class="specialty__title">Delicious Cookies</h3>
+                        <h3 class="specialty__title">Trámites rápidos</h3>
                         <p class="specialty__description">
-                            Enjoy your coffee with some hot cookies
+                            Lográ la aprobación de tu préstamo de forma rápida y sencilla.
                         </p>
                     </div>
                     <div class="specialty__group">
-                        <img src="assets/img/specialty3.png" alt="" class="specialty__img">
+                        <img src="assets/img/Pago.png" alt="" class="specialty__img">
 
-                        <h3 class="specialty__title">Enjoy at home</h3>
+                        <h3 class="specialty__title">Pagos</h3>
                         <p class="specialty__description">
-                            Enjoy the best coffee in the comfort of your home.
+                            Pagá tu préstamo por medio de BAJA Online y en todas nuestras sucursales alrededor del país.
                         </p>
                     </div>
                 </div>
@@ -201,7 +200,7 @@ if(isset($_SESSION['u_ID']))
 
                 <div class="products__content grid">
                     <!--========== Personal ==========-->
-                    <article class="products__card Personal">
+                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/gastos_personales.html'">
                         <div class="products__shape">
                             <img src="assets/img/personal1.png" alt=""
                                 class="products__img">
@@ -211,13 +210,13 @@ if(isset($_SESSION['u_ID']))
                             <h2 class="products__price">Gastos Personales</h2>
                             <h3 class="products__name">*Información*</h3>
 
-                            <button class="button products__button" onclick="window.location.href='../Prestamos/Personal/gastos_personales.html'">
+                            <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
                             </button>
                         </div>
                     </article>
 
-                    <article class="products__card Personal">
+                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/rapidos.html'">
                         <div class="products__shape">
                             <img src="assets/img/personal2.png" alt="" class="products__img">
                         </div>
@@ -233,7 +232,7 @@ if(isset($_SESSION['u_ID']))
                     </article>
 
                     <!--========== Vivienda ==========-->
-                    <article class="products__card Vivienda">
+                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/construccion_vivienda.html'">
                         <div class="products__shape">
                             <img src="assets/img/house1.png" alt="" class="products__img">
                         </div>
@@ -248,7 +247,7 @@ if(isset($_SESSION['u_ID']))
                         </div>
                     </article>
 
-                    <article class="products__card Vivienda">
+                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/vivienda_interes_social.html'">
                         <div class="products__shape">
                             <img src="assets/img/house2.png" alt="" class="products__img">
                         </div>
@@ -264,7 +263,7 @@ if(isset($_SESSION['u_ID']))
                     </article>
 
                     <!--========== Vehiculos ==========-->
-                    <article class="products__card Vehiculos">
+                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_nuevo.html'">
                         <div class="products__shape">
                             <img src="assets/img/car1.png" alt="" class="products__img">
                         </div>
@@ -279,7 +278,7 @@ if(isset($_SESSION['u_ID']))
                         </div>
                     </article>
 
-                    <article class="products__card Vehiculos">
+                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_usado.html'">
                         <div class="products__shape">
                             <img src="assets/img/car2.png" alt="" class="products__img">
                         </div>
@@ -295,7 +294,7 @@ if(isset($_SESSION['u_ID']))
                     </article>
 
                     <!--========== Viajes ==========-->
-                    <article class="products__card Viajes">
+                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_internacionales.html'" >
                         <div class="products__shape">
                             <img src="assets/img/travel3.png" alt="" class="products__img">
                         </div>
@@ -310,7 +309,7 @@ if(isset($_SESSION['u_ID']))
                         </div>
                     </article>
 
-                    <article class="products__card Viajes">
+                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_nacionales.html'" >
                         <div class="products__shape">
                             <img src="assets/img/travel2.png" alt="" class="products__img">
                         </div>
@@ -326,7 +325,7 @@ if(isset($_SESSION['u_ID']))
                     </article>
 
                     <!--========== UniDeudas ==========-->
-                    <article class="products__card UniDeudas">
+                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/pagos_tarjeta_credito.html'" >
                         <div class="products__shape">
                             <img src="assets/img/pay1.png" alt="" class="products__img">
                         </div>
@@ -341,7 +340,7 @@ if(isset($_SESSION['u_ID']))
                         </div>
                     </article>
 
-                    <article class="products__card UniDeudas">
+                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/prestamos_de_otras_instituciones.html'" >
                         <div class="products__shape">
                             <img src="assets/img/pay2.png" alt="" class="products__img">
                         </div>
