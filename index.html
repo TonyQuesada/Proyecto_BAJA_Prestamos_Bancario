@@ -21,7 +21,7 @@ if(isset($_SESSION['u_ID']))
 
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/scss/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
     <title>BAJA - Banco Angular Jerárquico Asociado</title>
 </head>
@@ -54,11 +54,11 @@ if(isset($_SESSION['u_ID']))
             <ul class="nav__list">
                 <li class="nav__item">
                     <a href="#profil" class="nav__link">
-                        <i class='bx bx-user'> Perfil</i>
+                        <i class='bx bx-user'></i> Perfil
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a href="#home" class="nav__link">
+                    <a href="#home" class="nav__link active-link">
                         <i class='bx bx-home'></i> Inicio
                     </a>
                 </li>
@@ -130,17 +130,17 @@ if(isset($_SESSION['u_ID']))
                     <i class='bx bx-x'></i>
                 </div>
             </div> -->
-
             <!-- Toggle button -->
             <!-- <div class="nav__toggle" id="nav-toggle">
                 <i class='bx bx-grid-alt'></i>
             </div> -->
-
         <!-- </nav>
     </header> -->
 
     <!--==================== MAIN ====================-->
     <main class="main" id="main">
+
+        <!-- ==================== HEADER ====================-->
         <header class="header" id="header">
             <nav class="header__nav container">
                 
@@ -150,13 +150,13 @@ if(isset($_SESSION['u_ID']))
                     <h2>
                         <span class="nav__title">BAJA</span>
                     </h2>
-    
+<!--     
                     <h3 class="nav__style">
                         <span style="color: hsl(197, 100%, 42%);">B</span>anco
                         <span style="color: hsl(197, 100%, 42%);">A</span>ngular
                         <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
                         <span style="color: hsl(197, 100%, 42%);">A</span>sociado
-                    </h3>    
+                    </h3>     -->
     
                 </a>
                 
@@ -206,7 +206,7 @@ if(isset($_SESSION['u_ID']))
         </section>
 
         <!--==================== BENEFITS ====================-->
-        <div class="specialty section container" id="specialty">
+        <div class="section container specialty" id="specialty">
             <div class="specialty__container">
                 <div class="specialty__box">
                     <h2 class="section__title">
@@ -248,7 +248,7 @@ if(isset($_SESSION['u_ID']))
         </div>
 
         <!--==================== LOANS (Prestamos) ====================-->
-        <section class="products section" id="products">
+        <section class="section products" id="products">
             <div class="products__container container">
                 <h2 class="section__title">
                     Elegí el que más te convenga
@@ -453,7 +453,7 @@ if(isset($_SESSION['u_ID']))
         </section>
 
         <!--==================== CONCEPTS ====================-->
-        <section class="quality section" id="premium">
+        <section class="section quality" id="premium">
             <div class="quality__container container">
                 <h2 class="section__title">
                     We offer a premium and better quality preparation just for you!
@@ -491,7 +491,7 @@ if(isset($_SESSION['u_ID']))
         </section>
 
         <!--==================== LOGOS ====================-->
-        <!-- <section class="logo section">
+        <!-- <section class="section logo">
             <div class="logo__container container grid">
                 <img src="assets/img/logocoffee1.png" alt="" class="logo__img">
                 <img src="assets/img/logocoffee2.png" alt="" class="logo__img">
@@ -502,7 +502,7 @@ if(isset($_SESSION['u_ID']))
         </section> -->
 
         <!--==================== TREND (Tendencia) ====================-->
-        <section class="blog section" id="blog">
+        <section class="section blog" id="blog">
             <div class="blog__container container">
                 <h2 class="section__title">
                     Our Blogs Coffee with trending topic for this week
