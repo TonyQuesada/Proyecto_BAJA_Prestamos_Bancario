@@ -4,7 +4,7 @@ onload = () => {
 
     setTimeout(() => {
         load.style.display = 'none'
-    }, 2000)
+    }, 3700)
 }
 
 /*=============== SHOW MENU ===============*/

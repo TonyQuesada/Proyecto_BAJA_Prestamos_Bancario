@@ -180,7 +180,7 @@ button {
   font-size: 2.2rem;
   color: var(--black-color-footer);
   cursor: pointer;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
   padding-top: 0.2rem;
   
 }
@@ -991,7 +991,7 @@ button {
     margin-left: 0.6rem;
     color: rgb(146, 146, 146); 
     width: 75%;
-  }  
+  }
     
     /* mix-blend-mode: difference; */
 
@@ -1038,6 +1038,15 @@ button {
     width: 350px;
   }
 } */
+
+@media screen and (min-width: 412px) {  
+  .load_h1{
+    font-size: var(--h1-font-size);
+    margin-top: -50%;
+  }
+
+}
+
 
 @media screen and (min-width: 767px) {  
   /* Tamaño del panel */
