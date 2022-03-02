@@ -21,7 +21,7 @@ if(isset($_SESSION['u_ID']))
 
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/scss/styles.css">
 
     <title>BAJA - Banco Angular Jerárquico Asociado</title>
 </head>
@@ -33,8 +33,61 @@ if(isset($_SESSION['u_ID']))
         <h1 style="position: absolute; margin-bottom: 12%;">Bienvenid@</h1>
     </div> -->
 
-    <!--==================== HEADER ====================-->
-    <header class="header" id="header">
+    <!--==================== NAV ====================-->
+    <nav class="nav" id="nav">
+        <div class="nav__menu container" id="nav-menu">
+            <div class="nav__shape"></div>
+
+            <div class="nav__close" id="nav-close">
+                <i class='bx bx-x'></i>
+            </div>
+
+            <div class="nav__data">
+                <div class="nav__mask">
+                    <img src="assets/img/admin.png" alt="" class="nav__img">
+                </div>
+
+                <span class="nav__greeting">Bienvenid@</span>
+                <h1 class="nav__name">Bales <br> Vegas</h1>
+            </div>
+
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="#profil" class="nav__link">
+                        <i class='bx bx-user'> Perfil</i>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#home" class="nav__link">
+                        <i class='bx bx-home'></i> Inicio
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#products" class="nav__link">
+                        <i class='bx bx-money'></i> Préstamos
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#premium" class="nav__link">
+                        <i class='bx bx-briefcase-alt-2'></i> Conceptos
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#footer" class="nav__link">
+                        <i class='bx bx-message-square-detail'></i> Contacto
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="#blog" class="nav__link">
+                        <i class='bx bx-log-out'></i> Cerrar Sesión
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== HEADER ====================-->
+    <!-- <header class="header" id="header">
         <nav class="nav container">
             <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
                 <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
@@ -43,26 +96,18 @@ if(isset($_SESSION['u_ID']))
                     <span class="nav__title">BAJA</span>
                 </h2>
 
-                <!-- <h3 style="margin-left: 5rem;" class="nav__style"><span style="color: hsl(197, 100%, 42%);">B</span></h3>
-                <h3 style="color: #fff;  mix-blend-mode: difference; margin-left: 5.73rem;" class="nav__style">anco</h3>
-                <h3 style="margin-left: 8.5rem;" class="nav__style"><span style="color: hsl(197, 100%, 42%);">A</span></h3>
-                <h3 style="color: #fff;  mix-blend-mode: difference; margin-left: 9.33rem;" class="nav__style">ngular</h3>
-                <h3 style="margin-left: 12.8rem;" class="nav__style"><span style="color: hsl(197, 100%, 42%);">J</span></h3>
-                <h3 style="color: #fff;  mix-blend-mode: difference; margin-left: 11.34em;" class="nav__style">erárquico</h3>
-                <h3 style="margin-left: 18.6rem;" class="nav__style"><span style="color: hsl(197, 100%, 42%);">A</span></h3>
-                <h3 style="color: #fff;  mix-blend-mode: difference; margin-left: 19.43rem;" class="nav__style">sociado</h3> -->
-
                 <h3 class="nav__style">
                     <span style="color: hsl(197, 100%, 42%);">B</span>anco
-                    <span style="color: hsl(197, 100%, 42%);">A</span>ngular 
-                    <span style="color: hsl(197, 100%, 42%);">J</span>erárquico 
+                    <span style="color: hsl(197, 100%, 42%);">A</span>ngular
+                    <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
                     <span style="color: hsl(197, 100%, 42%);">A</span>sociado
                 </h3>
 
 
             </a>
 
-            <div class="nav__menu" id="nav-menu">
+            <!--==================== NAV ====================-->
+            <!-- <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a href="#home" class="nav__link active-link">Inicio</a>
@@ -74,6 +119,9 @@ if(isset($_SESSION['u_ID']))
                         <a href="#premium" class="nav__link">Conceptos</a>
                     </li>
                     <li class="nav__item">
+                        <a href="#blog" class="nav__link">Tendencia</a>
+                    </li>
+                    <li class="nav__item">
                         <a href="#footer" class="nav__link">Contacto</a>
                     </li>
                 </ul>
@@ -81,17 +129,44 @@ if(isset($_SESSION['u_ID']))
                 <div class="nav__close" id="nav-close">
                     <i class='bx bx-x'></i>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Toggle button -->
-            <div class="nav__toggle" id="nav-toggle">
+            <!-- <div class="nav__toggle" id="nav-toggle">
                 <i class='bx bx-grid-alt'></i>
-            </div>
-        </nav>
-    </header>
+            </div> -->
+
+        <!-- </nav>
+    </header> -->
 
     <!--==================== MAIN ====================-->
-    <main>
+    <main class="main" id="main">
+        <header class="header" id="header">
+            <nav class="header__nav container">
+                
+                <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
+                    <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
+    
+                    <h2>
+                        <span class="nav__title">BAJA</span>
+                    </h2>
+    
+                    <h3 class="nav__style">
+                        <span style="color: hsl(197, 100%, 42%);">B</span>anco
+                        <span style="color: hsl(197, 100%, 42%);">A</span>ngular
+                        <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
+                        <span style="color: hsl(197, 100%, 42%);">A</span>sociado
+                    </h3>    
+    
+                </a>
+                
+                <!-- Toggle button -->
+                <div class="header__toggle" id="header-toggle">
+                    <i class='bx bx-grid-alt'></i>
+                </div>
+            </nav>
+        </header>
+
         <!--==================== HOME ====================-->
         <section class="home grid" id="home">
             <div class="home__container">
@@ -130,7 +205,7 @@ if(isset($_SESSION['u_ID']))
             <img src="assets/img/home.gif" alt="" class="home__img">
         </section>
 
-        <!--==================== ESPECIALTY ====================-->
+        <!--==================== BENEFITS ====================-->
         <div class="specialty section container" id="specialty">
             <div class="specialty__container">
                 <div class="specialty__box">
@@ -172,7 +247,7 @@ if(isset($_SESSION['u_ID']))
             </div>
         </div>
 
-        <!--==================== PRODUCTS ====================-->
+        <!--==================== LOANS (Prestamos) ====================-->
         <section class="products section" id="products">
             <div class="products__container container">
                 <h2 class="section__title">
@@ -377,7 +452,7 @@ if(isset($_SESSION['u_ID']))
             </div>
         </section>
 
-        <!--==================== QUALITY ====================-->
+        <!--==================== CONCEPTS ====================-->
         <section class="quality section" id="premium">
             <div class="quality__container container">
                 <h2 class="section__title">
@@ -416,7 +491,7 @@ if(isset($_SESSION['u_ID']))
         </section>
 
         <!--==================== LOGOS ====================-->
-        <section class="logo section">
+        <!-- <section class="logo section">
             <div class="logo__container container grid">
                 <img src="assets/img/logocoffee1.png" alt="" class="logo__img">
                 <img src="assets/img/logocoffee2.png" alt="" class="logo__img">
@@ -424,9 +499,9 @@ if(isset($_SESSION['u_ID']))
                 <img src="assets/img/logocoffee4.png" alt="" class="logo__img">
                 <img src="assets/img/logocoffee5.png" alt="" class="logo__img">
             </div>
-        </section>
+        </section> -->
 
-        <!--==================== BLOG ====================-->
+        <!--==================== TREND (Tendencia) ====================-->
         <section class="blog section" id="blog">
             <div class="blog__container container">
                 <h2 class="section__title">
