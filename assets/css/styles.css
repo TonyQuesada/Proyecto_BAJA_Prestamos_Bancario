@@ -241,7 +241,7 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  row-gap: 1.5rem;
+  row-gap: 1.1rem;
 }
 
 .nav__link{
@@ -369,7 +369,6 @@ button {
 }  
 
 .nav__style{
-  /* font-size: 12px; */
   margin-top: 1.02rem;
   margin-left: 4.85rem;
   color: rgb(146, 146, 146)
@@ -980,19 +979,21 @@ button {
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .container{
     margin-left: 1rem;
     margin-right: 1rem;
   }
-  
+
   .nav__style{
-    font-size: 12px;
-    margin-top: 1.95rem;
+    font-size: 14px;
+    margin-top: 1.72rem;
     margin-left: 0.6rem;
-    color: rgb(146, 146, 146)
+    color: rgb(146, 146, 146); 
+    width: 75%;
+  }  
+    
     /* mix-blend-mode: difference; */
-  }
 
   .nav__title{
     color: hsl(197, 100%, 42%); 
