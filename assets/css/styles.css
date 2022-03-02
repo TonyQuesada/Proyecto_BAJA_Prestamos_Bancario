@@ -181,7 +181,7 @@ button {
   color: var(--black-color-footer);
   cursor: pointer;
   margin-bottom: 0.8rem;
-  padding-top: 1.2rem;
+  padding-top: 0.2rem;
   
 }
 
@@ -314,7 +314,7 @@ button {
 }
 
 .header__toggle {
-  font-size: 1.55rem;
+  font-size: 1.75rem;
   cursor: pointer;
 }
 

@@ -86,80 +86,29 @@ if(isset($_SESSION['u_ID']))
         </div>
     </nav>
 
-    <!-- ==================== HEADER ====================-->
-    <!-- <header class="header" id="header">
-        <nav class="nav container">
-            <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
-                <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
-
-                <h2>
-                    <span class="nav__title">BAJA</span>
-                </h2>
-
-                <h3 class="nav__style">
-                    <span style="color: hsl(197, 100%, 42%);">B</span>anco
-                    <span style="color: hsl(197, 100%, 42%);">A</span>ngular
-                    <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
-                    <span style="color: hsl(197, 100%, 42%);">A</span>sociado
-                </h3>
-
-
-            </a>
-
-            <!--==================== NAV ====================-->
-            <!-- <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link active-link">Inicio</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#products" class="nav__link">Préstamos</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#premium" class="nav__link">Conceptos</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#blog" class="nav__link">Tendencia</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#footer" class="nav__link">Contacto</a>
-                    </li>
-                </ul>
-
-                <div class="nav__close" id="nav-close">
-                    <i class='bx bx-x'></i>
-                </div>
-            </div> -->
-            <!-- Toggle button -->
-            <!-- <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-grid-alt'></i>
-            </div> -->
-        <!-- </nav>
-    </header> -->
-
     <!--==================== MAIN ====================-->
     <main class="main" id="main">
 
         <!-- ==================== HEADER ====================-->
         <header class="header" id="header">
             <nav class="header__nav container">
-                
+
                 <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
                     <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
-    
+
                     <h2>
                         <span class="nav__title">BAJA</span>
                     </h2>
-    
+
                     <h3 class="nav__style">
                         <span style="color: hsl(197, 100%, 42%);">B</span>anco
                         <span style="color: hsl(197, 100%, 42%);">A</span>ngular
                         <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
                         <span style="color: hsl(197, 100%, 42%);">A</span>sociado
-                    </h3>    
-    
+                    </h3>
+
                 </a>
-                
+
                 <!-- Toggle button -->
                 <div class="header__toggle" id="header-toggle">
                     <i class='bx bx-grid-alt'></i>
@@ -571,72 +520,74 @@ if(isset($_SESSION['u_ID']))
                 </div>
             </div>
         </section>
-    </main>
 
-    <!--==================== FOOTER ====================-->
-    <footer class="footer" id="footer">
-        <div class="footer__container container">
-            <h1 class="footer__title">BAJA</h1>
+        <!--==================== FOOTER ====================-->
+        <footer class="footer" id="footer">
+            <div class="footer__container container">
+                <h1 class="footer__title">BAJA</h1>
 
-            <div class="footer__content grid">
-                <div class="footer__data">
-                    <p class="footer__description">
-                        Para nosotros será un placer poder atender sus consultas.
-                    </p>
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <p class="footer__description">
+                            Para nosotros será un placer poder atender sus consultas.
+                        </p>
 
-                    <div class="footer__newsletter">
-                        <input type="email" placeholder="Su dirección de correo electrónico" class="footer__input">
-                        <button class="footer__button">
-                            <i class='bx bx-right-arrow-alt'></i>
-                        </button>
+                        <div class="footer__newsletter">
+                            <input type="email" placeholder="Su dirección de correo electrónico" class="footer__input">
+                            <button class="footer__button">
+                                <i class='bx bx-right-arrow-alt'></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="footer__data">
+                        <h2 class="footer__subtitle">Dirección</h2>
+                        <p class="footer__information">
+                            Avenidas 1 y 3, Calle 4 Cartago Costa Rica. <br>
+                            Cartago, Cartago, Costa Rica
+                            <img src="assets/img/footerflag.png" alt="" class="footer__flag">
+                        </p>
+                    </div>
+
+                    <div class="footer__data">
+                        <h2 class="footer__subtitle">Contacto</h2>
+                        <p class="footer__information">
+                            6190 3211 <br>
+                            info@baja.cr
+                        </p>
+                    </div>
+
+                    <div class="footer__data">
+                        <h2 class="footer__subtitle">Oficinas</h2>
+                        <p class="footer__information">
+                            Lunes - Sabado <br>
+                            8AM - 6PM
+                        </p>
                     </div>
                 </div>
 
-                <div class="footer__data">
-                    <h2 class="footer__subtitle">Dirección</h2>
-                    <p class="footer__information">
-                        Avenidas 1 y 3, Calle 4 Cartago Costa Rica. <br>
-                        Cartago, Cartago, Costa Rica
-                        <img src="assets/img/footerflag.png" alt="" class="footer__flag">
-                    </p>
-                </div>
+                <div class="footer__group">
+                    <ul class="footer__social">
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                            <!-- <i class='bx bxl-facebook'></i> -->
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                            <!-- <i class='bx bxl-instagram'></i> -->
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social-link">
+                            <!-- <i class='bx bxl-twitter'></i> -->
+                        </a>
+                    </ul>
 
-                <div class="footer__data">
-                    <h2 class="footer__subtitle">Contacto</h2>
-                    <p class="footer__information">
-                        6190 3211 <br>
-                        info@baja.cr
-                    </p>
-                </div>
-
-                <div class="footer__data">
-                    <h2 class="footer__subtitle">Oficinas</h2>
-                    <p class="footer__information">
-                        Lunes - Sabado <br>
-                        8AM - 6PM
-                    </p>
+                    <span class="footer__copy">
+                        &#169; 2022 Banco Angular Jerárquico Asociado. Todos los derechos reservados.
+                    </span>
                 </div>
             </div>
+        </footer>
+    </main>
 
-            <div class="footer__group">
-                <ul class="footer__social">
-                    <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
-                        <!-- <i class='bx bxl-facebook'></i> -->
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
-                        <!-- <i class='bx bxl-instagram'></i> -->
-                    </a>
-                    <a href="https://twitter.com/" target="_blank" class="footer__social-link">
-                        <!-- <i class='bx bxl-twitter'></i> -->
-                    </a>
-                </ul>
 
-                <span class="footer__copy">
-                    &#169; 2022 Banco Angular Jerárquico Asociado. Todos los derechos reservados.
-                </span>
-            </div>
-        </div>
-    </footer>
 
 
     <!--========== SCROLL UP ==========-->
