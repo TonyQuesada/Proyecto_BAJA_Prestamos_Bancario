@@ -1042,7 +1042,8 @@ button {
 @media screen and (min-width: 412px) {  
   .load_h1{
     font-size: var(--h1-font-size);
-    margin-top: -50%;
+    margin-top: -68%;    
+    position: absolute;
   }
 
 }
@@ -1156,6 +1157,12 @@ button {
   .container{
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .load_h1{
+    font-size: var(--h1-font-size);
+    margin-top: -20%;    
+    position: absolute;
   }
 
   .nav__menu{
