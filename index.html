@@ -19,7 +19,6 @@ if(isset($_SESSION['u_ID']))
     <!--=============== BOXICONS ===============-->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/styles.css">
 
@@ -28,16 +27,15 @@ if(isset($_SESSION['u_ID']))
 
 <body>
     <!--==================== LOADER ====================-->
-    <div class="load" id="load">
+    <!-- <div class="load" id="load">
         <img src="assets/img/load.gif" alt="" class="load__gif">
-        <!-- <h1 style="position: absolute; margin-bottom: 15%;">Banco Angular Jerárquico Asociado</h1> -->
         <h1 class="load_h1">
             <span style="color: hsl(197, 100%, 42%);">B</span>anco
             <span style="color: hsl(197, 100%, 42%);">A</span>ngular
             <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
             <span style="color: hsl(197, 100%, 42%);">A</span>sociado
         </h1>
-    </div>
+    </div> -->
 
     <!--==================== NAV ====================-->
     <nav class="nav" id="nav">
@@ -79,12 +77,12 @@ if(isset($_SESSION['u_ID']))
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a href="#footer" class="nav__link">
+                    <a href="#blog" class="nav__link">
                         <i class='bx bx-message-square-detail'></i> Contacto
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a href="#blog" class="nav__link">
+                    <a href="#" class="nav__link">
                         <i class='bx bx-log-out'></i> Cerrar Sesión
                     </a>
                 </li>
@@ -157,7 +155,9 @@ if(isset($_SESSION['u_ID']))
                 </div>
             </div>
 
-            <img src="assets/img/home.gif" alt="" class="home__img">
+            <!-- <img src="assets/img/home.gif" alt="" class="home__img"> -->
+            <video src="assets/video/Portada1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline ></video>
+
         </section>
 
         <!--==================== BENEFITS ====================-->
