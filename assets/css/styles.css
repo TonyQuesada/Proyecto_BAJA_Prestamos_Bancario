@@ -214,7 +214,7 @@ button {
 
 .nav__greeting {
   display: block;
-  color: var(--text-color-dark);
+  color: var(--text-color-light);
   font-size: var(--small-font-size);
   font-weight: 500;
   margin-bottom: .25rem;
@@ -315,7 +315,6 @@ button {
 
 .header__toggle {
   font-size: 1.75rem;
-  cursor: pointer;
 }
 
 /* Show menu */
@@ -459,17 +458,18 @@ button {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 1.5rem;
+  text-align: center;
 }
 
 .home__data-number{
   color: var(--first-color);
-  font-size: var(--h1-font-size);
+  font-size: var(--h2-font-size);
   margin-bottom: 1.5rem;
 }
 
 .home__data-title{
-  font-size: var(--h3-font-size);
-  margin-bottom: .5rem;
+  font-size: var(--h2-font-size);
+  /* margin-bottom: .5rem; */
 }
 
 .home__scroll{
@@ -509,7 +509,54 @@ button {
 /*=============== SPECIALTY ===============*/
 .specialty__button{
   margin-left: 1.25rem;
+  position: relative;
+  /* margin: auto; */
+  padding: 19px 22px;
+  transition: all 0.2s ease;
 }
+.specialty__button:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: .25rem;
+  background: hsla(197, 100%, 42%, 0.5);
+  width: 10px;
+  height: 57px;
+  transition: all 0.5s ease;
+}
+.specialty__button:hover:before {
+  width: 100%;
+  background: hsla(197, 100%, 42%, 0.9);
+}
+.specialty__button:active {
+  transform: scale(0.96);
+}
+.specialty__button span {
+  position: relative;
+}
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  box-shadow: 0 0 0 1.3rem rgba(223, 223, 223, 0);
+}
+@-webkit-keyframes pulse {
+  25% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+@keyframes pulse {
+  45% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+.pulse {
+  --hover: hsla(197, 100%, 42%, 0.9);
+}
+
 
 .specialty__category{
   margin-top: 4rem;
@@ -587,7 +634,6 @@ button {
   justify-content: center;
   text-align: center;
 }
-
 .products__card{
   background-color: var(--container-color);
   /* border-radius: .5rem; */
@@ -602,7 +648,6 @@ button {
   ) 1;
 
 }
-
 .products__card:hover{
   transition: all 175ms ease-in;
 
@@ -616,7 +661,6 @@ button {
   ) 1;
 
   cursor: pointer;
-
 }
 
 .products__img{
@@ -1190,7 +1234,8 @@ button {
     width: 100px;
     height: 100px;
     border-radius: 2rem;
-    margin-bottom: 2rem;
+    border: 2px solid #004480;
+    margin-bottom: 0.9rem;
   }
   .nav_img {
     width: 90px;

@@ -1,10 +1,6 @@
-<?php
-include_once('conection.php');
-if(isset($_SESSION['u_ID'])) 
-{ 
-    header('Location: administrador.php');
-} 
-?>
+<!-- <?php
+    // include('conection.php');
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,21 +42,24 @@ if(isset($_SESSION['u_ID']))
                 <i class='bx bx-x'></i>
             </div>
 
-            <div class="nav__data">
-                <div class="nav__mask">
-                    <img src="assets/img/admin.png" alt="" class="nav__img">
+                <!-- PHP -->                    
+                <div class="nav__data">
+                    <div class="nav__mask">
+                        <img src="assets/img/admin.png" alt="" class="nav__img">
+                    </div>
+
+                    <span class="nav__greeting">Bienvenid@</span>
+                    <h1 class="nav__name">Bales <br> Vegas</h1>
                 </div>
 
-                <span class="nav__greeting">Bienvenid@</span>
-                <h1 class="nav__name">Bales <br> Vegas</h1>
-            </div>
-
-            <ul class="nav__list">
+                <ul class="nav__list">
                 <li class="nav__item">
                     <a href="#profil" class="nav__link">
                         <i class='bx bx-user'></i> Perfil
                     </a>
                 </li>
+                <!-- PHP -->
+
                 <li class="nav__item">
                     <a href="#home" class="nav__link active-link">
                         <i class='bx bx-home'></i> Inicio
@@ -97,7 +96,7 @@ if(isset($_SESSION['u_ID']))
         <header class="header" id="header">
             <nav class="header__nav container">
 
-                <a href="index.html" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
+                <a href="index.php" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
                     <img src="assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
 
                     <h2>
@@ -130,21 +129,20 @@ if(isset($_SESSION['u_ID']))
                     <p class="home__description">
                         Crédito aprobado en menos de 3 horas. Plazos de hasta 60 meses. Fácil y rápido
                     </p>
-
                     <div class="home__data">
                         <div class="home__data-group">
-                            <h2 class="home__data-number">120K</h2>
-                            <h3 class="home__data-title">Testimonials</h3>
+                            <h3 class="home__data-title">Compra USD</h3>
+                            <h2 class="home__data-number">640,50</h2>
                             <p class="home__data-description">
-                                Testimonials from various customers who trust us.
+                                <!-- Testimonials from various customers who trust us. -->
                             </p>
                         </div>
 
                         <div class="home__data-group">
-                            <h2 class="home__data-number">340+</h2>
-                            <h3 class="home__data-title">Exclusive Product</h3>
+                            <h3 class="home__data-title">Venta USD</h3>
+                            <h2 class="home__data-number">654,00</h2>
                             <p class="home__data-description">
-                                Premium preparation with quality ingredients.
+                                <!-- Premium preparation with quality ingredients. -->
                             </p>
                         </div>
                     </div>
@@ -169,7 +167,7 @@ if(isset($_SESSION['u_ID']))
                     </h2>
 
                     <div>
-                        <a href="#products" class="button specialty__button">Ver más</a>
+                        <a href="#products" class="button specialty__button pulse"><span>Ver más</span></a>
                     </div>
                 </div>
 
@@ -597,7 +595,7 @@ if(isset($_SESSION['u_ID']))
 
 
     <!--========== SCROLL UP ==========-->
-    <a href="#" class="scrollup" id="scroll-up">
+    <a href="#" class="scrollup pulse" id="scroll-up">
         <i class='bx bx-up-arrow-alt'></i>
     </a>
 
