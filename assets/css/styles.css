@@ -307,6 +307,7 @@ button {
 .header__logo, .header__toggle {
   /* color: var(--title-color); */
   color: var(--first-color-shape);
+  cursor: pointer;
 }
 
 .header__logo {
@@ -1354,10 +1355,16 @@ button {
     padding-bottom: 5rem;
   }
   .blog__content{
-    grid-template-columns: repeat(2, 450px);
+    grid-template-columns: repeat(3, 290px);
     column-gap: 5rem;
     padding-top: 2rem;
   }
+
+
+  
+
+
+  
 
   .footer__content{
     grid-template-columns: repeat(4, max-content);
@@ -1428,6 +1435,6 @@ button {
 on the image of the gif */
 .load__gif{
   position: absolute;
-  width: 300px;
+  width: 500px;
 }
 

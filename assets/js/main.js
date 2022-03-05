@@ -4,7 +4,7 @@ onload = () => {
 
     setTimeout(() => {
         load.style.display = 'none'
-    }, 3700)
+    }, 4500)
 }
 
 /*=============== SHOW MENU ===============*/
@@ -112,3 +112,4 @@ function scrollActive(){
     })
 }
 window.addEventListener('scroll', scrollActive)
+
