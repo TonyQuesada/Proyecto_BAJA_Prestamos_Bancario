@@ -1,5 +1,9 @@
 <!-- <?php
-    // include('conection.php');
+    include('conection.php');
+    if(isset($_SESSION['u_ID'])) 
+    { 
+        header('Location: administrador.php');
+    } 
 ?> -->
 
 <!DOCTYPE html>
@@ -23,7 +27,7 @@
 
 <body>
     <!--==================== LOADER ====================-->
-    <div class="load" id="load">
+    <!-- <div class="load" id="load">
         <img src="assets/img/load.gif" alt="" class="load__gif">
         <!-- <h1 class="load_h1">
             <span style="color: hsl(197, 100%, 42%);">B</span>anco
@@ -31,19 +35,19 @@
             <span style="color: hsl(197, 100%, 42%);">J</span>erárquico
             <span style="color: hsl(197, 100%, 42%);">A</span>sociado
         </h1> -->
-    </div>
+    <!-- </div> -->
 
     <!--==================== NAV ====================-->
     <nav class="nav" id="nav">
         <div class="nav__menu container" id="nav-menu">
-            <div class="nav__shape"></div>
+            <div class="nav__shape demo"></div>
 
             <div class="nav__close" id="nav-close">
                 <i class='bx bx-x'></i>
             </div>
 
                 <!-- PHP -->                    
-                <div class="nav__data">
+                <!-- <div class="nav__data">
                     <div class="nav__mask">
                         <img src="assets/img/unknown.png" alt="" class="nav__img">
                     </div>
@@ -57,8 +61,23 @@
                     <a href="#profil" class="nav__link">
                         <i class='bx bx-user'></i> Perfil
                     </a>
-                </li>
+                </li> -->
                 <!-- PHP -->
+
+                <div class="nav__data">
+                    <div class="nav__mask">
+                        <img src="assets/img/unknown.png" alt="" class="nav__img">
+                    </div>
+
+                    <h2 style="color: hsl(197, 100%, 65%);">BANCA <br> EN LÍNEA</h2>
+                </div>
+
+                <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="Prestamos/login.html" class="nav__link">
+                        <i class='bx bx-user'></i> Iniciar Sesión
+                    </a>
+                </li>
 
                 <li class="nav__item">
                     <a href="#home" class="nav__link active-link">
@@ -80,11 +99,15 @@
                         <i class='bx bx-message-square-detail'></i> Contacto
                     </a>
                 </li>
-                <li class="nav__item">
+
+                <!-- PHP -->          
+                <!-- <li class="nav__item">
                     <a href="#" class="nav__link">
                         <i class='bx bx-log-out'></i> Cerrar Sesión
                     </a>
-                </li>
+                </li> -->
+                <!-- PHP -->    
+
             </ul>
         </div>
     </nav>
@@ -132,7 +155,7 @@
                     <div class="home__data">
                         <div class="home__data-group">
                             <h3 class="home__data-title">Compra USD</h3>
-                            <h2 class="home__data-number">640,50</h2>
+                            <h2 class="home__data-number">642,00</h2>
                             <p class="home__data-description">
                                 <!-- Testimonials from various customers who trust us. -->
                             </p>
@@ -147,6 +170,19 @@
                         </div>
                     </div>
 
+                     <!-- PHP  -->
+                    <br><br>
+                    <form class="f" name="f">
+                        <h3 class="home__data-title">Convertir Monedas
+                            <a href="#" class="button_convertir pulse"><span>Compra</span></a>
+                            <a href="#" class="button_convertir pulse"><span>Venta</span></a>
+                        </h3>
+                        <br>
+                        <h4><input class="input__convert" type="number" name="num1" value="0" onchange="cal()" onkeyup="cal()" autocomplete="off" style="margin-left: -2px;"/> <- Dólar</h4>
+                        <p hidden>Número 2: <input type="number" name="num2" value="642" onchange="cal()" onkeyup="cal()" /></p>
+                        <h4><input class="input__convert" type="number" name="sum" value="0" readonly="readonly"/> <- Cólon</h4>
+                    </form>
+
                     <a href="#specialty">
                         <img src="assets/img/scroll.png" alt="" class="home__scroll">
                     </a>
@@ -157,6 +193,17 @@
             <video src="assets/video/Portada1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline ></video>
 
         </section>
+
+        <script>
+            function cal() {
+            try {
+                var a = parseFloat(document.f.num1.value),
+                    b = parseFloat(document.f.num2.value);
+                document.f.sum.value = a * b;
+            } catch (e) {
+            }
+            }
+        </script>
 
         <!--==================== BENEFITS ====================-->
         <div class="section container specialty" id="specialty">
@@ -407,40 +454,126 @@
 
         <!--==================== CONCEPTS ====================-->
         <section class="section quality" id="premium">
+        <!-- <section> -->
+        <section class="section quality" id="premium">
             <div class="quality__container container">
                 <h2 class="section__title">
-                    We offer a premium and better quality preparation just for you!
+                    ¡Conceptos Financieros!
                 </h2>
+            </div>
 
-                <div class="quality__content grid">
-                    <div class="quality__images">
-                        <img src="assets/img/quality1.png" alt="" class="quality__img-big">
-                        <img src="assets/img/quality2.png" alt="" class="quality__img-small">
-                    </div>
+            <div class="container__card">
 
-                    <div class="quality__data">
-                        <h1 class="quality__title">Premium Coffee</h1>
-                        <h2 class="quality__price">$94.99</h2>
-                        <span class="quality__special">Especial Price</span>
-                        <p class="quality__description">
-                            We are delighted with our coffee. That's why you get the best
-                            premium coffee plus the kettle made of resistant materials that
-                            you see in the image, for a special price.
-                        </p>
-
-                        <div class="quality__buttons">
-                            <button class="button">
-                                Buy Now
-                            </button>
-
-                            <a href="#" class="quality__button">
-                                See more
-                                <i class='bx bx-right-arrow-alt'></i>
-                            </a>
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Capital.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Capital</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Capital</h1>
+                                <p>Es el monto de dinero que presta la institución financiera.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
                         </div>
                     </div>
                 </div>
+                                
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Interes.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Interés</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Interés</h1>
+                                <p>Es el costo del uso del dinero entregado en préstamo, que se expresa como porcentaje.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Prestamo_Personal.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Préstamo Personal</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Préstamo Personal</h1>
+                                <p>Dinero que te presta un banco o entidad financiera de forma inmediata. Para ser aprobado, debes contar con una situación financiera estable.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Mensualidad.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Mensualidad</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Mensualidad</h1>
+                                <p>Cantidad de dinero que se abona mes a mes al credito o préstamo.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Plazo.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Plazo</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Plazo</h1>
+                                <p>Tiempo en el que debes devolver el préstamo, este puede ser días, meses o años depende de la institución financiera.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Fecha_Pago.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Fecha de Pago</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Fecha de Pago</h1>
+                                <p> Corresponde al día definido para que el deudor efectúe el pago correspondiente según la frecuencia de pago de intereses o amortización.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                
             </div>
+
         </section>
 
         <!--==================== LOGOS ====================-->

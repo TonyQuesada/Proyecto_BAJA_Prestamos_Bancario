@@ -139,6 +139,15 @@ button {
 }
 
 /*=============== HEADER & NAV ===============*/
+@keyframes morph {
+  67% { background-color: hsl(197, 100%, 35%); }
+  67% { background-color: hsl(197, 100%, 42%); }
+
+}
+.demo {
+  animation: morph 2s infinite;
+}
+
 .nav{
   /* height: var(--header-height);
   display: flex;
@@ -507,6 +516,47 @@ button {
   text-transform: uppercase;
 }
 
+.button_convertir{
+  display: inline-block;
+  background-color: var(--black-color);
+  color: #fff;
+  padding: 0.2rem 0.4rem;
+  border-radius: .25rem;
+  font-size: var(--small-font-size);
+  text-transform: uppercase;
+  margin: 0.15rem;
+}
+
+.f{
+  width: 75%;
+  border: 1.5px solid #009ad6;
+  box-shadow: 1px 1px 30px -5px hsl(208, 100%, 25%);
+  border-radius: 5px;
+  padding: 11px;
+  margin: auto;
+  text-align: center;
+  background-color: hsla(224, 100%, 11%, 0.17);
+}
+
+.input__convert{
+  width: 40%;  
+  background: silver;
+  border: 1px solid #002647;
+  border-radius: 5px 5px 5px 5px;
+  color: #393939;
+  font-size: 12px;
+  padding: 2px;
+  margin-right: 2%;    
+  display: inline-block;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
 /*=============== SPECIALTY ===============*/
 .specialty__button{
   margin-left: 1.25rem;
@@ -796,6 +846,108 @@ button {
 
 .quality__button:hover i{
   transform: translateX(.25rem);
+}
+
+/*=============== CONCEPTS ===============*/
+.container__card{
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 25px;
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card__father{
+  margin: 20px;
+  perspective: 1000px;
+}
+
+.card__father:hover .card{
+  transform: rotateY(180deg);
+}
+
+.card{
+  width: 275px;
+  height: 400px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 600ms;
+}
+
+.card__front{
+  background-size: cover;
+  background-position: center;
+}
+
+.card__front,
+.card__back{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   backface-visibility: hidden;
+   transform-style: preserve-3d;
+   border-radius: 20px;
+}
+
+.card__back{
+  transform: rotateY(180deg);
+  background-color: hsl(0, 0%, 90%);
+  border: 2px solid #002647;
+}
+
+.body__card_front{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(60px);
+  font-size: 30px;
+  font-style: italic;
+}
+
+.bg{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+}
+.body__card_back{
+  padding: 40px;
+  text-align: center;
+  transform: translateZ(60px);
+}
+
+.body__card_back p{
+  margin-top: 30px;
+  font-size: 18px;
+  color: hsla(208, 98%, 16%, 0.75);
+}
+
+.body__card_back input{
+  padding: 10px 40px;
+  margin-top: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: #002647;
+  box-shadow: 1px 1px 30px -5px #004480;
+  border-radius: 10px;
+  transition: box-shadow 600ms;
+}
+
+.body__card_back input:hover{
+  box-shadow: 1px 1px 30px 0px #009ad6;
 }
 
 /*=============== LOGOS ===============*/
@@ -1299,8 +1451,8 @@ button {
     column-gap: 4rem;
   }
   .products__content{
-    grid-template-columns: repeat(3, 262px);
-    justify-content: initial;
+    grid-template-columns: repeat(2, 262px);
+    justify-content: center;
     column-gap: 5rem;
   }
   .products__card{
