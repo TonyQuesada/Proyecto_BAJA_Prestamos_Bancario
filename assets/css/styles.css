@@ -525,6 +525,7 @@ button {
   font-size: var(--small-font-size);
   text-transform: uppercase;
   margin: 0.15rem;
+  cursor: pointer;
 }
 
 .f{
@@ -1399,8 +1400,10 @@ input[type=number]::-webkit-outer-spin-button {
   .nav__link i {
     font-size: 1.25rem;
   }
-
-
+  .nav__name {
+    width: 7rem;
+  }
+  
   .home__content{
     max-width: 400px;
     margin-right: 7rem;
@@ -1511,13 +1514,7 @@ input[type=number]::-webkit-outer-spin-button {
     column-gap: 5rem;
     padding-top: 2rem;
   }
-
-
   
-
-
-  
-
   .footer__content{
     grid-template-columns: repeat(4, max-content);
     column-gap: 4rem;
