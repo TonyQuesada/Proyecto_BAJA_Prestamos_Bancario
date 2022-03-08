@@ -471,6 +471,35 @@ button {
   text-align: center;
 }
 
+.home__data_login{
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+  text-align: center;
+}
+
+.specialty__group_login{
+  text-align: center;
+  width: 250px;
+  padding-left: 5px;
+}
+.home__data_login2{
+  padding-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 1.5rem;
+  text-align: center;
+}
+.specialty__category_login{
+  margin-top: 5rem;
+  margin-bottom: 0.5rem;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  row-gap: 2.5rem;
+}
+
 .home__data-number{
   color: var(--first-color);
   font-size: var(--h2-font-size);
@@ -539,10 +568,32 @@ button {
   background-color: hsla(224, 100%, 11%, 0.17);
 }
 
+.l{
+  width: 100%;
+  /* border: 1.5px solid #009ad6; */
+  box-shadow: 1px 1px 30px -1px #009ad6;
+  border-radius: 5px;
+  padding: 11px;
+  margin: auto;
+  text-align: center;
+  background-color: hsla(224, 100%, 11%, 0.17);
+}
+
+.ll{
+  width: 100%;
+  /* border: 1.5px solid #009ad6; */
+  box-shadow: 1px 1px 30px -1px #009ad6;
+  border-radius: 5px;
+  padding: 11px;
+  margin: auto;
+  text-align: center;
+  background-color: hsla(224, 100%, 11%, 0.95);
+}
+
 .input__convert{
   width: 40%;  
   background: silver;
-  border: 1px solid #002647;
+  border: 1px solid #001930;
   border-radius: 5px 5px 5px 5px;
   color: #393939;
   font-size: 12px;
@@ -608,7 +659,6 @@ input[type=number]::-webkit-outer-spin-button {
 .pulse {
   --hover: hsla(197, 100%, 42%, 0.9);
 }
-
 
 .specialty__category{
   margin-top: 4rem;
@@ -1179,9 +1229,6 @@ input[type=number]::-webkit-outer-spin-button {
   bottom: 3rem;
 }
 
-
-
-
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px) {
@@ -1221,28 +1268,6 @@ input[type=number]::-webkit-outer-spin-button {
     row-gap: 1rem;
   }
 }
-
-/* For medium devices
-@media screen and (min-width: 576px) {
-  .specialty__category{
-    grid-template-columns: repeat(2, 200px);
-    column-gap: 3rem;
-  }
- 
-  .products__content{
-    grid-template-columns: repeat(2, 200px);
-    padding-bottom: 3rem;
-  }
-
-  .blog__content{
-    grid-template-columns: 450px;
-    justify-content: center;
-  }
-
-  .footer__newsletter{
-    width: 350px;
-  }
-} */
 
 @media screen and (min-width: 412px) {  
   .load_h1{
@@ -1428,6 +1453,10 @@ input[type=number]::-webkit-outer-spin-button {
   } */
   .specialty__category{
     grid-template-columns: repeat(3, 250px);
+    column-gap: 8rem;
+  }
+  .specialty__category_login{
+    grid-template-columns: repeat(3, 275px);
     column-gap: 8rem;
   }
   .specialty__line{

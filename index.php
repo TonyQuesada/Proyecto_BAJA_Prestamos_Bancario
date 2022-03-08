@@ -83,7 +83,7 @@ if(isset($_SESSION['u_idRol'])){
 
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="Prestamos/login.html" class="nav__link">
+                        <a href="Prestamos/login.php" class="nav__link">
                             <i class='bx bx-user'></i> Iniciar Sesión
                         </a>
                     </li>
@@ -99,9 +99,10 @@ if(isset($_SESSION['u_idRol'])){
                         <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                     </div>
 
+                    <!-- PHP -->
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="#profil" class="nav__link">
+                            <a href="Prestamos/cliente_perfil.php" class="nav__link">
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
@@ -119,7 +120,7 @@ if(isset($_SESSION['u_idRol'])){
 
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="#profil" class="nav__link">
+                            <a href="Prestamos/cliente_perfil.php" class="nav__link">
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
@@ -381,7 +382,7 @@ if(isset($_SESSION['u_idRol'])){
 
                 <div class="products__content grid">
                     <!--========== Personal ==========-->
-                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/gastos_personales.html'">
+                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/gastos_personales.php'">
                         <div class="products__shape">
                             <img src="assets/img/personal1.png" alt="" class="products__img">
                         </div>
@@ -396,7 +397,7 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/rapidos.html'">
+                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/rapidos.php'">
                         <div class="products__shape">
                             <img src="assets/img/personal2.png" alt="" class="products__img">
                         </div>
@@ -412,7 +413,7 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== Vivienda ==========-->
-                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/construccion_vivienda.html'">
+                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/construccion_vivienda.php'">
                         <div class="products__shape">
                             <img src="assets/img/house1.png" alt="" class="products__img">
                         </div>
@@ -427,7 +428,7 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/vivienda_interes_social.html'">
+                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/vivienda_interes_social.php'">
                         <div class="products__shape">
                             <img src="assets/img/house2.png" alt="" class="products__img">
                         </div>
@@ -443,7 +444,7 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== Vehiculos ==========-->
-                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_nuevo.html'">
+                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_nuevo.php'">
                         <div class="products__shape">
                             <img src="assets/img/car1.png" alt="" class="products__img">
                         </div>
@@ -458,7 +459,7 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_usado.html'">
+                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_usado.php'">
                         <div class="products__shape">
                             <img src="assets/img/car2.png" alt="" class="products__img">
                         </div>
@@ -474,7 +475,7 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== Viajes ==========-->
-                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_internacionales.html'">
+                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_internacionales.php'">
                         <div class="products__shape">
                             <img src="assets/img/travel3.png" alt="" class="products__img">
                         </div>
@@ -489,7 +490,7 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_nacionales.html'">
+                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_nacionales.php'">
                         <div class="products__shape">
                             <img src="assets/img/travel2.png" alt="" class="products__img">
                         </div>
@@ -505,7 +506,7 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== UniDeudas ==========-->
-                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/pagos_tarjeta_credito.html'">
+                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/pagos_tarjeta_credito.php'">
                         <div class="products__shape">
                             <img src="assets/img/pay1.png" alt="" class="products__img">
                         </div>
@@ -520,7 +521,7 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/prestamos_de_otras_instituciones.html'">
+                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/prestamos_de_otras_instituciones.php'">
                         <div class="products__shape">
                             <img src="assets/img/pay2.png" alt="" class="products__img">
                         </div>
@@ -541,7 +542,7 @@ if(isset($_SESSION['u_idRol'])){
         </section>
 
         <!--==================== CONCEPTS ====================-->
-        <section class="section quality" id="premium">
+        <!-- <section class="section quality" id="premium"> -->
             <!-- <section> -->
             <section class="section quality" id="premium">
                 <div class="quality__container container">
@@ -599,7 +600,7 @@ if(isset($_SESSION['u_idRol'])){
                             <div class="card__back">
                                 <div class="body__card_back">
                                     <h1>Préstamo Personal</h1>
-                                    <p>Dinero que te presta un banco o entidad financiera de forma inmediata. Para ser aprobado, debes contar con una situación financiera estable.</p>
+                                    <p>Dinero que te presta un banco o entidad financiera de forma inmediata.</p>
                                     <input type="button" value="Leer Más">
                                 </div>
                             </div>
