@@ -72,7 +72,10 @@ if (isset($_SESSION['u_idRol'])) {
                     </h3>
 
                 </a>
-
+                <!-- Toggle button -->
+                <a href="../index.php" class="header__toggle">
+                    <i class='bx bx-arrow-back'></i>
+                </a>
             </nav>
         </header>
 
@@ -80,7 +83,7 @@ if (isset($_SESSION['u_idRol'])) {
         <section class="home grid" id="home">
             <div class="home__container">
                 <div class="home__content container">
-
+                    <br>
                     <form class="l" method="POST" action="../PHP/login.php">
 
                         <br>
@@ -94,48 +97,12 @@ if (isset($_SESSION['u_idRol'])) {
                         <input type="submit" value="Ingresar" class="button pulse" name="insert">
                         <br>
                         <br>
-                    </form>
-
-                    <div class="home__data">
-                        <div class="home__data-group">
-                            <h3 class="home__data-title">Compra USD</h3>
-                            <h2 class="home__data-number"><?php echo $compra ?></h2>
-                            <p class="home__data-description">
-                            </p>
-                        </div>
-
-                        <div class="home__data-group">
-                            <h3 class="home__data-title">Venta USD</h3>
-                            <h2 class="home__data-number"><?php echo $venta ?></h2>
-                            <p class="home__data-description">
-                            </p>
-                        </div>
-                    </div>
-
-                    <br><br>
-                    <form class="f" name="f">
-                        <h3 class="home__data-title">Convertir Monedas
-                            <a onclick="myFunction()" class="button_convertir pulse"><span>Compra</span></a>
-                            <a onclick="myFunction2()" class="button_convertir pulse"><span>Venta</span></a>
-                        </h3>
+                        <a href="#" class="a a_login">¿Olvidó su contraseña?</a>
                         <br>
-
-                        <div id="myDIV">
-                            <h4><input class="input__convert" type="number" name="num1_1" id="num1_1" value="" onchange="cal_1()" onkeyup="cal_1()" autocomplete="off" style="margin-left: -2px;" placeholder="0" />
-                                <- Dólar</h4>
-                                    <p hidden>Número 2: <input type="number" name="num2_1" value="<?php echo $compra ?>" onchange="cal_1()" onkeyup="cal_1()" /></p>
-                                    <h4><input class="input__convert" type="number" name="sum_1" id="sum_1" value="" readonly="readonly" placeholder="0" />
-                                        <- Cólon</h4>
-                        </div>
-                        <div id="myDIV2" style="display:none">
-                            <h4><input class="input__convert" type="number" name="num1_2" id="num1_2" value="" onchange="cal_2()" onkeyup="cal_2()" autocomplete="off" placeholder="0" />
-                                <- Cólon</h4>
-                                    <p hidden>Número 2: <input type="number" name="num2_2" value="<?php echo $venta ?>" onchange="cal_2()" onkeyup="cal_2()" /></p>
-                                    <h4><input class="input__convert" type="number" name="sum_2" id="sum_2" value="" readonly="readonly" style="margin-left: -2px;" placeholder="0" />
-                                        <- Dólar</h4>
-                        </div>
+                        <br>
+                        <br>
                     </form>
-
+                    <br><br>
                 </div>
             </div>
 
@@ -207,7 +174,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 <div class="specialty__category_login">
 
-                    <div class="specialty__group_login specialty__line" >
+                    <div class="specialty__group_login specialty__line">
                         <!-- <img src="../assets/img/BAJA_online.png" alt="" class="specialty__img"> -->
 
                         <div class="home__data_login2">
@@ -220,7 +187,7 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </div>
 
-                    <div class="specialty__group_login specialty__line" >
+                    <div class="specialty__group_login specialty__line">
 
                         <form class="ll" name="f">
                             <h3 class="home__data-title">Convertir Monedas
@@ -247,10 +214,10 @@ if (isset($_SESSION['u_idRol'])) {
 
                     </div>
 
-                    <div class="specialty__group_login" >
+                    <div class="specialty__group_login">
                         <!-- <img src="../assets/img/Pago.png" alt="" class="specialty__img"> -->
 
-                        <div class="home__data_login2">                            
+                        <div class="home__data_login2">
                             <div class="home__data-group">
                                 <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: var(--h1-font-size);">Venta USD</h3>
                                 <h2 class="home__data-number" style="font-size: var(--h1-font-size);"><?php echo $venta ?></h2>

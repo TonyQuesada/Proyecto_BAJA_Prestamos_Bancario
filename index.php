@@ -382,14 +382,14 @@ if(isset($_SESSION['u_idRol'])){
 
                 <div class="products__content grid">
                     <!--========== Personal ==========-->
-                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/gastos_personales.php'">
+                    <article class="products__card Personal" onclick="window.location.href='Prestamos/Personal/gastos_personales.php'">
                         <div class="products__shape">
                             <img src="assets/img/personal1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Gastos Personales</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Solicitá tu préstamo personal y hacé realidad todos tus planes.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -397,14 +397,14 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/rapidos.php'">
+                    <article class="products__card Personal" onclick="window.location.href='Prestamos/Personal/rapidos.php'">
                         <div class="products__shape">
                             <img src="assets/img/personal2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Rápidos</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Te brindamos un crédito de rápida aprobación para tus necesidades inmediatas.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -413,14 +413,14 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== Vivienda ==========-->
-                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/construccion_vivienda.php'">
+                    <article class="products__card Vivienda" onclick="window.location.href='Prestamos/Vivienda/construccion_vivienda.php'">
                         <div class="products__shape">
                             <img src="assets/img/house1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Construcción Vivienda</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Te ofrecemos un crédito hecho a tu medida para la construcción de tu casa.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -428,14 +428,14 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/vivienda_interes_social.php'">
+                    <article class="products__card Vivienda" onclick="window.location.href='Prestamos/Vivienda/vivienda_interes_social.php'">
                         <div class="products__shape">
                             <img src="assets/img/house2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Vivienda Interés Social</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Te ofrecemos una solución ágil de financiamiento para que estrenés en menor tiempo tu nuevo hogar.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -444,14 +444,14 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== Vehiculos ==========-->
-                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_nuevo.php'">
+                    <article class="products__card Vehiculos" onclick="window.location.href='Prestamos/Vehiculo/vehiculo_nuevo.php'">
                         <div class="products__shape">
                             <img src="assets/img/car1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Vehículo Nuevo</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Te ofrecemos tasas competitivas y rápidos tiempos de respuesta para comprar tu carro nuevo.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -459,14 +459,14 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_usado.php'">
+                    <article class="products__card Vehiculos" onclick="window.location.href='Prestamos/Vehiculo/vehiculo_usado.php'">
                         <div class="products__shape">
                             <img src="assets/img/car2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Vehículo Usado</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Te ofrecemos tasas competitivas y rápidos tiempos de respuesta para comprar tu carro usado.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -475,14 +475,14 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== Viajes ==========-->
-                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_internacionales.php'">
+                    <article class="products__card Viajes" onclick="window.location.href='Prestamos/Viajes/viajes_internacionales.php'">
                         <div class="products__shape">
                             <img src="assets/img/travel3.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Viajes Internacionales</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Planifique el viaje, prepare las maletas con tranquilidad, nosotros le financiamos.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -490,14 +490,14 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_nacionales.php'">
+                    <article class="products__card Viajes" onclick="window.location.href='Prestamos/Viajes/viajes_nacionales.php'">
                         <div class="products__shape">
                             <img src="assets/img/travel2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Viajes Nacionales</h2>
-                            <h3 class="products__name">*Información</h3>
+                            <h3 class="products__name">Nosotros le ayudamos a cumplir sus sueños de viajar y disfrutar de las bellezas nacionales.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -506,14 +506,14 @@ if(isset($_SESSION['u_idRol'])){
                     </article>
 
                     <!--========== UniDeudas ==========-->
-                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/pagos_tarjeta_credito.php'">
+                    <article class="products__card UniDeudas" onclick="window.location.href='Prestamos/Unificacion/pagos_tarjeta_credito.php'">
                         <div class="products__shape">
                             <img src="assets/img/pay1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Pagos De Tarjetas De Crédito</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Unifique sus pagos de tarjeta con una cuota única.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -521,14 +521,14 @@ if(isset($_SESSION['u_idRol'])){
                         </div>
                     </article>
 
-                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/prestamos_de_otras_instituciones.php'">
+                    <article class="products__card UniDeudas" onclick="window.location.href='Prestamos/Unificacion/prestamos_de_otras_instituciones.php'">
                         <div class="products__shape">
                             <img src="assets/img/pay2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
                             <h2 class="products__price">Préstamos De Otras Instituciones</h2>
-                            <h3 class="products__name">*Información*</h3>
+                            <h3 class="products__name">Gane paz y liquidez al unificar sus deudas con BAJA.</h3>
 
                             <button class="button products__button">
                                 <i class='bx bxs-calculator'></i>
@@ -683,7 +683,7 @@ if(isset($_SESSION['u_idRol'])){
                         ¡Prestamos Más Solicitados!
                     </h2>
 
-                    <!-- <div class="blog__content grid">
+                    <div class="blog__content grid">
                         <article class="blog__card">
                             <div class="blog__image">
                                 <img src="assets/img/blog1.png" alt="" class="blog__img">
@@ -773,7 +773,7 @@ if(isset($_SESSION['u_idRol'])){
                                 </div>
                             </div>
                         </article>
-                    </div> -->
+                    </div>
 
                 </div>
             </section>
