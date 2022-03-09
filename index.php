@@ -683,7 +683,7 @@ if(isset($_SESSION['u_idRol'])){
                         ¡Prestamos Más Solicitados!
                     </h2>
 
-                    <div class="blog__content grid">
+                    <!-- <div class="blog__content grid">
                         <article class="blog__card">
                             <div class="blog__image">
                                 <img src="assets/img/blog1.png" alt="" class="blog__img">
@@ -773,7 +773,7 @@ if(isset($_SESSION['u_idRol'])){
                                 </div>
                             </div>
                         </article>
-                    </div>
+                    </div> -->
 
                 </div>
             </section>

@@ -143,7 +143,7 @@ if (isset($_SESSION['u_idRol'])) {
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#blog" class="nav__link">
+                            <a href="#footer" class="nav__link">
                                 <i class='bx bx-message-square-detail'></i> Contacto
                             </a>
                         </li>
@@ -243,14 +243,14 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </form>
 
-                    <a href="#specialty">
+                    <a href="#calculador">
                         <img src="../../assets/img/scroll.png" alt="" class="home__scroll">
                     </a>
                 </div>
             </div>
 
             <!-- <img src="../../assets/img/home.gif" alt="" class="home__img"> -->
-            <video src="../../assets/video/Portada1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
+            <video src="../../assets/video/Personal1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
 
         </section>
 
@@ -304,9 +304,7 @@ if (isset($_SESSION['u_idRol'])) {
 
         <!--==================== BENEFITS ====================-->
 
-
-
-        <style type="text/css">
+        <!-- <style type="text/css">
             /* Styles needed by SpreadsheetConverter */
             *.ee100 {
                 color: windowtext;
@@ -1454,170 +1452,181 @@ if (isset($_SESSION['u_idRol'])) {
         </script>
 
         <div id="contenidotexto">
-            <table width="656" height="272" border="0" align="center" cellpadding="5" cellspacing="0">
 
-                <tr>
-                    <td width="656">
+            <form id="formc" name="formc" method="post" action="">
 
-                        <form id="formc" name="formc" method="post" action="">
-                            <table width="503" border="0" cellspacing="0" cellpadding="0">
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td width="85" class='ee112'>&nbsp;</td>
-                                    <td width="162" class='ee114'>&nbsp;</td>
-                                    <td width="168" class='ee114'>&nbsp;</td>
-                                    <td width="88" class='ee115'>&nbsp;</td>
-                                </tr>
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td class='ee118'>&nbsp;</td>
-                                    <td class='ee119'> Capital prestado (Vo)</td>
-                                    <td class='ee120'><input value="10.000,00" name="p3D6" id="p3D6" type="text" onblur="this.value=NumberFormat(this.value, '2', ',', '.');recalc_onclick('p3D6')" tabindex="1" style=' width:100% ' class='ee122' onKeyDown="if (event.keyCode==13) event.keyCode=9;" onKeyPress="if (event.keyCode==46) {event.keyCode=44;};" onKeyUp="EvaluateText('%f', this);"> </td>
-                                    <td class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td class='ee118'>&nbsp;</td>
-                                    <td class='ee119'> Tipo de interés</td>
-                                    <td class='ee120'><input value="6,40%" name="p3D7" id="p3D7" type="text" onblur="this.value=eedisplayPercentNDV(eeparsePercentV(this.value),2);recalc_onclick('p3D7')" tabindex="2" style=' width:100% ' class='ee122' onKeyDown="if (event.keyCode==13) event.keyCode=9;"> </td>
-                                    <td class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td class='ee118'>&nbsp;</td>
-                                    <td class='ee119'> Nº años </td>
-                                    <td class='ee120'><input value="5" name="p3D8" id="p3D8" type="text" onblur="this.value=eedisplayFloat(eeparseFloat(this.value));recalc_onclick('p3D8')" tabindex="3" style=' width:100% ' class='ee122' onKeyDown="if (event.keyCode==13) event.keyCode=9;"> </td>
-                                    <td class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td class='ee118'>&nbsp;</td>
-                                    <td class='ee119'> Elegir pagos </td>
-                                    <td class='ee128'><select name="p3D9" id="p3D9" size="1" onChange="recalc_onclick('p3D9')" tabindex="4" class='ee130' style=' width:100% '>
-                                            <option value="MENSUALES" selected>MENSUALES</option>
-                                            <option value="TRIMESTRALES">TRIMESTRALES</option>
-                                            <option value="SEMESTRALES">SEMESTRALES</option>
-                                            <option value="ANUALES">ANUALES</option>
-                                        </select> </td>
-                                    <td class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td class='ee118'>&nbsp;</td>
-                                    <td class='ee119'><span class="ee124">
-                                            <input name="p3E7" type="text" class='ee126' id="p3E7" style='overflow:hidden; border:0px solid #000000;' tabindex="-1" value="" size="2" maxlength="2" readonly>
-                                        </span></td>
-                                    <td class='ee119'><span class="ee124">
-                                            <input name="p3E9" type="text" class='ee126' id="p3E9" style='overflow:hidden; border:0px solid #000000;' tabindex="-1" value="" size="2" maxlength="2" readonly>
-                                        </span></td>
-                                    <td class='ee123'>&nbsp;</td>
-                                </tr>
+                Capital prestado (Vo)
+                <input value="" name="p3D6" id="p3D6" type="text" onblur="this.value=NumberFormat(this.value, '2', ',', '.');recalc_onclick('p3D6')" tabindex="1" style=' width:100% ' class='ee122' onKeyDown="if (event.keyCode==13) event.keyCode=9;" onKeyPress="if (event.keyCode==46) {event.keyCode=44;};" onKeyUp="EvaluateText('%f', this);">
 
-                                <tr bgcolor="#FFFFFF" style='height:15pt'>
-                                    <td class='ee118'>&nbsp;</td>
-                                    <td class='ee136'> Pago </td>
-                                    <td class='ee138'><input name="p3D11" type="text" class='ee137' id="p3D11" style='overflow:hidden; border:0px solid #000000;' tabindex="-1" value="" size="8" maxlength="8" readonly> </td>
-                                    <td class='ee123'>&nbsp;</td>
-                                </tr>
+                Tipo de interés
+                <input value="6,40%" name="p3D7" id="p3D7" type="text" onblur="this.value=eedisplayPercentNDV(eeparsePercentV(this.value),2);recalc_onclick('p3D7')" tabindex="2" style=' width:100% ' class='ee122' onKeyDown="if (event.keyCode==13) event.keyCode=9;">
 
-                                <tr>
-                                    <td bgcolor="#FFFFFF" class='ee118'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee139'><input value="" name="p3C12" id="p3C12" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee140'> </td>
-                                    <td bgcolor="#FFFFFF" class='ee141'><input value="-" name="p3D12" id="p3D12" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee142'> </td>
-                                    <td bgcolor="#FFFFFF" class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF" class='ee118'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee143'> Pagado en total </td>
-                                    <td bgcolor="#FFFFFF" class='ee144'><input value="-" name="p3D13" id="p3D13" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee142'> </td>
-                                    <td bgcolor="#FFFFFF" class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF" class='ee118'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee145'>Intereses </td>
-                                    <td bgcolor="#FFFFFF" class='ee146'><input value="-" name="p3D14" id="p3D14" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee142'> </td>
-                                    <td bgcolor="#FFFFFF" class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF" class='ee118'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee119'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee119'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF" class='ee118'>&nbsp;</td>
-                                    <td colspan="2" bgcolor="#FFFFFF" class='ee119'>
-                                        <div align="center">
-                                            <input name="button" type="button" tabindex="-1" onClick="formReset()" value=" Limpiar formulario ">
-                                        </div>
-                                    </td>
-                                    <td bgcolor="#FFFFFF" class='ee123'>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#FFFFFF" class='ee148'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee149'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee149'>&nbsp;</td>
-                                    <td bgcolor="#FFFFFF" class='ee150'>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"><span class="ee100">
-                                            <!--* Tipo de Interés Nominal anual, normalmente el ofrecido en la  publicidad de Bancos. Ver <a href="../interescompuesto/conversores_tipo_interes.htm" tabindex="-1">conversores de tipos de interés</a>-->.
-                                        </span></td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td colspan="2">
-                                        <div align="center">
-                                            <input name="Submit" type="button" value="  Ver definiciones y fórmulas  " OnClick="javascript:goto()" tabindex="-1">
-                                        </div>
-                                    </td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td colspan="2">&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
+
+                Nº años
+                <input value="5" name="p3D8" id="p3D8" type="text" onblur="this.value=eedisplayFloat(eeparseFloat(this.value));recalc_onclick('p3D8')" tabindex="3" style=' width:100% ' class='ee122' onKeyDown="if (event.keyCode==13) event.keyCode=9;">
+
+                Elegir pagos
+                <select name="p3D9" id="p3D9" size="1" onChange="recalc_onclick('p3D9')" tabindex="4" class='ee130' style=' width:100% '>
+                    <option value="MENSUALES" selected>MENSUALES</option>
+                    <option value="TRIMESTRALES">TRIMESTRALES</option>
+                    <option value="SEMESTRALES">SEMESTRALES</option>
+                    <option value="ANUALES">ANUALES</option>
+                </select>
+
+                <span class="ee124">
+                    <input name="p3E7" type="text" class='ee126' id="p3E7" style='overflow:hidden; border:0px solid #000000;' tabindex="-1" value="" size="2" maxlength="2" readonly>
+                </span>
+                <span class="ee124">
+                    <input name="p3E9" type="text" class='ee126' id="p3E9" style='overflow:hidden; border:0px solid #000000;' tabindex="-1" value="" size="2" maxlength="2" readonly>
+                </span>
+
+
+                Pago
+                <input name="p3D11" type="text" class='ee137' id="p3D11" style='overflow:hidden; border:0px solid #000000;' tabindex="-1" value="" size="8" maxlength="8" readonly>
+
+
+                <input value="" name="p3C12" id="p3C12" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee140'>
+                <input value="-" name="p3D12" id="p3D12" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee142'>
+
+                Pagado en total
+                <input value="-" name="p3D13" id="p3D13" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee142'>
+
+
+                Intereses
+                <input value="-" name="p3D14" id="p3D14" type="text" tabindex="-1" readonly style='overflow:hidden; border:0px solid #000000; width:100% ' class='ee142'>
+
+
+                <script language="javascript">
+                    function postcode() {};
+
+                    function eequerystring() {
+                        var querystring = document.location.search;
+                        if (querystring.length > 0) {
+                            variables = (querystring.substring(1)).split("&");
+                            var variable;
+                            var key;
+                            var value;
+                            for (var ii = 0; ii < variables.length; ii++) {
+                                variable = variables[ii].split("=");
+                                key = unescape(variable[0]);
+                                value = unescape(variable[1]);
+                                if (document.formc[key] != null) {
+                                    document.formc[key].value = value;
+                                }
+                            }
+                        }
+                    }
+
+                    function initial_update() {
+                        postcode('');
+                        eequerystring();
+                        recalc_onclick('');
+                    }
+                </script>
+            </form>
+
+        </div> -->
+
+
+        <section class="section container specialty" id="calculador">
+            <div class="specialty__container">
+                <div class="specialty__box">
+                    <h2 class="section__title">
+                        ¡Hágalo sus sueños realidad!
+                    </h2>
+
+                    <!-- <div>
+                        <a href="../index.php#products" class="button specialty__button pulse"><span>Ver Préstamos</span></a>
+                    </div> -->
+
+                </div>
+
+                <div class="specialty__category_prestamos">
+
+                    <div class="">
+                        <!-- <div class="specialty__group_prestamos specialty__line"> -->
+                        <!-- <img src="../assets/img/BAJA_online.png" alt="" class="specialty__img"> -->
+
+                        <div class="home__data_prestamos">
+                            <div class="home__data-group">
+                                <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: var(--h1-font-size);">Compra USD</h3>
+                                <h2 class="home__data-number" style="font-size: var(--h1-font-size);"><?php echo $compra ?></h2>
+                                <p class="home__data-description">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="specialty__group_prestamos">
+
+                        <form class="l_prestamos" name="l_prestamos">
+                            <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
+                                <a onclick="myFunction_col()" class="button_convertir pulse" id="col" style="margin-left: 0.3rem;"><span>Colones</span></a>
+                                <a onclick="myFunction_dol()" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
+                            </h3>
                             <br>
-                            <script language="javascript">
-                                function postcode() {};
 
-                                function eequerystring() {
-                                    var querystring = document.location.search;
-                                    if (querystring.length > 0) {
-                                        variables = (querystring.substring(1)).split("&");
-                                        var variable;
-                                        var key;
-                                        var value;
-                                        for (var ii = 0; ii < variables.length; ii++) {
-                                            variable = variables[ii].split("=");
-                                            key = unescape(variable[0]);
-                                            value = unescape(variable[1]);
-                                            if (document.formc[key] != null) {
-                                                document.formc[key].value = value;
-                                            }
-                                        }
-                                    }
-                                }
+                            <div id="DIV_col">
+                                <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo" type="number" name="monto_col" id="monto_col" value="" placeholder="0" />
+                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: 100,000,000.0 | Monto Minimo: 300,000.0</h5>
+                                </h4>
+                                <br><br>
 
-                                function initial_update() {
-                                    postcode('');
-                                    eequerystring();
-                                    recalc_onclick('');
-                                }
-                            </script>
+                                <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_col"></span></h3>
+                                <div class="slidecontainer">
+                                    <input type="range" min="0" max="12" value="12" class="slider" id="range_col">
+                                </div>
+                                <br><br>
+
+                                <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo" type="number" name="monto_col" id="monto_col" value="18.0" placeholder="0" readonly="readonly" />
+                                </h4>
+                                <br><br>
+
+                                <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo" type="number" name="monto_col" id="monto_col" value="" placeholder="0" />
+                                </h4>
+                                <br><br>
+
+
+
+
+                                <!-- <h4><input class="input__convert" type="number" name="num1_1" id="num1_1" value="" onchange="cal_1()" onkeyup="cal_1()" autocomplete="off" style="margin-left: -2px;" placeholder="0" />
+                                    <- Dólar</h4>
+                                        <p hidden>Número 2: <input type="number" name="num2_1" value="<?php echo $compra ?>" onchange="cal_1()" onkeyup="cal_1()" /></p>
+                                        <h4><input class="input__convert" type="number" name="sum_1" id="sum_1" value="" readonly="readonly" placeholder="0" />
+                                            <- Cólon</h4> -->
+                            </div>
+                            <div id="myDIV2" style="display:none">
+                                <h4><input class="input__convert" type="number" name="num1_2" id="num1_2" value="" onchange="cal_2()" onkeyup="cal_2()" autocomplete="off" placeholder="0" />
+                                    <- Cólon</h4>
+                                        <p hidden>Número 2: <input type="number" name="num2_2" value="<?php echo $venta ?>" onchange="cal_2()" onkeyup="cal_2()" /></p>
+                                        <h4><input class="input__convert" type="number" name="sum_2" id="sum_2" value="" readonly="readonly" style="margin-left: -2px;" placeholder="0" />
+                                            <- Dólar</h4>
+                            </div>
                         </form>
-                    </td>
-                </tr>
-            </table>
 
-        </div>
+                    </div>
 
+                </div>
+            </div>
+        </section>
+        <br><br>
 
+        <script>
+            var slider = document.getElementById("range_col");
+            var output = document.getElementById("demo_col");
+            output.innerHTML = slider.value;
 
-
-
+            // Update the current slider value (each time you drag the slider handle)
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+        </script>
 
         <!--==================== BENEFITS ====================-->
         <div class="section container specialty" id="specialty">
@@ -1861,7 +1870,7 @@ if (isset($_SESSION['u_idRol'])) {
         </section>
 
         <!--==================== FOOTER ====================-->
-        <footer class="footer" id="footer">
+        <section class="section footer" id="footer">
             <div class="footer__container container">
                 <h1 class="footer__title">BAJA</h1>
 
@@ -1923,7 +1932,7 @@ if (isset($_SESSION['u_idRol'])) {
                     </span>
                 </div>
             </div>
-        </footer>
+        </section>
     </main>
 
     <!--========== SCROLL UP ==========-->
