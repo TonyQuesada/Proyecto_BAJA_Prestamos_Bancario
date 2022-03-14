@@ -46,7 +46,7 @@ if (isset($_SESSION['u_idRol'])) {
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="../assets/css/styles.css">
 
-    <title>Login - BAJA - Banco Angular Jerárquico Asociado</title>
+    <title>Login - BAJA</title>
 </head>
 
 <body>
@@ -309,6 +309,7 @@ if (isset($_SESSION['u_idRol'])) {
 
     <!--=============== MAIN JS ===============-->
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/contador.js"></script>
 </body>
 
 </html>

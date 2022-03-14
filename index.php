@@ -24,7 +24,7 @@ while ($fila = sqlsrv_fetch_array($ejecutar)) {
 }
 
 $sesionRol = null;
-if(isset($_SESSION['u_idRol'])){
+if (isset($_SESSION['u_idRol'])) {
     $sesionRol = $_SESSION['u_idRol'];
 }
 ?>
@@ -87,9 +87,9 @@ if(isset($_SESSION['u_idRol'])){
                             <i class='bx bx-user'></i> Iniciar Sesión
                         </a>
                     </li>
-            <?php
+                <?php
             } else if ($sesionRol == 3 || $sesionRol == 2 || $sesionRol == 1) {
-            ?>
+                ?>
                     <div class="nav__data">
                         <div class="nav__mask">
                             <img src="assets/img/userAdmin.png" alt="" class="nav__img">
@@ -106,60 +106,74 @@ if(isset($_SESSION['u_idRol'])){
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
-            <?php
-            } else if ($sesionRol == 4) {
-            ?>
-                    <div class="nav__data">
-                        <div class="nav__mask">
-                            <img src="assets/img/userMale.png" alt="" class="nav__img">
+                    <?php
+                } else if ($sesionRol == 4) {
+                    ?>
+                        <div class="nav__data">
+                            <div class="nav__mask">
+                                <img src="assets/img/userMale.png" alt="" class="nav__img">
+                            </div>
+
+                            <span class="nav__greeting">Bienvenid@</span>
+                            <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                         </div>
 
-                        <span class="nav__greeting">Bienvenid@</span>
-                        <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
-                    </div>
-
-                    <ul class="nav__list">
+                        <ul class="nav__list">
+                            <li class="nav__item">
+                                <a href="Prestamos/cliente_perfil.php" class="nav__link">
+                                    <i class='bx bx-user'></i> Perfil
+                                </a>
+                            </li>
+                        <?php
+                    }
+                        ?>
                         <li class="nav__item">
-                            <a href="Prestamos/cliente_perfil.php" class="nav__link">
-                                <i class='bx bx-user'></i> Perfil
+                            <a href="#home" class="nav__link active-link">
+                                <i class='bx bx-home'></i> Inicio
                             </a>
                         </li>
-            <?php
-            }
-            ?>
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link active-link">
-                            <i class='bx bx-home'></i> Inicio
-                        </a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#products" class="nav__link">
-                            <i class='bx bx-money'></i> Préstamos
-                        </a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#premium" class="nav__link">
-                            <i class='bx bx-briefcase-alt-2'></i> Conceptos
-                        </a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#blog" class="nav__link">
-                            <i class='bx bx-message-square-detail'></i> Contacto
-                        </a>
-                    </li>
 
-            <?php
-            if ($sesionRol != NULL) {
-            ?>
+                        <?php
+                        if ($sesionRol == 0) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="contador/dashboard.php" class="nav__link">
+                                    <i class='bx bx-line-chart'></i> Tablero
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+
                         <li class="nav__item">
-                            <a href="PHP/logout.php" class="nav__link">
-                                <i class='bx bx-log-out'></i> Cerrar Sesión
+                            <a href="#products" class="nav__link">
+                                <i class='bx bx-money'></i> Préstamos
                             </a>
                         </li>
-            <?php
-            }
-            ?>
-                    </ul>
+                        <li class="nav__item">
+                            <a href="#premium" class="nav__link">
+                                <i class='bx bx-briefcase-alt-2'></i> Conceptos
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#blog" class="nav__link">
+                                <i class='bx bx-message-square-detail'></i> Contacto
+                            </a>
+                        </li>
+
+                        <?php
+                        if ($sesionRol != NULL) {
+                        ?>
+                            <li class="nav__item">
+                                <a href="PHP/logout.php" class="nav__link">
+                                    <i class='bx bx-log-out'></i> Cerrar Sesión
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                        </ul>
         </div>
     </nav>
 
@@ -285,8 +299,7 @@ if(isset($_SESSION['u_idRol'])){
                 if (x.style.display === "none") {
                     y.style.display = "none";
                     x.style.display = "block";
-                } else {
-                }
+                } else {}
             }
 
             function myFunction2() {
@@ -299,8 +312,7 @@ if(isset($_SESSION['u_idRol'])){
                 if (y.style.display === "none") {
                     x.style.display = "none";
                     y.style.display = "block";
-                } else {
-                }
+                } else {}
             }
         </script>
 
@@ -543,130 +555,130 @@ if(isset($_SESSION['u_idRol'])){
 
         <!--==================== CONCEPTS ====================-->
         <!-- <section class="section quality" id="premium"> -->
-            <!-- <section> -->
-            <section class="section quality" id="premium">
-                <div class="quality__container container">
-                    <h2 class="section__title">
-                        ¡Conceptos Financieros!
-                    </h2>
+        <!-- <section> -->
+        <section class="section quality" id="premium">
+            <div class="quality__container container">
+                <h2 class="section__title">
+                    ¡Conceptos Financieros!
+                </h2>
+            </div>
+
+            <div class="container__card">
+
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Capital.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Capital</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Capital</h1>
+                                <p>Es el monto de dinero que presta la institución financiera.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="container__card">
-
-                    <div class="card__father">
-                        <div class="card">
-                            <div class="card__front" style="background-image: url(assets/img/Capital.png);">
-                                <div class="bg"></div>
-                                <div class="body__card_front">
-                                    <h1 style="color: #fff">Capital</h1>
-                                </div>
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Interes.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Interés</h1>
                             </div>
-                            <div class="card__back">
-                                <div class="body__card_back">
-                                    <h1>Capital</h1>
-                                    <p>Es el monto de dinero que presta la institución financiera.</p>
-                                    <input type="button" value="Leer Más">
-                                </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Interés</h1>
+                                <p>Es el costo del uso del dinero entregado en préstamo, que se expresa como porcentaje.</p>
+                                <input type="button" value="Leer Más">
                             </div>
                         </div>
                     </div>
-
-                    <div class="card__father">
-                        <div class="card">
-                            <div class="card__front" style="background-image: url(assets/img/Interes.png);">
-                                <div class="bg"></div>
-                                <div class="body__card_front">
-                                    <h1 style="color: #fff">Interés</h1>
-                                </div>
-                            </div>
-                            <div class="card__back">
-                                <div class="body__card_back">
-                                    <h1>Interés</h1>
-                                    <p>Es el costo del uso del dinero entregado en préstamo, que se expresa como porcentaje.</p>
-                                    <input type="button" value="Leer Más">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card__father">
-                        <div class="card">
-                            <div class="card__front" style="background-image: url(assets/img/Prestamo_Personal.png);">
-                                <div class="bg"></div>
-                                <div class="body__card_front">
-                                    <h1 style="color: #fff">Préstamo Personal</h1>
-                                </div>
-                            </div>
-                            <div class="card__back">
-                                <div class="body__card_back">
-                                    <h1>Préstamo Personal</h1>
-                                    <p>Dinero que te presta un banco o entidad financiera de forma inmediata.</p>
-                                    <input type="button" value="Leer Más">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card__father">
-                        <div class="card">
-                            <div class="card__front" style="background-image: url(assets/img/Mensualidad.png);">
-                                <div class="bg"></div>
-                                <div class="body__card_front">
-                                    <h1 style="color: #fff">Mensualidad</h1>
-                                </div>
-                            </div>
-                            <div class="card__back">
-                                <div class="body__card_back">
-                                    <h1>Mensualidad</h1>
-                                    <p>Cantidad de dinero que se abona mes a mes al credito o préstamo.</p>
-                                    <input type="button" value="Leer Más">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card__father">
-                        <div class="card">
-                            <div class="card__front" style="background-image: url(assets/img/Plazo.png);">
-                                <div class="bg"></div>
-                                <div class="body__card_front">
-                                    <h1 style="color: #fff">Plazo</h1>
-                                </div>
-                            </div>
-                            <div class="card__back">
-                                <div class="body__card_back">
-                                    <h1>Plazo</h1>
-                                    <p>Tiempo en el que debes devolver el préstamo, este puede ser días, meses o años depende de la institución financiera.</p>
-                                    <input type="button" value="Leer Más">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card__father">
-                        <div class="card">
-                            <div class="card__front" style="background-image: url(assets/img/Fecha_Pago.png);">
-                                <div class="bg"></div>
-                                <div class="body__card_front">
-                                    <h1 style="color: #fff">Fecha de Pago</h1>
-                                </div>
-                            </div>
-                            <div class="card__back">
-                                <div class="body__card_back">
-                                    <h1>Fecha de Pago</h1>
-                                    <p> Corresponde al día definido para que el deudor efectúe el pago correspondiente según la frecuencia de pago de intereses o amortización.</p>
-                                    <input type="button" value="Leer Más">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
-            </section>
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Prestamo_Personal.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Préstamo Personal</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Préstamo Personal</h1>
+                                <p>Dinero que te presta un banco o entidad financiera de forma inmediata.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <!--==================== LOGOS ====================-->
-            <!-- <section class="section logo">
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Mensualidad.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Mensualidad</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Mensualidad</h1>
+                                <p>Cantidad de dinero que se abona mes a mes al credito o préstamo.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Plazo.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Plazo</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Plazo</h1>
+                                <p>Tiempo en el que debes devolver el préstamo, este puede ser días, meses o años depende de la institución financiera.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card__father">
+                    <div class="card">
+                        <div class="card__front" style="background-image: url(assets/img/Fecha_Pago.png);">
+                            <div class="bg"></div>
+                            <div class="body__card_front">
+                                <h1 style="color: #fff">Fecha de Pago</h1>
+                            </div>
+                        </div>
+                        <div class="card__back">
+                            <div class="body__card_back">
+                                <h1>Fecha de Pago</h1>
+                                <p> Corresponde al día definido para que el deudor efectúe el pago correspondiente según la frecuencia de pago de intereses o amortización.</p>
+                                <input type="button" value="Leer Más">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!--==================== LOGOS ====================-->
+        <!-- <section class="section logo">
             <div class="logo__container container grid">
                 <img src="assets/img/logocoffee1.png" alt="" class="logo__img">
                 <img src="assets/img/logocoffee2.png" alt="" class="logo__img">
@@ -676,14 +688,14 @@ if(isset($_SESSION['u_idRol'])){
             </div>
         </section> -->
 
-            <!--==================== TREND (Tendencia) ====================-->
-            <section class="section blog" id="blog">
-                <div class="blog__container container">
-                    <h2 class="section__title">
-                        ¡Prestamos Más Solicitados!
-                    </h2>
+        <!--==================== TREND (Tendencia) ====================-->
+        <section class="section blog" id="blog">
+            <div class="blog__container container">
+                <h2 class="section__title">
+                    ¡Prestamos Más Solicitados!
+                </h2>
 
-                    <!-- <div class="blog__content grid">
+                <!-- <div class="blog__content grid">
                         <article class="blog__card">
                             <div class="blog__image">
                                 <img src="assets/img/blog1.png" alt="" class="blog__img">
@@ -775,73 +787,73 @@ if(isset($_SESSION['u_idRol'])){
                         </article>
                     </div> -->
 
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <!--==================== FOOTER ====================-->
-            <footer class="footer" id="footer">
-                <div class="footer__container container">
-                    <h1 class="footer__title">BAJA</h1>
+        <!--==================== FOOTER ====================-->
+        <footer class="footer" id="footer">
+            <div class="footer__container container">
+                <h1 class="footer__title">BAJA</h1>
 
-                    <div class="footer__content grid">
-                        <div class="footer__data">
-                            <p class="footer__description">
-                                Para nosotros será un placer poder atender sus consultas.
-                            </p>
+                <div class="footer__content grid">
+                    <div class="footer__data">
+                        <p class="footer__description">
+                            Para nosotros será un placer poder atender sus consultas.
+                        </p>
 
-                            <div class="footer__newsletter">
-                                <input type="email" placeholder="Ingrese su dirección de correo electrónico" class="footer__input">
-                                <button class="footer__button">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="footer__data">
-                            <h2 class="footer__subtitle">Dirección</h2>
-                            <p class="footer__information">
-                                Avenidas 1 y 3, Calle 4 Cartago Costa Rica. <br>
-                                Cartago, Cartago, Costa Rica
-                                <img src="assets/img/footerflag.png" alt="" class="footer__flag">
-                            </p>
-                        </div>
-
-                        <div class="footer__data">
-                            <h2 class="footer__subtitle">Contacto</h2>
-                            <p class="footer__information">
-                                6190 3211 <br>
-                                info@baja.cr
-                            </p>
-                        </div>
-
-                        <div class="footer__data">
-                            <h2 class="footer__subtitle">Oficinas</h2>
-                            <p class="footer__information">
-                                Lunes - Sabado <br>
-                                8AM - 6PM
-                            </p>
+                        <div class="footer__newsletter">
+                            <input type="email" placeholder="Ingrese su dirección de correo electrónico" class="footer__input">
+                            <button class="footer__button">
+                                <i class='bx bx-right-arrow-alt'></i>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="footer__group">
-                        <ul class="footer__social">
-                            <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
-                                <!-- <i class='bx bxl-facebook'></i> -->
-                            </a>
-                            <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
-                                <!-- <i class='bx bxl-instagram'></i> -->
-                            </a>
-                            <a href="https://twitter.com/" target="_blank" class="footer__social-link">
-                                <!-- <i class='bx bxl-twitter'></i> -->
-                            </a>
-                        </ul>
+                    <div class="footer__data">
+                        <h2 class="footer__subtitle">Dirección</h2>
+                        <p class="footer__information">
+                            Avenidas 1 y 3, Calle 4 Cartago Costa Rica. <br>
+                            Cartago, Cartago, Costa Rica
+                            <img src="assets/img/footerflag.png" alt="" class="footer__flag">
+                        </p>
+                    </div>
 
-                        <span class="footer__copy">
-                            &#169; 2022 Banco Angular Jerárquico Asociado. Todos los derechos reservados.
-                        </span>
+                    <div class="footer__data">
+                        <h2 class="footer__subtitle">Contacto</h2>
+                        <p class="footer__information">
+                            6190 3211 <br>
+                            info@baja.cr
+                        </p>
+                    </div>
+
+                    <div class="footer__data">
+                        <h2 class="footer__subtitle">Oficinas</h2>
+                        <p class="footer__information">
+                            Lunes - Sabado <br>
+                            8AM - 6PM
+                        </p>
                     </div>
                 </div>
-            </footer>
+
+                <div class="footer__group">
+                    <ul class="footer__social">
+                        <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
+                            <!-- <i class='bx bxl-facebook'></i> -->
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
+                            <!-- <i class='bx bxl-instagram'></i> -->
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="footer__social-link">
+                            <!-- <i class='bx bxl-twitter'></i> -->
+                        </a>
+                    </ul>
+
+                    <span class="footer__copy">
+                        &#169; 2022 Banco Angular Jerárquico Asociado. Todos los derechos reservados.
+                    </span>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <!--========== SCROLL UP ==========-->
@@ -854,6 +866,7 @@ if(isset($_SESSION['u_idRol'])){
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/contador.js"></script>
 </body>
 
 </html>
