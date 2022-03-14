@@ -866,7 +866,6 @@ if (isset($_SESSION['u_idRol'])) {
 
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/contador.js"></script>
 </body>
 
 </html>

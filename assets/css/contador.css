@@ -2158,7 +2158,7 @@ fieldset[disabled] .button {
 .content table th {
     border        : 1px solid #dbdbdb;
     border-width  : 0 0 1px;
-    padding       : .5em .75em;
+    padding       : .4em .5rem;
     vertical-align: top
 }
 
@@ -2750,10 +2750,11 @@ fieldset[disabled] .button {
 
 .table td,
 .table th {
-    border        : 1px solid #dbdbdb;
-    border-width  : 0 0 1px;
-    padding       : .5em .75em;
-    vertical-align: top
+    border         : 1px solid #dbdbdb;
+    border-width   : 0 0 1px;
+    padding        : .5em .75em;
+    vertical-align : top;
+    text-decoration: none;
 }
 
 .table td.is-white,
@@ -4940,7 +4941,7 @@ print {
     border-radius   : .25rem;
     box-shadow      : 1px 1px 25px -6px #009ad6;
     color           : #4a4a4a;
-    max-width       : 100%;
+    max-width       : 99.99%;
     overflow        : hidden;
     position        : relative
 }
@@ -4980,7 +4981,7 @@ print {
 
 .card_dash-content {
     background-color: transparent;
-    padding         : 1.5rem
+    padding         : 1rem
 }
 
 .card_dash .media:not(:last-child) {
@@ -12597,9 +12598,10 @@ print {
     }
 
     .section_dash.is-large {
-        padding: 18rem 1.5rem
+        padding: 15rem 1.5rem
     }
+
     .section_dash {
-      padding: 0.5rem 7rem
+        padding: 0.5rem 7rem
     }
 }

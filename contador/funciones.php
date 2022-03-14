@@ -15,7 +15,7 @@ Nota: está limitado a solo traer los 10 primeros registros, ordenados por las v
 */
 function obtenerPaginasVisitadasEnFecha($fecha)
 {
-    $consulta = "SELECT TOP 10 * , COUNT(*) AS conteo_visitas, count(distinct ip) as conteo_visitantes
+    $consulta = "SELECT TOP 5 * , COUNT(*) AS conteo_visitas, count(distinct ip) as conteo_visitantes
     from aalvarado.visitas where fecha = ?
     group by url, pagina, fecha, visitas.ip
     ORDER BY conteo_visitas DESC";
