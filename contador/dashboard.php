@@ -290,8 +290,8 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
                     <br><br>
                     <form class="f" name="f">
                         <h3 class="home__data-title">Convertir Monedas
-                            <a onclick="myFunction()" class="button_convertir pulse"><span>Compra</span></a>
-                            <a onclick="myFunction2()" class="button_convertir pulse"><span>Venta</span></a>
+                            <a onclick="myFunction('compra_cambio', 'venta_cambio')" class="button_convertir pulse" id="compra_cambio" style="background-color: #009ad6;"><span>Compra</span></a>
+                            <a onclick="myFunction2('venta_cambio', 'compra_cambio')" class="button_convertir pulse" id="venta_cambio"><span>Venta</span></a>
                         </h3>
                         <br>
 
@@ -343,7 +343,10 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
                 } catch (e) {}
             }
 
-            function myFunction() {
+            function myFunction(id, id2) {
+
+                document.getElementById(id).style.backgroundColor = "#009ad6";
+                document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("num1_1").value = "";
                 document.getElementById("sum_1").value = "";
@@ -356,7 +359,10 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
                 } else {}
             }
 
-            function myFunction2() {
+            function myFunction2(id, id2) {
+
+                document.getElementById(id).style.backgroundColor = "#009ad6";
+                document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("num1_2").value = "";
                 document.getElementById("sum_2").value = "";
@@ -774,6 +780,7 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
         <!--==================== FOOTER ====================-->
         <section class="section footer" id="footer">
             <div class="footer__container container">
+                </br>
                 <h1 class="footer__title">BAJA</h1>
 
                 <div class="footer__content grid">
@@ -781,13 +788,14 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
                         <p class="footer__description">
                             Para nosotros será un placer poder atender sus consultas.
                         </p>
-
-                        <div class="footer__newsletter">
+                        </br>
+                        </br>
+                        <!-- <div class="footer__newsletter">
                             <input type="email" placeholder="Ingrese su dirección de correo electrónico" class="footer__input">
                             <button class="footer__button">
                                 <i class='bx bx-right-arrow-alt'></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="footer__data">
@@ -795,7 +803,7 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
                         <p class="footer__information">
                             Avenidas 1 y 3, Calle 4 Cartago Costa Rica. <br>
                             Cartago, Cartago, Costa Rica
-                            <img src="../assets/img/footerflag.png" alt="" class="footer__flag">
+                            <img src="../../assets/img/footerflag.png" alt="" class="footer__flag">
                         </p>
                     </div>
 

@@ -589,7 +589,7 @@ button {
 .f {
   width           : 75%;
   border          : 1.5px solid #009ad6;
-  box-shadow      : 1px 1px 30px -5px hsl(208, 100%, 25%);
+  box-shadow      : 1px 1px 30px -5px #004480;
   border-radius   : 5px;
   padding         : 11px;
   margin          : auto;

@@ -271,8 +271,8 @@ if (isset($_SESSION['u_idRol'])) {
                     <br><br>
                     <form class="f" name="f">
                         <h3 class="home__data-title">Convertir Monedas
-                            <a onclick="myFunction()" class="button_convertir pulse"><span>Compra</span></a>
-                            <a onclick="myFunction2()" class="button_convertir pulse"><span>Venta</span></a>
+                            <a onclick="myFunction('compra_cambio', 'venta_cambio')" class="button_convertir pulse" id="compra_cambio" style="background-color: #009ad6;"><span>Compra</span></a>
+                            <a onclick="myFunction2('venta_cambio', 'compra_cambio')" class="button_convertir pulse" id="venta_cambio"><span>Venta</span></a>
                         </h3>
                         <br>
 
@@ -324,7 +324,10 @@ if (isset($_SESSION['u_idRol'])) {
                 } catch (e) {}
             }
 
-            function myFunction() {
+            function myFunction(id, id2) {
+
+                document.getElementById(id).style.backgroundColor = "#009ad6";
+                document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("num1_1").value = "";
                 document.getElementById("sum_1").value = "";
@@ -337,7 +340,10 @@ if (isset($_SESSION['u_idRol'])) {
                 } else {}
             }
 
-            function myFunction2() {
+            function myFunction2(id, id2) {
+
+                document.getElementById(id).style.backgroundColor = "#009ad6";
+                document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("num1_2").value = "";
                 document.getElementById("sum_2").value = "";
@@ -381,8 +387,8 @@ if (isset($_SESSION['u_idRol'])) {
 
                             <div class="l_prestamos" name="l_prestamos">
                                 <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
-                                    <a onclick="myFunction_col()" class="button_convertir pulse" id="col" style="margin-left: 0.3rem;"><span>Colones</span></a>
-                                    <a onclick="myFunction_dol()" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
+                                    <a onclick="myFunction_col('col', 'dol')" class="button_convertir pulse" id="col" style="margin-left: 0.3rem; background-color: #009ad6;"><span>Colones</span></a>
+                                    <a onclick="myFunction_dol('dol', 'col')" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
                                 </h3>
                                 <br>
 
@@ -399,12 +405,13 @@ if (isset($_SESSION['u_idRol'])) {
                                         $tasaInteres_col = $row['TASA_DE_INTERES'];
                                     }
                                     ?>
-
+<!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+maxlength="9" -->
 
                                     <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                     <h4>
-                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="9" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: 100,000,000.0 | Monto Minimo: 300,000.0</h5>
+                                        <input class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
+                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col,2) ?> | Monto Minimo: <?php echo number_format($min_col,2) ?></h5>
                                     </h4>
                                     <br><br>
 
@@ -435,11 +442,52 @@ if (isset($_SESSION['u_idRol'])) {
                                 </div>
 
                                 <div id="DIV_dol" style="display:none">
-                                    <h4><input class="input__convert" type="number" name="num1_2" id="num1_2" value="" onchange="cal_2()" onkeyup="cal_2()" autocomplete="off" placeholder="0" />
-                                        <- Cólon</h4>
-                                            <p hidden>Número 2: <input type="number" name="num2_2" value="<?php echo $venta ?>" onchange="cal_2()" onkeyup="cal_2()" /></p>
-                                            <h4><input class="input__convert" type="number" name="sum_2" id="sum_2" value="" readonly="readonly" style="margin-left: -2px;" placeholder="0" />
-                                                <- Dólar</h4>
+
+                                    <?php
+                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
+                                    $result = sqlsrv_query($con, $sql);
+                                    while ($row = sqlsrv_fetch_array($result)) {
+                                        $min_dol = $row['MONTO_MINIMO'];
+                                        $max_dol = $row['MONTO_MAXIMO'];
+                                        $plazoMin_dol = $row['PLAZO_MINIMO'];
+                                        $plazoMax_dol = $row['PLAZO_MAXIMO'];
+                                        $tasaInteres_dol = $row['TASA_DE_INTERES'];
+
+                                    }
+                                    ?>
+
+
+                                    <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                    <h4>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
+                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol,2) ?> | Monto Minimo: <?php echo number_format($min_dol,2) ?></h5>
+                                    </h4>
+                                    <br><br>
+
+                                    <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_dol" name="demo_dol"></span></h3>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="<?php echo $plazoMax_dol ?>" value="<?php echo $plazoMax_dol ?>" class="slider" name="range_dol" id="range_dol" onchange="cuota_dol()" onkeyup="cuota_dol()">
+                                    </div>
+                                    <br><br>
+
+                                    <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                    <h4>
+                                        <input class="input__convert input__convert_prestamo" type="number" name="tasa_dol" id="tasa_dol" value="<?php echo $tasaInteres_dol ?>" placeholder="0" readonly="readonly" onchange="cuota_dol()" onkeyup="cuota_dol()" />
+                                    </h4>
+                                    <br><br>
+
+                                    <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                    <h4>
+                                        <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_dol" id="cuota_mensual_dol" value="" placeholder="0" readonly="readonly" />
+                                    </h4>
+                                    <br><br>
+
+                                    <input hidden type="text" value="Colones">
+
+                                    <div style="text-align: right;">
+                                        <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
+                                    </div>
+
                                 </div>
 
                         </form>
@@ -455,13 +503,24 @@ if (isset($_SESSION['u_idRol'])) {
         <br><br>
 
         <script>
-            var slider = document.getElementById("range_col");
-            var output = document.getElementById("demo_col");
-            output.innerHTML = slider.value;
+            var slider_col = document.getElementById("range_col");
+            var output_col = document.getElementById("demo_col");
+            output_col.innerHTML = slider_col.value;
 
             // Update the current slider value (each time you drag the slider handle)
-            slider.oninput = function() {
-                output.innerHTML = this.value;
+            slider_col.oninput = function() {
+                output_col.innerHTML = this.value;
+            }
+        </script>
+
+        <script>
+            var slider_dol = document.getElementById("range_dol");
+            var output_dol = document.getElementById("demo_dol");
+            output_dol.innerHTML = slider_dol.value;
+
+            // Update the current slider value (each time you drag the slider handle)
+            slider_dol.oninput = function() {
+                output_dol.innerHTML = this.value;
             }
         </script>
 
@@ -474,7 +533,7 @@ if (isset($_SESSION['u_idRol'])) {
                         c = parseFloat(document.p.tasa_col.value),
                         s = 'CRC ';
 
-                    if (a >= 300000) {
+                    if (a >= <?php echo $min_col ?> && a <= <?php echo $max_col ?>) {
 
                         a_final = (-a);
                         b_final = (b * 12);
@@ -486,7 +545,7 @@ if (isset($_SESSION['u_idRol'])) {
                         var d__final = parseFloat(d_final).toLocaleString('en');
                         s_d_final = s + d__final;
                         document.p.cuota_mensual_col.value = s_d_final;
-                        
+
                     } else {
                         document.p.cuota_mensual_col.value = "";
                     }
@@ -497,15 +556,37 @@ if (isset($_SESSION['u_idRol'])) {
 
             function cuota_dol() {
                 try {
-                    var a = parseFloat(document.f.num1_2.value),
-                        b = parseFloat(document.f.num2_2.value);
-                    var c = a / b;
-                    var twoPlacedFloat_2 = parseFloat(c).toFixed(2);
-                    document.f.sum_2.value = twoPlacedFloat_2;
+
+                    var a = parseFloat(document.p.monto_solicita_dol.value),
+                        b = parseFloat(document.p.range_dol.value),
+                        c = parseFloat(document.p.tasa_dol.value),
+                        s = '$ ';
+
+                    if (a >= <?php echo $min_dol ?>) {
+
+                        a_final = (-a);
+                        b_final = (b * 12);
+                        c_final = (c / 1200);
+                        b_c_final = Math.pow(1 + c_final, b_final);
+                        d = -c_final * a_final * (b_c_final) / (b_c_final - 1);
+
+                        var d_final = parseFloat(d).toFixed(2);
+                        var d__final = parseFloat(d_final).toLocaleString('en');
+                        s_d_final = s + d__final;
+                        document.p.cuota_mensual_dol.value = s_d_final;
+
+                    } else {
+                        document.p.cuota_mensual_dol.value = "";
+                    }
+
+
                 } catch (e) {}
             }
 
-            function myFunction_col() {
+            function myFunction_col(id, id2) {
+
+                document.getElementById(id).style.backgroundColor = "#009ad6";
+                document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("monto_solicita_col").value = "";
                 document.getElementById("cuota_mensual_col").value = "";
@@ -518,10 +599,10 @@ if (isset($_SESSION['u_idRol'])) {
                 } else {}
             }
 
-            function myFunction_dol() {
+            function myFunction_dol(id, id2) {
 
-                // document.getElementById("monto_solicita_dol").value = "";
-                document.body.style.backgroundColor= "green";
+                document.getElementById(id).style.backgroundColor = "#009ad6";
+                document.getElementById(id2).style.backgroundColor = "#004480";
 
                 var x = document.getElementById("DIV_col");
                 var y = document.getElementById("DIV_dol");
@@ -780,6 +861,7 @@ if (isset($_SESSION['u_idRol'])) {
         <!--==================== FOOTER ====================-->
         <section class="section footer" id="footer">
             <div class="footer__container container">
+                </br>
                 <h1 class="footer__title">BAJA</h1>
 
                 <div class="footer__content grid">
@@ -787,13 +869,14 @@ if (isset($_SESSION['u_idRol'])) {
                         <p class="footer__description">
                             Para nosotros será un placer poder atender sus consultas.
                         </p>
-
-                        <div class="footer__newsletter">
+                        </br>
+                        </br>
+                        <!-- <div class="footer__newsletter">
                             <input type="email" placeholder="Ingrese su dirección de correo electrónico" class="footer__input">
                             <button class="footer__button">
                                 <i class='bx bx-right-arrow-alt'></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="footer__data">
