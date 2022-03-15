@@ -1,10 +1,10 @@
 <?php
 include '../conection.php';
 session_start();
-// if(isset($_SESSION['u_ID']))
-// {
-//     header('Location: administrador.php');
-// }
+
+if ($_SESSION['u_idRol'] != 1) {
+    header('Location: ../index.php');
+}
 
 // Obtener el Tipo de Cambio //
 $consulta = "SELECT * FROM Tipo_Cambio";
@@ -28,9 +28,6 @@ if (isset($_SESSION['u_idRol'])) {
     $sesionRol = $_SESSION['u_idRol'];
 }
 
-// if ($_SESSION['u_idRol'] =! 0) {
-//     header('Location: ../index.php');
-// }
 
 
 if (!isset($_GET["url"])) {
@@ -103,7 +100,7 @@ $visitas = obtenerVisitasDePaginaEnRango($inicio, $fin, $url);
 
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="../Prestamos/login.php" class="nav__link">
+                        <a href="../Prestamos/login.php" class="nav__link i__scroll">
                             <i class='bx bx-user'></i> Iniciar Sesión
                         </a>
                     </li>
@@ -122,7 +119,7 @@ $visitas = obtenerVisitasDePaginaEnRango($inicio, $fin, $url);
                     <!-- PHP -->
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="../Prestamos/cliente_perfil.php" class="nav__link">
+                            <a href="../Prestamos/empleado_perfil.php" class="nav__link i__scroll">
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
@@ -140,7 +137,7 @@ $visitas = obtenerVisitasDePaginaEnRango($inicio, $fin, $url);
 
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="../Prestamos/cliente_perfil.php" class="nav__link">
+                                <a href="../Prestamos/cliente_perfil.php" class="nav__link i__scroll">
                                     <i class='bx bx-user'></i> Perfil
                                 </a>
                             </li>
@@ -148,22 +145,75 @@ $visitas = obtenerVisitasDePaginaEnRango($inicio, $fin, $url);
                     }
                         ?>
                         <li class="nav__item">
-                            <a href="#home" class="nav__link active-link">
+                            <a href="#home" class="nav__link i__scroll active-link">
                                 <i class='bx bx-home'></i> Inicio
                             </a>
                         </li>
+
+                        <?php
+                        if ($sesionRol == 1) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="#dashboard" class="nav__link i__scroll">
+                                    <i class='bx bx-line-chart'></i> Tablero
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="../Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
+                                    <i class='bx bx-folder-open'></i> Asignar Préstamos
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="../Tramitador/configuracion.php" class="nav__link i__scroll">
+                                    <i class='bx bx-cog'></i> Configuración
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        if ($sesionRol == 2) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="../Analista/solicitudes.php" class="nav__link i__scroll">
+                                    <i class='bx bx-file-find'></i> Solicitudes
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="../Analista/historial.php" class="nav__link i__scroll">
+                                    <i class='bx bx-calendar'></i> Historial
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        if ($sesionRol == 3) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="../Administrador/roles.php" class="nav__link i__scroll">
+                                    <i class='bx bx-user-plus'></i> Roles
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
                         <li class="nav__item">
-                            <a href="#dashboard" class="nav__link">
-                                <i class='bx bx-line-chart'></i> Tablero
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#products" class="nav__link">
+                            <a href="#products" class="nav__link i__scroll">
                                 <i class='bx bx-money'></i> Préstamos
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#footer" class="nav__link">
+                            <a href="#footer" class="nav__link i__scroll">
                                 <i class='bx bx-message-square-detail'></i> Contacto
                             </a>
                         </li>
@@ -172,7 +222,7 @@ $visitas = obtenerVisitasDePaginaEnRango($inicio, $fin, $url);
                         if ($sesionRol != NULL) {
                         ?>
                             <li class="nav__item">
-                                <a href="../PHP/logout.php" class="nav__link">
+                                <a href="../PHP/logout.php" class="nav__link i__scroll">
                                     <i class='bx bx-log-out'></i> Cerrar Sesión
                                 </a>
                             </li>
@@ -341,7 +391,7 @@ $visitas = obtenerVisitasDePaginaEnRango($inicio, $fin, $url);
                         </header>
                         <div class="card_dash-content">
                             <div class="content">
-                                <a class="button is-info mb-2 pulse" href="dashboard.php" style="color: #fff; background-color: hsl(208, 100%, 25%);" >
+                                <a class="button is-info mb-2 pulse" href="dashboard.php#dashboard" style="color: #fff; background-color: hsl(208, 100%, 25%);">
                                     <i class="fa fa-arrow-left"></i>
                                     &nbsp;
                                     Volver</a>

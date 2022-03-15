@@ -46,7 +46,7 @@ if (isset($_SESSION['u_idRol'])) {
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="../../assets/css/styles.css">
 
-    <title>Gastos Personales - BAJA</title>
+    <title>Gastos Personales</title>
 </head>
 
 <body>
@@ -73,7 +73,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="../../Prestamos/login.php" class="nav__link">
+                        <a href="../../Prestamos/login.php" class="nav__link i__scroll">
                             <i class='bx bx-user'></i> Iniciar Sesión
                         </a>
                     </li>
@@ -92,7 +92,7 @@ if (isset($_SESSION['u_idRol'])) {
                     <!-- PHP -->
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="../../Prestamos/cliente_perfil.php" class="nav__link">
+                            <a href="../../Prestamos/empleado_perfil.php" class="nav__link i__scroll">
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
@@ -110,7 +110,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="../../Prestamos/cliente_perfil.php" class="nav__link">
+                                <a href="../../Prestamos/cliente_perfil.php" class="nav__link i__scroll">
                                     <i class='bx bx-user'></i> Perfil
                                 </a>
                             </li>
@@ -118,22 +118,81 @@ if (isset($_SESSION['u_idRol'])) {
                     }
                         ?>
                         <li class="nav__item">
-                            <a href="#home" class="nav__link active-link">
+                            <a href="#home" class="nav__link i__scroll active-link">
                                 <i class='bx bx-home'></i> Inicio
                             </a>
                         </li>
+
+                        <?php
+                        if ($sesionRol == 1) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="../../contador/dashboard.php" class="nav__link i__scroll">
+                                    <i class='bx bx-line-chart'></i> Tablero
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="../../Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
+                                    <i class='bx bx-folder-open'></i> Asignar Préstamos
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="../../Tramitador/configuracion.php" class="nav__link i__scroll">
+                                    <i class='bx bx-cog'></i> Configuración
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        if ($sesionRol == 2) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="../../Analista/solicitudes.php" class="nav__link i__scroll">
+                                    <i class='bx bx-file-find'></i> Solicitudes
+                                </a>
+                            </li>
+
+                            <li class="nav__item">
+                                <a href="../../Analista/historial.php" class="nav__link i__scroll">
+                                    <i class='bx bx-calendar'></i> Historial
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        if ($sesionRol == 3) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="../../Administrador/roles.php" class="nav__link i__scroll">
+                                    <i class='bx bx-user-plus'></i> Roles
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
                         <li class="nav__item">
-                            <a href="#calculador" class="nav__link">
+                            <a href="#calculador" class="nav__link i__scroll">
                                 <i class='bx bxs-calculator'></i> Calculadora
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#products" class="nav__link">
+                            <a href="#products" class="nav__link i__scroll">
                                 <i class='bx bx-money'></i> Préstamos
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#footer" class="nav__link">
+                            <a href="#footer" class="nav__link i__scroll">
                                 <i class='bx bx-message-square-detail'></i> Contacto
                             </a>
                         </li>
@@ -142,7 +201,7 @@ if (isset($_SESSION['u_idRol'])) {
                         if ($sesionRol != NULL) {
                         ?>
                             <li class="nav__item">
-                                <a href="../../PHP/logout.php" class="nav__link">
+                                <a href="../../PHP/logout.php" class="nav__link i__scroll">
                                     <i class='bx bx-log-out'></i> Cerrar Sesión
                                 </a>
                             </li>
@@ -188,10 +247,10 @@ if (isset($_SESSION['u_idRol'])) {
             <div class="home__container">
                 <div class="home__content container">
                     <h1 class="home__title">
-                        CONVERTIMOS SUS SUEÑOS EN REALIDAD<span>.</span>
+                        GASTOS PERSONALES<span>.</span>
                     </h1>
                     <p class="home__description">
-                        Crédito aprobado en menos de 3 horas. Plazos de hasta 60 meses. <span style="color: hsla(197, 100%, 42%, 0.8);">Fácil y rápido.</span>
+                        Solicitá tu préstamo de <span style="color: hsla(197, 100%, 42%, 0.8);">gastos personales</span> y hacé realidad todos tus planes<span style="color: hsla(197, 100%, 42%, 0.8);">.</span>
                     </p>
                     <div class="home__data">
                         <div class="home__data-group">
@@ -296,16 +355,9 @@ if (isset($_SESSION['u_idRol'])) {
 
         <section class="section container specialty" id="calculador">
             <div class="specialty__container">
-                <div class="specialty__box">
-                    <h2 class="section__title">
-                        ¡Hágalo sus sueños realidad!
-                    </h2>
-
-                    <!-- <div>
-                        <a href="../index.php#products" class="button specialty__button pulse"><span>Ver Préstamos</span></a>
-                    </div> -->
-
-                </div>
+                <h2 class="section__title">
+                    ¡Hágalo sus sueños realidad!
+                </h2>
 
                 <div class="specialty__category_prestamos">
 
@@ -325,60 +377,79 @@ if (isset($_SESSION['u_idRol'])) {
 
                     <div class="specialty__group_prestamos">
 
-                        <form class="l_prestamos" name="l_prestamos">
-                            <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
-                                <a onclick="myFunction_col()" class="button_convertir pulse" id="col" style="margin-left: 0.3rem;"><span>Colones</span></a>
-                                <a onclick="myFunction_dol()" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
-                            </h3>
-                            <br>
+                        <form action="../formulario.php" method="post" name="p" id="p">
 
-                            <div id="DIV_col">
-                                <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo" type="number" name="monto_col" id="monto_col" value="" placeholder="0" />
-                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: 100,000,000.0 | Monto Minimo: 300,000.0</h5>
-                                </h4>
-                                <br><br>
+                            <div class="l_prestamos" name="l_prestamos">
+                                <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
+                                    <a onclick="myFunction_col()" class="button_convertir pulse" id="col" style="margin-left: 0.3rem;"><span>Colones</span></a>
+                                    <a onclick="myFunction_dol()" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
+                                </h3>
+                                <br>
 
-                                <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_col"></span></h3>
-                                <div class="slidecontainer">
-                                    <input type="range" min="0" max="12" value="12" class="slider" id="range_col">
+                                <div id="DIV_col">
+
+                                    <?php
+                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                    $result = sqlsrv_query($con, $sql);
+                                    while ($row = sqlsrv_fetch_array($result)) {
+                                        $min_col = $row['MONTO_MINIMO'];
+                                        $max_col = $row['MONTO_MAXIMO'];
+                                        $plazoMin_col = $row['PLAZO_MINIMO'];
+                                        $plazoMax_col = $row['PLAZO_MAXIMO'];
+                                        $tasaInteres_col = $row['TASA_DE_INTERES'];
+                                    }
+                                    ?>
+
+
+                                    <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                    <h4>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="9" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
+                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: 100,000,000.0 | Monto Minimo: 300,000.0</h5>
+                                    </h4>
+                                    <br><br>
+
+                                    <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_col" name="demo_col"></span></h3>
+                                    <div class="slidecontainer">
+                                        <input type="range" min="0" max="<?php echo $plazoMax_col ?>" value="<?php echo $plazoMax_col ?>" class="slider" name="range_col" id="range_col" onchange="cuota_col()" onkeyup="cuota_col()">
+                                    </div>
+                                    <br><br>
+
+                                    <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                    <h4>
+                                        <input class="input__convert input__convert_prestamo" type="number" name="tasa_col" id="tasa_col" value="<?php echo $tasaInteres_col ?>" placeholder="0" readonly="readonly" onchange="cuota_col()" onkeyup="cuota_col()" />
+                                    </h4>
+                                    <br><br>
+
+                                    <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                    <h4>
+                                        <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_col" id="cuota_mensual_col" value="" placeholder="0" readonly="readonly" />
+                                    </h4>
+                                    <br><br>
+
+                                    <input hidden type="text" value="Colones">
+
+                                    <div style="text-align: right;">
+                                        <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
+                                    </div>
+
                                 </div>
-                                <br><br>
 
-                                <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo" type="number" name="monto_col" id="monto_col" value="18.0" placeholder="0" readonly="readonly" />
-                                </h4>
-                                <br><br>
+                                <div id="DIV_dol" style="display:none">
+                                    <h4><input class="input__convert" type="number" name="num1_2" id="num1_2" value="" onchange="cal_2()" onkeyup="cal_2()" autocomplete="off" placeholder="0" />
+                                        <- Cólon</h4>
+                                            <p hidden>Número 2: <input type="number" name="num2_2" value="<?php echo $venta ?>" onchange="cal_2()" onkeyup="cal_2()" /></p>
+                                            <h4><input class="input__convert" type="number" name="sum_2" id="sum_2" value="" readonly="readonly" style="margin-left: -2px;" placeholder="0" />
+                                                <- Dólar</h4>
+                                </div>
 
-                                <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo" type="number" name="monto_col" id="monto_col" value="" placeholder="0" readonly="readonly" />
-                                </h4>
-                                <br><br>
-
-
-
-
-                                <!-- <h4><input class="input__convert" type="number" name="num1_1" id="num1_1" value="" onchange="cal_1()" onkeyup="cal_1()" autocomplete="off" style="margin-left: -2px;" placeholder="0" />
-                                    <- Dólar</h4>
-                                        <p hidden>Número 2: <input type="number" name="num2_1" value="<?php echo $compra ?>" onchange="cal_1()" onkeyup="cal_1()" /></p>
-                                        <h4><input class="input__convert" type="number" name="sum_1" id="sum_1" value="" readonly="readonly" placeholder="0" />
-                                            <- Cólon</h4> -->
-                            </div>
-                            <div id="myDIV2" style="display:none">
-                                <h4><input class="input__convert" type="number" name="num1_2" id="num1_2" value="" onchange="cal_2()" onkeyup="cal_2()" autocomplete="off" placeholder="0" />
-                                    <- Cólon</h4>
-                                        <p hidden>Número 2: <input type="number" name="num2_2" value="<?php echo $venta ?>" onchange="cal_2()" onkeyup="cal_2()" /></p>
-                                        <h4><input class="input__convert" type="number" name="sum_2" id="sum_2" value="" readonly="readonly" style="margin-left: -2px;" placeholder="0" />
-                                            <- Dólar</h4>
-                            </div>
                         </form>
+
 
                     </div>
 
                 </div>
+
+            </div>
             </div>
         </section>
         <br><br>
@@ -392,6 +463,77 @@ if (isset($_SESSION['u_idRol'])) {
             slider.oninput = function() {
                 output.innerHTML = this.value;
             }
+        </script>
+
+        <script>
+            function cuota_col() {
+                try {
+
+                    var a = parseFloat(document.p.monto_solicita_col.value),
+                        b = parseFloat(document.p.range_col.value),
+                        c = parseFloat(document.p.tasa_col.value),
+                        s = 'CRC ';
+
+                    if (a >= 300000) {
+
+                        a_final = (-a);
+                        b_final = (b * 12);
+                        c_final = (c / 1200);
+                        b_c_final = Math.pow(1 + c_final, b_final);
+                        d = -c_final * a_final * (b_c_final) / (b_c_final - 1);
+
+                        var d_final = parseFloat(d).toFixed(2);
+                        var d__final = parseFloat(d_final).toLocaleString('en');
+                        s_d_final = s + d__final;
+                        document.p.cuota_mensual_col.value = s_d_final;
+                        
+                    } else {
+                        document.p.cuota_mensual_col.value = "";
+                    }
+
+
+                } catch (e) {}
+            }
+
+            function cuota_dol() {
+                try {
+                    var a = parseFloat(document.f.num1_2.value),
+                        b = parseFloat(document.f.num2_2.value);
+                    var c = a / b;
+                    var twoPlacedFloat_2 = parseFloat(c).toFixed(2);
+                    document.f.sum_2.value = twoPlacedFloat_2;
+                } catch (e) {}
+            }
+
+            function myFunction_col() {
+
+                document.getElementById("monto_solicita_col").value = "";
+                document.getElementById("cuota_mensual_col").value = "";
+
+                var x = document.getElementById("DIV_col");
+                var y = document.getElementById("DIV_dol");
+                if (x.style.display === "none") {
+                    y.style.display = "none";
+                    x.style.display = "block";
+                } else {}
+            }
+
+            function myFunction_dol() {
+
+                // document.getElementById("monto_solicita_dol").value = "";
+                document.body.style.backgroundColor= "green";
+
+                var x = document.getElementById("DIV_col");
+                var y = document.getElementById("DIV_dol");
+                if (y.style.display === "none") {
+                    x.style.display = "none";
+                    y.style.display = "block";
+                } else {}
+            }
+        </script>
+
+        <script>
+
         </script>
 
         <!--==================== BENEFITS ====================-->

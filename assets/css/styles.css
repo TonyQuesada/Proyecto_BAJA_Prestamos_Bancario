@@ -152,6 +152,10 @@ button {
   background-color: var(--first-color);
 }
 
+.i__scroll:hover {
+  animation: scroll 0.7s;
+}
+
 /*=============== HEADER & NAV ===============*/
 @keyframes morph {
   67% {
@@ -253,7 +257,7 @@ button {
   -webkit-box-direction: normal;
   -ms-flex-direction   : column;
   flex-direction       : column;
-  row-gap              : 1.1rem;
+  row-gap              : 0.75rem;
 }
 
 .nav__link {

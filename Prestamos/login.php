@@ -1,10 +1,11 @@
 <?php
 include '../conection.php';
 session_start();
-// if(isset($_SESSION['u_ID']))
-// {
-//     header('Location: administrador.php');
-// }
+
+$sesionRol = null;
+if (isset($_SESSION['u_idRol'])) {
+    header('Location: ../index.php');
+}
 
 // Obtener el Tipo de Cambio //
 $consulta = "SELECT * FROM Tipo_Cambio";
@@ -23,10 +24,7 @@ while ($fila = sqlsrv_fetch_array($ejecutar)) {
     $i++;
 }
 
-$sesionRol = null;
-if (isset($_SESSION['u_idRol'])) {
-    header('Location: ../index.php');
-}
+
 ?>
 
 
@@ -90,11 +88,11 @@ if (isset($_SESSION['u_idRol'])) {
                         <h1 class="home__title">
                             BANCA EN LÍNEA<span>.</span>
                         </h1>
-                        <input type="text" size="50" name="usuario" placeholder="Usuario" autocomplete="off" style="width: 75%; height: 33px;"><br>
+                        <input type="text" size="50" name="usuario" placeholder="Usuario" autocomplete="off" require style="width: 75%; height: 33px;"><br>
                         <br>
-                        <input type="password" size="50" name="passwd" placeholder="Contraseña" autocomplete="off" style="width: 75%; height: 33px;"><br>
+                        <input type="password" size="50" name="passwd" placeholder="Contraseña" autocomplete="off" require style="width: 75%; height: 33px;"><br>
                         <br><br>
-                        <input type="submit" value="Ingresar" class="button pulse" name="insert">
+                        <button type="submit" class="button specialty__button pulse" name="insert" style="margin-right: 18.5px;"><span>Ingresar</span></button>
                         <br>
                         <br>
                         <a href="#" class="a a_login">¿Olvidó su contraseña?</a>

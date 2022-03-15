@@ -1,10 +1,6 @@
 <?php
 include 'conection.php';
 session_start();
-// if(isset($_SESSION['u_ID']))
-// {
-//     header('Location: administrador.php');
-// }
 
 // Obtener el Tipo de Cambio //
 $consulta = "SELECT * FROM Tipo_Cambio";
@@ -83,7 +79,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="Prestamos/login.php" class="nav__link">
+                        <a href="Prestamos/login.php" class="nav__link i__scroll">
                             <i class='bx bx-user'></i> Iniciar Sesión
                         </a>
                     </li>
@@ -102,7 +98,7 @@ if (isset($_SESSION['u_idRol'])) {
                     <!-- PHP -->
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="Prestamos/cliente_perfil.php" class="nav__link">
+                            <a href="Prestamos/empleado_perfil.php" class="nav__link i__scroll">
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
@@ -120,7 +116,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="Prestamos/cliente_perfil.php" class="nav__link">
+                                <a href="Prestamos/cliente_perfil.php" class="nav__link i__scroll">
                                     <i class='bx bx-user'></i> Perfil
                                 </a>
                             </li>
@@ -128,36 +124,80 @@ if (isset($_SESSION['u_idRol'])) {
                     }
                         ?>
                         <li class="nav__item">
-                            <a href="#home" class="nav__link active-link">
+                            <a href="#home" class="nav__link active-link i__scroll">
                                 <i class='bx bx-home'></i> Inicio
                             </a>
                         </li>
 
                         <?php
-                        if ($sesionRol == 0) {
+                        if ($sesionRol == 1) {
                         ?>
 
                             <li class="nav__item">
-                                <a href="contador/dashboard.php" class="nav__link">
+                                <a href="contador/dashboard.php" class="nav__link i__scroll">
                                     <i class='bx bx-line-chart'></i> Tablero
                                 </a>
                             </li>
+                            <li class="nav__item">
+                                <a href="Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
+                                    <i class='bx bx-folder-open'></i> Asignar Préstamos
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="Tramitador/configuracion.php" class="nav__link i__scroll">
+                                    <i class='bx bx-cog'></i> Configuración
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        if ($sesionRol == 2) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="Analista/solicitudes.php" class="nav__link i__scroll">
+                                    <i class='bx bx-file-find'></i> Solicitudes
+                                </a>
+                            </li>
+                            <li class="nav__item">
+                                <a href="Analista/historial.php" class="nav__link i__scroll">
+                                    <i class='bx bx-calendar'></i> Historial
+                                </a>
+                            </li>
+
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        if ($sesionRol == 3) {
+                        ?>
+
+                            <li class="nav__item">
+                                <a href="Administrador/roles.php" class="nav__link i__scroll">
+                                    <i class='bx bx-user-plus'></i> Roles
+                                </a>
+                            </li>
+
                         <?php
                         }
                         ?>
 
                         <li class="nav__item">
-                            <a href="#products" class="nav__link">
+                            <a href="#products" class="nav__link i__scroll">
                                 <i class='bx bx-money'></i> Préstamos
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#premium" class="nav__link">
+                            <a href="#premium" class="nav__link i__scroll">
                                 <i class='bx bx-briefcase-alt-2'></i> Conceptos
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="#blog" class="nav__link">
+                            <a href="#blog" class="nav__link i__scroll">
                                 <i class='bx bx-message-square-detail'></i> Contacto
                             </a>
                         </li>
@@ -166,7 +206,7 @@ if (isset($_SESSION['u_idRol'])) {
                         if ($sesionRol != NULL) {
                         ?>
                             <li class="nav__item">
-                                <a href="PHP/logout.php" class="nav__link">
+                                <a href="PHP/logout.php" class="nav__link i__scroll">
                                     <i class='bx bx-log-out'></i> Cerrar Sesión
                                 </a>
                             </li>
