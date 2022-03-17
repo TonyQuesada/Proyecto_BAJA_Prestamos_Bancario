@@ -368,17 +368,90 @@ if (isset($_SESSION['u_idRol'])) {
                 <div class="specialty__category_prestamos">
 
                     <div class="">
-                        <!-- <div class="specialty__group_prestamos specialty__line"> -->
-                        <!-- <img src="../assets/img/BAJA_online.png" alt="" class="specialty__img"> -->
-
                         <div class="home__data_prestamos">
                             <div class="home__data-group">
-                                <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: var(--h1-font-size);">Compra USD</h3>
-                                <h2 class="home__data-number" style="font-size: var(--h1-font-size);"><?php echo $compra ?></h2>
-                                <p class="home__data-description">
-                                </p>
+                                <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: calc(var(--h1-font-size) - 4px);">BAJA - Gastos Personales</h3>
+
+                                <div class="product__details-content">
+                                    <div class="product__details-left-col">
+                                        <div class="product__details-benefits">
+                                            <h4 class="product__details-benefits_h4"> Beneficios </h4>
+                                            <br>
+                                            <ul class="product__details-benefits-list">
+                                                <li>
+                                                    <div>
+                                                        <h4>
+                                                            <i class='bx bx-run' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
+                                                            Trámites simples
+                                                        </h4>
+                                                        <p>Simplificamos los procesos para obtener la aprobación en menor tiempo.</p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <h4>
+                                                            <i class='bx bxs-credit-card-alt' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
+                                                            Convenientes tasas de interés
+                                                        </h4>
+                                                        <p>La mejor experiencia durante el préstamo.</p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <h4>
+                                                            <i class='bx bxs-bank' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
+                                                            Sencillas formas de pago
+                                                        </h4>
+                                                        <p>Ponemos a tu disposición todas las agencias de BAJA alrededor del país.</p>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div>
+                                                        <h4>
+                                                            <i class='bx bxs-check-square' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
+                                                            Sin gastos extra
+                                                        </h4>
+                                                        <p>Eliminamos la comisión de formalización.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product__details-center-col">
+                                        <h4 class="product__details-center-col_h4"> Requisitos </h4>
+                                        <br>
+                                        <div class="product__formalities">
+                                            <div>
+                                                <h4>
+                                                    <i class='bx bxs-briefcase' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
+                                                    Asalariados
+                                                </h4>
+
+                                                <?php
+                                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                                $result = sqlsrv_query($con, $sql);
+                                                while ($row = sqlsrv_fetch_array($result)) {
+                                                    $min_col_requ = $row['MONTO_MINIMO'];
+                                                    $min_col_requ = $min_col_requ + 150000;
+                                                }
+                                                ?>
+
+                                                <p>- Ingreso bruto mínimo de ₵450.000,00 <?php echo number_format($min_col_requ, 2) ?></p>
+                                                <p>- Mayores de 21 años.</p>
+                                                <p>- Copia de documento de identidad vigente (nacionales cédula/extranjeros pasaporte o cédula de residencia).</p>
+                                                <p>- Orden patronal con 3 meses de laboral para la misma empresa.</p>
+
+                                                <img src="../../assets/img/prestamo1.png" alt="" class="specialty__img">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+
                     </div>
 
                     <div class="specialty__group_prestamos">
@@ -405,13 +478,11 @@ if (isset($_SESSION['u_idRol'])) {
                                         $tasaInteres_col = $row['TASA_DE_INTERES'];
                                     }
                                     ?>
-<!-- oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-maxlength="9" -->
 
                                     <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                     <h4>
-                                        <input class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col,2) ?> | Monto Minimo: <?php echo number_format($min_col,2) ?></h5>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off"/>
+                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col, 2) ?> | Monto Minimo: <?php echo number_format($min_col, 2) ?></h5>
                                     </h4>
                                     <br><br>
 
@@ -452,15 +523,14 @@ maxlength="9" -->
                                         $plazoMin_dol = $row['PLAZO_MINIMO'];
                                         $plazoMax_dol = $row['PLAZO_MAXIMO'];
                                         $tasaInteres_dol = $row['TASA_DE_INTERES'];
-
                                     }
                                     ?>
 
 
                                     <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                     <h4>
-                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol,2) ?> | Monto Minimo: <?php echo number_format($min_dol,2) ?></h5>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
+                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
                                     </h4>
                                     <br><br>
 
@@ -500,7 +570,6 @@ maxlength="9" -->
             </div>
             </div>
         </section>
-        <br><br>
 
         <script>
             var slider_col = document.getElementById("range_col");
@@ -562,7 +631,7 @@ maxlength="9" -->
                         c = parseFloat(document.p.tasa_dol.value),
                         s = '$ ';
 
-                    if (a >= <?php echo $min_dol ?>) {
+                    if (a >= <?php echo $min_dol ?> && a <= <?php echo $max_dol ?>) {
 
                         a_final = (-a);
                         b_final = (b * 12);
@@ -590,6 +659,8 @@ maxlength="9" -->
 
                 document.getElementById("monto_solicita_col").value = "";
                 document.getElementById("cuota_mensual_col").value = "";
+                document.getElementById("monto_solicita_dol").value = "";
+                document.getElementById("cuota_mensual_dol").value = "";
 
                 var x = document.getElementById("DIV_col");
                 var y = document.getElementById("DIV_dol");
@@ -603,6 +674,11 @@ maxlength="9" -->
 
                 document.getElementById(id).style.backgroundColor = "#009ad6";
                 document.getElementById(id2).style.backgroundColor = "#004480";
+
+                document.getElementById("monto_solicita_col").value = "";
+                document.getElementById("cuota_mensual_col").value = "";
+                document.getElementById("monto_solicita_dol").value = "";
+                document.getElementById("cuota_mensual_dol").value = "";
 
                 var x = document.getElementById("DIV_col");
                 var y = document.getElementById("DIV_dol");
