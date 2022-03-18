@@ -419,7 +419,7 @@ if (isset($_SESSION['u_idRol'])) {
                                         </div>
                                     </div>
                                     <div class="product__details-center-col">
-                                        <h4 class="product__details-center-col_h4"> Requisitos </h4>
+                                        <h4 class="product__details-center-col_h4"> Requisitos <a <?php if(isset($_SESSION['u_Correo_electronico'])) { ?> href="../../PHP/enviar_requisitos.php" <?php  }else{ ?> href="../../PHP/enviar_requisitos22.php" <?php  } ?>  class="button_convertir pulse" style="margin-left: 33px;"><span>Enviar Requisitos</span></a></h4>
                                         <br>
                                         <div class="product__formalities">
                                             <div>
@@ -481,7 +481,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                                     <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                     <h4>
-                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off"/>
+                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
                                         <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col, 2) ?> | Monto Minimo: <?php echo number_format($min_col, 2) ?></h5>
                                     </h4>
                                     <br><br>
