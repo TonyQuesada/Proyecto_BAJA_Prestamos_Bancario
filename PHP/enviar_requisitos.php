@@ -9,9 +9,7 @@ require_once ('../PHPMailer/PHPMailerAutoload.php');
 
 $mail = new PHPMailer();
 //indico a la clase que use SMTP
-
-// $mail -> IsSMTP();
-
+$mail -> IsSMTP();
 //permite modo debug para ver mensajes de las cosas que van ocurriendo
 $mail -> SMTPDebug = 2;
 //Debo de hacer autenticación SMTP
