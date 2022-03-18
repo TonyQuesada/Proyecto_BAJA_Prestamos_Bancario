@@ -28,7 +28,7 @@ $mail -> Password = "Rock123456789";
 $mail -> SetFrom('TonyQuesadaxd@gmail.com', 'Administración de BAJA');
 $mail -> AddReplyTo("TonyQuesadaxd@gmail.com","Administración de BAJA");
 $mail -> Subject = "Envío de email usando SMTP de Gmail";
-$mail -> body = "Hola que tal, esto es el cuerpo del mensaje!";
+$mail -> MsgHTML("Hola que tal, esto es el cuerpo del mensaje!");
 //indico destinatario
 $address = ($_SESSION['u_Correo_electronico']);
 $mail-> AddAddress($address, ($_SESSION['u_Nombre_Usuario']));
