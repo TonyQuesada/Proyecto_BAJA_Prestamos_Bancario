@@ -182,7 +182,7 @@ button {
 }
 
 .nav__shape {
-  width           : 200px;
+  width           : 00px;
   height          : 200px;
   background-color: var(--first-color-shape);
   border-radius   : 50%;
@@ -288,8 +288,8 @@ button {
 .main {
   position          : relative;
   background-color  : var(--body-color);
-  -webkit-transition: .4s;
-  transition        : .4s;
+  /* -webkit-transition: .4s;
+  transition        : .4s; */
 }
 
 .header {
@@ -1460,8 +1460,8 @@ input[type=number]::-webkit-outer-spin-button {
 
   /* Tamaño del panel */
   .show-menu {
-    -webkit-transform: translate(22%);
-    transform        : translate(22%);
+    -webkit-transform: translate(20%);
+    transform        : translate(20%);
   }
 
   .scroll-header .nav__link {
@@ -1846,3 +1846,9 @@ input[type=number]::-webkit-outer-spin-button {
   z-index         : 1000;
 }
 
+/* The size may vary depending 
+on the image of the gif */
+.load__gif {
+  position: absolute;
+  width   : 500px;
+}

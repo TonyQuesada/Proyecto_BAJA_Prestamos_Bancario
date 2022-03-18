@@ -440,7 +440,7 @@ if (isset($_SESSION['u_idRol'])) {
                                                 <p>- Ingreso bruto mínimo de ₵450.000,00 <?php echo number_format($min_col_requ, 2) ?></p>
                                                 <p>- Mayores de 21 años.</p>
                                                 <p>- Copia de documento de identidad vigente (nacionales cédula/extranjeros pasaporte o cédula de residencia).</p>
-                                                <p>- Orden patronal con 3 meses de laboral para la misma empresa.</p>
+                                                <p>- Orden patronal con 3 meses de laborar para la misma empresa.</p>
 
                                                 <img src="../../assets/img/prestamo1.png" alt="" class="specialty__img">
 
@@ -504,7 +504,7 @@ if (isset($_SESSION['u_idRol'])) {
                                     </h4>
                                     <br><br>
 
-                                    <input hidden type="text" value="Colones">
+                                    <input hidden type="text" id="moneda_col" name="moneda_col" value="COLONES">
 
                                     <div style="text-align: right;">
                                         <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
@@ -552,7 +552,7 @@ if (isset($_SESSION['u_idRol'])) {
                                     </h4>
                                     <br><br>
 
-                                    <input hidden type="text" value="Colones">
+                                    <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
 
                                     <div style="text-align: right;">
                                         <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>

@@ -25,7 +25,15 @@ if (isset($_POST['insert'])) {
         $_SESSION['u_idEmpleado'] = $row['idEmpleado'];
         $_SESSION['u_idCliente'] = $row['idCliente'];
 
+        // echo $_SESSION['u_idUsuario'];
+        // echo $_SESSION['u_Usuario'];
         // echo $_SESSION['u_Nombre_Usuario'];
+        // echo $_SESSION['u_Correo_electronico'];
+        // echo $_SESSION['u_Contrasena'];
+        // echo $_SESSION['u_idRol'];
+        // echo $_SESSION['u_idEmpleado'];
+        // echo $_SESSION['u_idCliente'];
+
         header("Location:../index.php");
     }
 }
