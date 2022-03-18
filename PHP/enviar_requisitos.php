@@ -12,6 +12,9 @@ $mail = new PHPMailer();
 $mail -> IsSMTP();
 //permite modo debug para ver mensajes de las cosas que van ocurriendo
 $mail -> SMTPDebug = 2;
+
+$mail -> $smtp_debug = true;
+
 //Debo de hacer autenticación SMTP
 $mail -> SMTPAuth = true;
 $mail -> SMTPSecure = "ssl";
