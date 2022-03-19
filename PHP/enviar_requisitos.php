@@ -8,8 +8,8 @@ setlocale(LC_TIME, "spanish");
 require '../PHPMailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer();
-$mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
+$mail->Host = 'intelligent-hellman.138-59-135-33.plesk.page';
+$mail->IsSMTP();
 $mail->Port = 587;
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls';
