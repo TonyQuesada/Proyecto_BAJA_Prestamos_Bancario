@@ -9,7 +9,7 @@ require '../PHPMailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer();
 $mail->Host = 'intelligent-hellman.138-59-135-33.plesk.page';
-$mail->IsSMTP();
+$mail->isSMTP();
 $mail->Port = 587;
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls';
@@ -22,7 +22,8 @@ $mail->addReplyTo("TonyQuesadaxd@gmail.com", "Administración de BAJA");
 
 $mail->isHTML(true);
 $mail->Subject = 'Envío de email usando SMTP de Gmail';
-$mail->Body = 'Hola que tal, esto es el cuerpo del mensaje!';
+$mail->msgHTML('Email content with <strong>html</strong>');
+// $mail->Body = 'Hola que tal, esto es el cuerpo del mensaje!';
 // $mail->MsgHTML("Hola que tal, esto es el cuerpo del mensaje!");
 
 
@@ -30,11 +31,12 @@ $mail->SMTPOptions = array(
     'ssl' => array(
     'verify_peer' => false,
     'verify_peer_name' => false,
-    'allow_self_signed' => true
+    'allow_self_signed' => true,
+    'peer_name' => 'Plesk'
    )
  );
-//  $mail->SMTPDebug = 3;
-
+ $mail->SMTPDebug = 2;
+ $mail->CharSet  = 'UTF-8';
 
 
 if (!$mail->send()) {
