@@ -28,6 +28,7 @@ if (isset($_SESSION['u_idRol'])) {
 
 // Busca a la persona //
 $cedula = '';
+$id_id = '';
 $nombre = '';
 $ape1 = '';
 $ape2 = '';
@@ -53,6 +54,13 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
         $ape1 = $datos["PRIMER_APELLIDO"];
         $ape2 = $datos["SEGUNDO_APELLIDO"];
         $correo = $_SESSION['u_Correo_electronico'];
+
+        $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
+        if($id_id_cantidad == 9){
+            $id_id = 1;
+        } else {
+            $id_id = 2;
+        }
     }
 } else if ($cedula != NULL) {
 
@@ -68,9 +76,16 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
             $ape1 = $datos["PRIMER_APELLIDO"];
             $ape2 = $datos["SEGUNDO_APELLIDO"];
         }
+        
+        $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
+        if($id_id_cantidad == 9){
+            $id_id = 1;
+        } else {
+            $id_id = 2;
+        }
     }
 } else {
-    
+
     $noExiste = 'Ingrese un número de identificación porfavor.';
     echo $noExiste;
 }
@@ -93,13 +108,18 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
     $tasa_ = 'tasa_' . $mon;
     $cuota_mensual_ = 'cuota_mensual_' . $mon;
     $moneda_ = 'moneda_' . $mon;
+    $cuota_mensual_natural_ = 'cuota_mensual_natural_' . $mon;
+    $id_Categoria_Prestamo = 'id_Categoria_Prestamo';
+    $id_Tipo_Prestamo = 'id_Tipo_Prestamo';
 
     $_SESSION['monto_solicita_final'] = $_POST[$monto_solicita_];
     $_SESSION['range_final'] = $_POST[$range_];
     $_SESSION['tasa_final'] = $_POST[$tasa_];
     $_SESSION['cuota_mensual_final'] = $_POST[$cuota_mensual_];
     $_SESSION['moneda_final'] = $_POST[$moneda_];
-
+    $_SESSION['cuota_mensual_natural_final'] = $_POST[$cuota_mensual_natural_];
+    $_SESSION['id_Categoria_Prestamo_final'] = $_POST[$id_Categoria_Prestamo];
+    $_SESSION['id_Tipo_Prestamo_final'] = $_POST[$id_Tipo_Prestamo];
 }
 
 
@@ -116,6 +136,14 @@ echo '<br>';
 echo  "Correo: " . $correo;
 echo '<br>';
 echo "moneda: " . $_SESSION['moneda_final'];
+echo '<br>';
+echo "id_Identificacion: " . $id_id;
+echo '<br>';
+echo "id_Cate: " . $_SESSION['id_Categoria_Prestamo_final'];
+echo '<br>';
+echo "id_Tipo: " . $_SESSION['id_Tipo_Prestamo_final'];
+echo '<br>';
+echo "cuota_mensual_natural: " . $_SESSION['cuota_mensual_natural_final'];
 echo '<br>';
 echo "Fecha que ve el usuario: " . strftime("%A, %d de %B de %Y");
 echo '<br>';

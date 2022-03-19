@@ -1,10 +1,7 @@
 <?php
-include '../../conection.php';
+include '../conection.php';
 session_start();
-// if(isset($_SESSION['u_ID']))
-// {
-//     header('Location: administrador.php');
-// }
+setlocale(LC_TIME, "spanish");
 
 // Obtener el Tipo de Cambio //
 $consulta = "SELECT * FROM Tipo_Cambio";
@@ -27,6 +24,130 @@ $sesionRol = null;
 if (isset($_SESSION['u_idRol'])) {
     $sesionRol = $_SESSION['u_idRol'];
 }
+
+// Busca a la persona //
+$cedula = '';
+$id_id = '';
+$nombre = '';
+$ape1 = '';
+$ape2 = '';
+$sesion_idCliente = '';
+$correo = '';
+
+if (isset($_POST['cedula'])) {
+    $cedula = $_POST['cedula'];
+}
+
+if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
+
+    $cedula = $_SESSION['u_idCliente'];
+
+    $datos = json_decode(file_get_contents("http://aaron040291-001-site1.ctempurl.com/api/Personas/" . $cedula), true);
+
+    if ($datos == '') {
+        $noExiste = 'Número de identificación de la sesión incorrecto.';
+        echo $noExiste;
+    } else {
+        $cedula = $datos["CEDULA"];
+        $nombre = $datos["NOMBRE_COMPLETO"];
+        $ape1 = $datos["PRIMER_APELLIDO"];
+        $ape2 = $datos["SEGUNDO_APELLIDO"];
+        $correo = $_SESSION['u_Correo_electronico'];
+
+        $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
+        if ($id_id_cantidad == 9) {
+            $id_id = 1;
+        } else {
+            $id_id = 2;
+        }
+    }
+} else if ($cedula != NULL) {
+
+    if (isset($_POST['cedula'])) {
+        $datos = json_decode(file_get_contents("http://aaron040291-001-site1.ctempurl.com/api/Personas/" . $_POST["cedula"]), true);
+
+        if ($datos == '') {
+            $noExiste = 'Número de identificación incorrecta.';
+            echo $noExiste;
+        } else {
+            $cedula = $datos["CEDULA"];
+            $nombre = $datos["NOMBRE_COMPLETO"];
+            $ape1 = $datos["PRIMER_APELLIDO"];
+            $ape2 = $datos["SEGUNDO_APELLIDO"];
+        }
+
+        $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
+        if ($id_id_cantidad == 9) {
+            $id_id = 1;
+        } else {
+            $id_id = 2;
+        }
+    }
+} else {
+
+    $noExiste = 'Ingrese un número de identificación porfavor.';
+    echo $noExiste;
+}
+
+// Conserva los datos de la calculadora
+if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) {
+
+    $monto_solicita_col = $_POST['monto_solicita_col'];
+    $monto_solicita_dol = $_POST['monto_solicita_dol'];
+    $mon = '';
+
+    if ($monto_solicita_dol == NUll) {
+        $mon = 'col';
+    } else {
+        $mon = 'dol';
+    }
+
+    $monto_solicita_ = 'monto_solicita_' . $mon;
+    $range_ = 'range_' . $mon;
+    $tasa_ = 'tasa_' . $mon;
+    $cuota_mensual_ = 'cuota_mensual_' . $mon;
+    $moneda_ = 'moneda_' . $mon;
+    $cuota_mensual_natural_ = 'cuota_mensual_natural_' . $mon;
+    $id_Categoria_Prestamo = 'id_Categoria_Prestamo';
+    $id_Tipo_Prestamo = 'id_Tipo_Prestamo';
+
+    $_SESSION['monto_solicita_final'] = $_POST[$monto_solicita_];
+    $_SESSION['range_final'] = $_POST[$range_];
+    $_SESSION['tasa_final'] = $_POST[$tasa_];
+    $_SESSION['cuota_mensual_final'] = $_POST[$cuota_mensual_];
+    $_SESSION['moneda_final'] = $_POST[$moneda_];
+    $_SESSION['cuota_mensual_natural_final'] = $_POST[$cuota_mensual_natural_];
+    $_SESSION['id_Categoria_Prestamo_final'] = $_POST[$id_Categoria_Prestamo];
+    $_SESSION['id_Tipo_Prestamo_final'] = $_POST[$id_Tipo_Prestamo];
+}
+
+
+echo "monto_solicita: " . $_SESSION['monto_solicita_final'];
+echo '<br>';
+echo "range: " . $_SESSION['range_final'];
+echo '<br>';
+echo "tasa: " . $_SESSION['tasa_final'];
+echo '<br>';
+echo "cuota_mensual: " . $_SESSION['cuota_mensual_final'];
+echo '<br>';
+echo  "ID: " . $cedula;
+echo '<br>';
+echo  "Correo: " . $correo;
+echo '<br>';
+echo "moneda: " . $_SESSION['moneda_final'];
+echo '<br>';
+echo "id_Identificacion: " . $id_id;
+echo '<br>';
+echo "id_Cate: " . $_SESSION['id_Categoria_Prestamo_final'];
+echo '<br>';
+echo "id_Tipo: " . $_SESSION['id_Tipo_Prestamo_final'];
+echo '<br>';
+echo "cuota_mensual_natural: " . $_SESSION['cuota_mensual_natural_final'];
+echo '<br>';
+echo "Fecha que ve el usuario: " . strftime("%A, %d de %B de %Y");
+echo '<br>';
+echo "Fecha que guarda la base: " . strftime("%Y-%m-%d");
+// echo ' --- ';
 ?>
 
 
@@ -38,21 +159,21 @@ if (isset($_SESSION['u_idRol'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
 
     <!--=============== BOXICONS ===============-->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
     <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 
-    <title>Gastos Personales</title>
+    <title>Formulario de Solicitud de Prestamo</title>
 </head>
 
 <body>
 
     <!--==================== NAV ====================-->
-    <nav class="nav" id="nav">
+    <!-- <nav class="nav" id="nav">
         <div class="nav__menu container" id="nav-menu">
             <div class="nav__shape demo"></div>
 
@@ -65,7 +186,7 @@ if (isset($_SESSION['u_idRol'])) {
             ?>
                 <div class="nav__data">
                     <div class="nav__mask">
-                        <img src="../../assets/img/unknown.png" alt="" class="nav__img">
+                        <img src="../assets/img/unknown.png" alt="" class="nav__img">
                     </div>
 
                     <h2 style="color: hsl(197, 100%, 65%);">BANCA <br> EN LÍNEA</h2>
@@ -73,7 +194,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <a href="../../Prestamos/login.php" class="nav__link i__scroll">
+                        <a href="../Prestamos/login.php" class="nav__link i__scroll">
                             <i class='bx bx-user'></i> Iniciar Sesión
                         </a>
                     </li>
@@ -82,17 +203,16 @@ if (isset($_SESSION['u_idRol'])) {
                 ?>
                     <div class="nav__data">
                         <div class="nav__mask">
-                            <img src="../../assets/img/userAdmin.png" alt="" class="nav__img">
+                            <img src="../assets/img/userAdmin.png" alt="" class="nav__img">
                         </div>
 
                         <span class="nav__greeting">Bienvenid@</span>
                         <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                     </div>
 
-                    <!-- PHP -->
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="../../Prestamos/empleado_perfil.php" class="nav__link i__scroll">
+                            <a href="../Prestamos/empleado_perfil.php" class="nav__link i__scroll">
                                 <i class='bx bx-user'></i> Perfil
                             </a>
                         </li>
@@ -101,7 +221,7 @@ if (isset($_SESSION['u_idRol'])) {
                     ?>
                         <div class="nav__data">
                             <div class="nav__mask">
-                                <img src="../../assets/img/userMale.png" alt="" class="nav__img">
+                                <img src="../assets/img/userMale.png" alt="" class="nav__img">
                             </div>
 
                             <span class="nav__greeting">Bienvenid@</span>
@@ -110,7 +230,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a href="../../Prestamos/cliente_perfil.php" class="nav__link i__scroll">
+                                <a href="../Prestamos/cliente_perfil.php" class="nav__link i__scroll">
                                     <i class='bx bx-user'></i> Perfil
                                 </a>
                             </li>
@@ -128,17 +248,17 @@ if (isset($_SESSION['u_idRol'])) {
                         ?>
 
                             <li class="nav__item">
-                                <a href="../../contador/dashboard.php" class="nav__link i__scroll">
+                                <a href="../contador/dashboard.php" class="nav__link i__scroll">
                                     <i class='bx bx-line-chart'></i> Tablero
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a href="../../Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
+                                <a href="../Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
                                     <i class='bx bx-folder-open'></i> Asignar Préstamos
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a href="../../Tramitador/configuracion.php" class="nav__link i__scroll">
+                                <a href="../Tramitador/configuracion.php" class="nav__link i__scroll">
                                     <i class='bx bx-cog'></i> Configuración
                                 </a>
                             </li>
@@ -152,13 +272,13 @@ if (isset($_SESSION['u_idRol'])) {
                         ?>
 
                             <li class="nav__item">
-                                <a href="../../Analista/solicitudes.php" class="nav__link i__scroll">
+                                <a href="../Analista/solicitudes.php" class="nav__link i__scroll">
                                     <i class='bx bx-file-find'></i> Solicitudes
                                 </a>
                             </li>
 
                             <li class="nav__item">
-                                <a href="../../Analista/historial.php" class="nav__link i__scroll">
+                                <a href="../Analista/historial.php" class="nav__link i__scroll">
                                     <i class='bx bx-calendar'></i> Historial
                                 </a>
                             </li>
@@ -172,7 +292,7 @@ if (isset($_SESSION['u_idRol'])) {
                         ?>
 
                             <li class="nav__item">
-                                <a href="../../Administrador/roles.php" class="nav__link i__scroll">
+                                <a href="../Administrador/roles.php" class="nav__link i__scroll">
                                     <i class='bx bx-user-plus'></i> Roles
                                 </a>
                             </li>
@@ -201,7 +321,7 @@ if (isset($_SESSION['u_idRol'])) {
                         if ($sesionRol != NULL) {
                         ?>
                             <li class="nav__item">
-                                <a href="../../PHP/logout.php" class="nav__link i__scroll">
+                                <a href="../PHP/logout.php" class="nav__link i__scroll">
                                     <i class='bx bx-log-out'></i> Cerrar Sesión
                                 </a>
                             </li>
@@ -210,7 +330,7 @@ if (isset($_SESSION['u_idRol'])) {
                         ?>
                         </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <!--==================== MAIN ====================-->
     <main class="main" id="main">
@@ -219,8 +339,8 @@ if (isset($_SESSION['u_idRol'])) {
         <header class="header" id="header">
             <nav class="header__nav container">
 
-                <a href="../../index.php" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
-                    <img src="../../assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
+                <a href="../index.php" class="nav__log" style="margin-bottom: 40px; margin-left: -17px;">
+                    <img src="../assets/img/logo.png" alt="" class="nav__logo-img" style="position: fixed;">
 
                     <h2>
                         <span class="nav__title">BAJA</span>
@@ -247,7 +367,7 @@ if (isset($_SESSION['u_idRol'])) {
             <div class="home__container">
                 <div class="home__content container">
                     <h1 class="home__title">
-                        GASTOS PERSONALES<span>.</span>
+                        FORMULARIO DE SOLICITUD<span>.</span>
                     </h1>
                     <p class="home__description">
                         Solicitá tu préstamo de <span style="color: hsla(197, 100%, 42%, 0.8);">gastos personales</span> y hacé realidad todos tus planes<span style="color: hsla(197, 100%, 42%, 0.8);">.</span>
@@ -292,14 +412,14 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </form>
 
-                    <a href="#calculador">
-                        <img src="../../assets/img/scroll.png" alt="" class="home__scroll">
-                    </a>
+                    <!-- <a href="#calculador">
+                        <img src="../assets/img/scroll.png" alt="" class="home__scroll">
+                    </a> -->
                 </div>
             </div>
 
-            <!-- <img src="../../assets/img/home.gif" alt="" class="home__img"> -->
-            <video src="../../assets/video/Personal1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
+            <!-- <img src="../assets/img/home.gif" alt="" class="home__img"> -->
+            <video src="../assets/video/Personal1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
 
         </section>
 
@@ -365,217 +485,143 @@ if (isset($_SESSION['u_idRol'])) {
                     ¡Hágalo sus sueños realidad!
                 </h2>
 
-                <div class="specialty__category_prestamos">
-
-                    <div class="">
-                        <div class="home__data_prestamos">
-                            <div class="home__data-group">
-                                <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: calc(var(--h1-font-size) - 4px);">BAJA - Gastos Personales</h3>
-
-                                <div class="product__details-content">
-                                    <div class="product__details-left-col">
-                                        <div class="product__details-benefits">
-                                            <h4 class="product__details-benefits_h4"> Beneficios </h4>
-                                            <br>
-                                            <ul class="product__details-benefits-list">
-                                                <li>
-                                                    <div>
-                                                        <h4>
-                                                            <i class='bx bx-run' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
-                                                            Trámites simples
-                                                        </h4>
-                                                        <p>Simplificamos los procesos para obtener la aprobación en menor tiempo.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <h4>
-                                                            <i class='bx bxs-credit-card-alt' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
-                                                            Convenientes tasas de interés
-                                                        </h4>
-                                                        <p>La mejor experiencia durante el préstamo.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <h4>
-                                                            <i class='bx bxs-bank' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
-                                                            Sencillas formas de pago
-                                                        </h4>
-                                                        <p>Ponemos a tu disposición todas las agencias de BAJA alrededor del país.</p>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div>
-                                                        <h4>
-                                                            <i class='bx bxs-check-square' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
-                                                            Sin gastos extra
-                                                        </h4>
-                                                        <p>Eliminamos la comisión de formalización.
-                                                        </p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="product__details-center-col">
-                                        <h4 class="product__details-center-col_h4"> Requisitos <a <?php if (isset($_SESSION['u_Correo_electronico'])) { ?> href="../../PHP/enviar_requisitos.php" <?php  } else { ?> href="../../PHP/enviar_requisitos22.php" <?php  } ?> class="button_convertir pulse" style="margin-left: 33px;"><span>Enviar Requisitos</span></a></h4>
-                                        <br>
-                                        <div class="product__formalities">
-                                            <div>
-                                                <h4>
-                                                    <i class='bx bxs-briefcase' style="color:#00182e; font-size: var(--h3-font-size); margin-right: 7px"></i>
-                                                    Asalariados
-                                                </h4>
-
-                                                <?php
-                                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
-                                                $result = sqlsrv_query($con, $sql);
-                                                while ($row = sqlsrv_fetch_array($result)) {
-                                                    $min_col_requ = $row['MONTO_MINIMO'];
-                                                    $min_col_requ = $min_col_requ + 150000;
-                                                }
-                                                ?>
-
-                                                <p>- Ingreso bruto mínimo de ₵450.000,00 <?php echo number_format($min_col_requ, 2) ?></p>
-                                                <p>- Mayores de 21 años.</p>
-                                                <p>- Copia de documento de identidad vigente (nacionales cédula/extranjeros pasaporte o cédula de residencia).</p>
-                                                <p>- Orden patronal con 3 meses de laborar para la misma empresa.</p>
-
-                                                <img src="../../assets/img/prestamo1.png" alt="" class="specialty__img">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="specialty__group_prestamos">
+                <div class="specialty__category_formulario">
+                    <div class="specialty__group specialty__line_formulario">
 
                         <form action="../formulario.php" method="post" name="p" id="p">
 
-                            <div class="l_prestamos" name="l_prestamos">
-                                <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
-                                    <a onclick="myFunction_col('col', 'dol')" class="button_convertir pulse" id="col" style="margin-left: 0.3rem; background-color: #009ad6;"><span>Colones</span></a>
-                                    <a onclick="myFunction_dol('dol', 'col')" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
-                                </h3>
-                                <br>
+                            <div class="l_formulario" name="l_formulario">
+                                <div>
+                                    <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
+                                        <a onclick="myFunction_col('col', 'dol')" class="button_convertir pulse" id="col" style="margin-left: 0.3rem; background-color: #009ad6;"><span>Colones</span></a>
+                                        <a onclick="myFunction_dol('dol', 'col')" class="button_convertir pulse" id="dol"><span>Dólares</span></a>
+                                    </h3>
+                                    <br>
 
-                                <div id="DIV_col">
+                                    <div id="DIV_col">
 
-                                    <?php
-                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
-                                    $result = sqlsrv_query($con, $sql);
-                                    while ($row = sqlsrv_fetch_array($result)) {
-                                        $min_col = $row['MONTO_MINIMO'];
-                                        $max_col = $row['MONTO_MAXIMO'];
-                                        $plazoMin_col = $row['PLAZO_MINIMO'];
-                                        $plazoMax_col = $row['PLAZO_MAXIMO'];
-                                        $tasaInteres_col = $row['TASA_DE_INTERES'];
-                                    }
-                                    ?>
+                                        <?php
+                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                        $result = sqlsrv_query($con, $sql);
+                                        while ($row = sqlsrv_fetch_array($result)) {
+                                            $min_col = $row['MONTO_MINIMO'];
+                                            $max_col = $row['MONTO_MAXIMO'];
+                                            $plazoMin_col = $row['PLAZO_MINIMO'];
+                                            $plazoMax_col = $row['PLAZO_MAXIMO'];
+                                            $tasaInteres_col = $row['TASA_DE_INTERES'];
+                                        }
+                                        ?>
 
-                                    <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col, 2) ?> | Monto Minimo: <?php echo number_format($min_col, 2) ?></h5>
-                                    </h4>
-                                    <br><br>
+                                        <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                        <h4>
+                                            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
+                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col, 2) ?> | Monto Minimo: <?php echo number_format($min_col, 2) ?></h5>
+                                        </h4>
+                                        <br><br>
 
-                                    <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_col" name="demo_col"></span></h3>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="0" max="<?php echo $plazoMax_col ?>" value="<?php echo $plazoMax_col ?>" class="slider" name="range_col" id="range_col" onchange="cuota_col()" onkeyup="cuota_col()">
+                                        <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider value_slider_formulario" id="demo_col" name="demo_col"></span></h3>
+                                        <div class="slidecontainer">
+                                            <input type="range" min="0" max="<?php echo $plazoMax_col ?>" value="<?php echo $plazoMax_col ?>" class="slider" name="range_col" id="range_col" onchange="cuota_col()" onkeyup="cuota_col()">
+                                        </div>
+                                        <br><br>
+
+                                        <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                        <h4>
+                                            <input class="input__convert input__convert_prestamo" type="number" name="tasa_col" id="tasa_col" value="<?php echo $tasaInteres_col ?>" placeholder="0" readonly="readonly" onchange="cuota_col()" onkeyup="cuota_col()" />
+                                        </h4>
+                                        <br><br>
+
+                                        <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                        <h4>
+                                            <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_col" id="cuota_mensual_col" value="" placeholder="0" readonly="readonly" />
+                                        </h4>
+                                        <br><br>
+
+                                        <input hidden type="text" id="moneda_col" name="moneda_col" value="COLONES">
+
+                                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
+                                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+                                        <input hidden type="number" id="cuota_mensual_natural_col" name="cuota_mensual_natural_col" value="" readonly="readonly">
+
                                     </div>
-                                    <br><br>
 
-                                    <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input class="input__convert input__convert_prestamo" type="number" name="tasa_col" id="tasa_col" value="<?php echo $tasaInteres_col ?>" placeholder="0" readonly="readonly" onchange="cuota_col()" onkeyup="cuota_col()" />
-                                    </h4>
-                                    <br><br>
+                                    <div id="DIV_dol" style="display:none">
 
-                                    <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_col" id="cuota_mensual_col" value="" placeholder="0" readonly="readonly" />
-                                    </h4>
-                                    <br><br>
+                                        <?php
+                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
+                                        $result = sqlsrv_query($con, $sql);
+                                        while ($row = sqlsrv_fetch_array($result)) {
+                                            $min_dol = $row['MONTO_MINIMO'];
+                                            $max_dol = $row['MONTO_MAXIMO'];
+                                            $plazoMin_dol = $row['PLAZO_MINIMO'];
+                                            $plazoMax_dol = $row['PLAZO_MAXIMO'];
+                                            $tasaInteres_dol = $row['TASA_DE_INTERES'];
+                                        }
+                                        ?>
 
-                                    <input hidden type="text" id="moneda_col" name="moneda_col" value="COLONES">
 
-                                    <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="cuota_mensual_natural_col" name="cuota_mensual_natural_col" value="" readonly="readonly">
+                                        <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                        <h4>
+                                            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
+                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
+                                        </h4>
+                                        <br><br>
 
-                                    <div style="text-align: right;">
-                                        <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
+                                        <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider value_slider_formulario" id="demo_dol" name="demo_dol"></span></h3>
+                                        <div class="slidecontainer">
+                                            <input type="range" min="0" max="<?php echo $plazoMax_dol ?>" value="<?php echo $plazoMax_dol ?>" class="slider" name="range_dol" id="range_dol" onchange="cuota_dol()" onkeyup="cuota_dol()">
+                                        </div>
+                                        <br><br>
+
+                                        <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                        <h4>
+                                            <input class="input__convert input__convert_prestamo" type="number" name="tasa_dol" id="tasa_dol" value="<?php echo $tasaInteres_dol ?>" placeholder="0" readonly="readonly" onchange="cuota_dol()" onkeyup="cuota_dol()" />
+                                        </h4>
+                                        <br><br>
+
+                                        <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                        <h4>
+                                            <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_dol" id="cuota_mensual_dol" value="" placeholder="0" readonly="readonly" />
+                                        </h4>
+                                        <br><br>
+
+                                        <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
+
+                                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
+                                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+                                        <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
+
                                     </div>
-
                                 </div>
-
-                                <div id="DIV_dol" style="display:none">
-
-                                    <?php
-                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
-                                    $result = sqlsrv_query($con, $sql);
-                                    while ($row = sqlsrv_fetch_array($result)) {
-                                        $min_dol = $row['MONTO_MINIMO'];
-                                        $max_dol = $row['MONTO_MAXIMO'];
-                                        $plazoMin_dol = $row['PLAZO_MINIMO'];
-                                        $plazoMax_dol = $row['PLAZO_MAXIMO'];
-                                        $tasaInteres_dol = $row['TASA_DE_INTERES'];
-                                    }
-                                    ?>
-
-
-                                    <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
-                                    </h4>
-                                    <br><br>
-
-                                    <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_dol" name="demo_dol"></span></h3>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="0" max="<?php echo $plazoMax_dol ?>" value="<?php echo $plazoMax_dol ?>" class="slider" name="range_dol" id="range_dol" onchange="cuota_dol()" onkeyup="cuota_dol()">
-                                    </div>
-                                    <br><br>
-
-                                    <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input class="input__convert input__convert_prestamo" type="number" name="tasa_dol" id="tasa_dol" value="<?php echo $tasaInteres_dol ?>" placeholder="0" readonly="readonly" onchange="cuota_dol()" onkeyup="cuota_dol()" />
-                                    </h4>
-                                    <br><br>
-
-                                    <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_dol" id="cuota_mensual_dol" value="" placeholder="0" readonly="readonly" />
-                                    </h4>
-                                    <br><br>
-
-                                    <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
-
-                                    <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
-
-                                    <div style="text-align: right;">
-                                        <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
-                                    </div>
-
-                                </div>
+                            </div>
 
                         </form>
 
-
                     </div>
 
+                    <div class="specialty__group">
+
+                        <form method="POST">
+                            <p>Número de identificación:<input type="text" name="cedula">
+                                <input type="submit" value="Consultar">
+                            </p>
+                        </form>
+
+                        <p>Cédula: <input type='text' name="cedula" id="cedula" readonly value='<?php echo ($cedula); ?>' />
+                            Nombre: <input type='text' name="nombre" id="nombre" readonly value='<?php echo ($nombre); ?>' />
+                            Primer Apellido: <input type='text' name="ape1" id="ape1" readonly value='<?php echo ($ape1); ?>' />
+                            Segundo Apellido: <input type='text' name="ape2" id="ape2" readonly value='<?php echo ($ape2); ?>' />
+                        </p>
+
+
+                        <!-- <div style="text-align: right;">
+                                    <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
+                                </div> -->
+
+
+                    </div>
                 </div>
 
-            </div>
             </div>
         </section>
 
@@ -717,7 +763,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 <div class="specialty__category">
                     <div class="specialty__group specialty__line">
-                        <img src="../../assets/img/BAJA_online.png" alt="" class="specialty__img">
+                        <img src="../assets/img/BAJA_online.png" alt="" class="specialty__img">
 
                         <h3 class="specialty__title">BAJA Online</h3>
                         <p class="specialty__description">
@@ -725,7 +771,7 @@ if (isset($_SESSION['u_idRol'])) {
                         </p>
                     </div>
                     <div class="specialty__group specialty__line">
-                        <img src="../../assets/img/Tramites_Rapidos.png" alt="" class="specialty__img">
+                        <img src="../assets/img/Tramites_Rapidos.png" alt="" class="specialty__img">
 
                         <h3 class="specialty__title">Trámites rápidos</h3>
                         <p class="specialty__description">
@@ -733,7 +779,7 @@ if (isset($_SESSION['u_idRol'])) {
                         </p>
                     </div>
                     <div class="specialty__group">
-                        <img src="../../assets/img/Pago.png" alt="" class="specialty__img">
+                        <img src="../assets/img/Pago.png" alt="" class="specialty__img">
 
                         <h3 class="specialty__title">Pagos</h3>
                         <p class="specialty__description">
@@ -780,9 +826,9 @@ if (isset($_SESSION['u_idRol'])) {
 
                 <div class="products__content grid">
                     <!--========== Personal ==========-->
-                    <article class="products__card Personal" onclick="window.location.href='../../Prestamos/Personal/gastos_personales.php'">
+                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/gastos_personales.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/personal1.png" alt="" class="products__img">
+                            <img src="../assets/img/personal1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -795,9 +841,9 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </article>
 
-                    <article class="products__card Personal" onclick="window.location.href='../../Prestamos/Personal/rapidos.php'">
+                    <article class="products__card Personal" onclick="window.location.href='../Prestamos/Personal/rapidos.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/personal2.png" alt="" class="products__img">
+                            <img src="../assets/img/personal2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -811,9 +857,9 @@ if (isset($_SESSION['u_idRol'])) {
                     </article>
 
                     <!--========== Vivienda ==========-->
-                    <article class="products__card Vivienda" onclick="window.location.href='../../Prestamos/Vivienda/construccion_vivienda.php'">
+                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/construccion_vivienda.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/house1.png" alt="" class="products__img">
+                            <img src="../assets/img/house1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -826,9 +872,9 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </article>
 
-                    <article class="products__card Vivienda" onclick="window.location.href='../../Prestamos/Vivienda/vivienda_interes_social.php'">
+                    <article class="products__card Vivienda" onclick="window.location.href='../Prestamos/Vivienda/vivienda_interes_social.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/house2.png" alt="" class="products__img">
+                            <img src="../assets/img/house2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -842,9 +888,9 @@ if (isset($_SESSION['u_idRol'])) {
                     </article>
 
                     <!--========== Vehiculos ==========-->
-                    <article class="products__card Vehiculos" onclick="window.location.href='../../Prestamos/Vehiculo/vehiculo_nuevo.php'">
+                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_nuevo.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/car1.png" alt="" class="products__img">
+                            <img src="../assets/img/car1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -857,9 +903,9 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </article>
 
-                    <article class="products__card Vehiculos" onclick="window.location.href='../../Prestamos/Vehiculo/vehiculo_usado.php'">
+                    <article class="products__card Vehiculos" onclick="window.location.href='../Prestamos/Vehiculo/vehiculo_usado.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/car2.png" alt="" class="products__img">
+                            <img src="../assets/img/car2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -873,9 +919,9 @@ if (isset($_SESSION['u_idRol'])) {
                     </article>
 
                     <!--========== Viajes ==========-->
-                    <article class="products__card Viajes" onclick="window.location.href='../../Prestamos/Viajes/viajes_internacionales.php'">
+                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_internacionales.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/travel3.png" alt="" class="products__img">
+                            <img src="../assets/img/travel3.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -888,9 +934,9 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </article>
 
-                    <article class="products__card Viajes" onclick="window.location.href='../../Prestamos/Viajes/viajes_nacionales.php'">
+                    <article class="products__card Viajes" onclick="window.location.href='../Prestamos/Viajes/viajes_nacionales.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/travel2.png" alt="" class="products__img">
+                            <img src="../assets/img/travel2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -904,9 +950,9 @@ if (isset($_SESSION['u_idRol'])) {
                     </article>
 
                     <!--========== UniDeudas ==========-->
-                    <article class="products__card UniDeudas" onclick="window.location.href='../../Prestamos/Unificacion/pagos_tarjeta_credito.php'">
+                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/pagos_tarjeta_credito.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/pay1.png" alt="" class="products__img">
+                            <img src="../assets/img/pay1.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -919,9 +965,9 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </article>
 
-                    <article class="products__card UniDeudas" onclick="window.location.href='../../Prestamos/Unificacion/prestamos_de_otras_instituciones.php'">
+                    <article class="products__card UniDeudas" onclick="window.location.href='../Prestamos/Unificacion/prestamos_de_otras_instituciones.php'">
                         <div class="products__shape">
-                            <img src="../../assets/img/pay2.png" alt="" class="products__img">
+                            <img src="../assets/img/pay2.png" alt="" class="products__img">
                         </div>
 
                         <div class="products__data">
@@ -969,7 +1015,7 @@ if (isset($_SESSION['u_idRol'])) {
                         <p class="footer__information">
                             Avenidas 1 y 3, Calle 4 Cartago Costa Rica. <br>
                             Cartago, Cartago, Costa Rica
-                            <img src="../../assets/img/footerflag.png" alt="" class="footer__flag">
+                            <img src="../assets/img/footerflag.png" alt="" class="footer__flag">
                         </p>
                     </div>
 
@@ -1017,11 +1063,10 @@ if (isset($_SESSION['u_idRol'])) {
     </a>
 
     <!--=============== MIXITUP FILTER ===============-->
-    <script src="../../assets/js/mixitup.min.js"></script>
+    <script src="../assets/js/mixitup.min.js"></script>
 
     <!--=============== MAIN JS ===============-->
-    <script src="../../assets/js/main.js"></script>
-    <script src="../../assets/js/contador.js"></script>
+    <script src="../assets/js/main.js"></script>
 </body>
 
 </html>

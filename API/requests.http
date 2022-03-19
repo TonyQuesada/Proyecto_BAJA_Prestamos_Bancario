@@ -1,6 +1,0 @@
-@api = http://rentacar2022-001-site1.htempurl.com/api/Padron/
-@var = 305230197
-
-
-### Obteniendo el nombre del cliente
-GET {{api}}/{{var}}
