@@ -33,7 +33,7 @@ $mail->SMTPOptions = array(
     'allow_self_signed' => true
    )
  );
- $mail->SMTPDebug = 3;
+//  $mail->SMTPDebug = 3;
 
 
 
