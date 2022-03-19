@@ -5,7 +5,7 @@ include '../conection.php';
 session_start();
 setlocale(LC_TIME, "spanish");
 
-require 'phpmailer/PHPMailerAutoload.php';
+require '../PHPMailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer();
 $mail->isSMTP();
