@@ -25,6 +25,18 @@ $mail->Subject = 'Envío de email usando SMTP de Gmail';
 $mail->Body = 'Hola que tal, esto es el cuerpo del mensaje!';
 // $mail->MsgHTML("Hola que tal, esto es el cuerpo del mensaje!");
 
+
+$mail->SMTPOptions = array(
+    'ssl' => array(
+    'verify_peer' => false,
+    'verify_peer_name' => false,
+    'allow_self_signed' => true
+   )
+ );
+ $mail->SMTPDebug = 3;
+
+
+
 if (!$mail->send()) {
     echo "Error al enviar: " . $mail->ErrorInfo;
 } else {
