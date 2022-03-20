@@ -437,7 +437,7 @@ if (isset($_SESSION['u_idRol'])) {
                                                 }
                                                 ?>
 
-                                                <p>- Ingreso bruto mínimo de ₵450.000,00 <?php echo number_format($min_col_requ, 2) ?></p>
+                                                <p>- Ingreso bruto mínimo de ₵<?php echo number_format($min_col_requ, 2) ?></p>
                                                 <p>- Mayores de 21 años.</p>
                                                 <p>- Copia de documento de identidad vigente (nacionales cédula/extranjeros pasaporte o cédula de residencia).</p>
                                                 <p>- Orden patronal con 3 meses de laborar para la misma empresa.</p>
@@ -456,7 +456,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                     <div class="specialty__group_prestamos">
 
-                        <form action="../formulario.php" method="post" name="p" id="p">
+                        <form action="../formulario.php#formulario" method="post" name="p" id="p">
 
                             <div class="l_prestamos" name="l_prestamos">
                                 <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
@@ -488,7 +488,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                                     <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_col" name="demo_col"></span></h3>
                                     <div class="slidecontainer">
-                                        <input type="range" min="0" max="<?php echo $plazoMax_col ?>" value="<?php echo $plazoMax_col ?>" class="slider" name="range_col" id="range_col" onchange="cuota_col()" onkeyup="cuota_col()">
+                                        <input type="range" min="1" max="<?php echo $plazoMax_col ?>" value="<?php echo $plazoMax_col ?>" class="slider" name="range_col" id="range_col" onchange="cuota_col()" onkeyup="cuota_col()">
                                     </div>
                                     <br><br>
 
@@ -516,57 +516,61 @@ if (isset($_SESSION['u_idRol'])) {
 
                                 </div>
 
-                                <div id="DIV_dol" style="display:none">
+                        </form>
 
-                                    <?php
-                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
-                                    $result = sqlsrv_query($con, $sql);
-                                    while ($row = sqlsrv_fetch_array($result)) {
-                                        $min_dol = $row['MONTO_MINIMO'];
-                                        $max_dol = $row['MONTO_MAXIMO'];
-                                        $plazoMin_dol = $row['PLAZO_MINIMO'];
-                                        $plazoMax_dol = $row['PLAZO_MAXIMO'];
-                                        $tasaInteres_dol = $row['TASA_DE_INTERES'];
-                                    }
-                                    ?>
+                        <form action="../formulario.php#formulario" method="post" name="q" id="q">
+
+                            <div id="DIV_dol" style="display:none">
+
+                                <?php
+                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
+                                $result = sqlsrv_query($con, $sql);
+                                while ($row = sqlsrv_fetch_array($result)) {
+                                    $min_dol = $row['MONTO_MINIMO'];
+                                    $max_dol = $row['MONTO_MAXIMO'];
+                                    $plazoMin_dol = $row['PLAZO_MINIMO'];
+                                    $plazoMax_dol = $row['PLAZO_MAXIMO'];
+                                    $tasaInteres_dol = $row['TASA_DE_INTERES'];
+                                }
+                                ?>
 
 
-                                    <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
-                                    </h4>
-                                    <br><br>
+                                <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
+                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
+                                </h4>
+                                <br><br>
 
-                                    <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_dol" name="demo_dol"></span></h3>
-                                    <div class="slidecontainer">
-                                        <input type="range" min="0" max="<?php echo $plazoMax_dol ?>" value="<?php echo $plazoMax_dol ?>" class="slider" name="range_dol" id="range_dol" onchange="cuota_dol()" onkeyup="cuota_dol()">
-                                    </div>
-                                    <br><br>
-
-                                    <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input class="input__convert input__convert_prestamo" type="number" name="tasa_dol" id="tasa_dol" value="<?php echo $tasaInteres_dol ?>" placeholder="0" readonly="readonly" onchange="cuota_dol()" onkeyup="cuota_dol()" />
-                                    </h4>
-                                    <br><br>
-
-                                    <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                    <h4>
-                                        <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_dol" id="cuota_mensual_dol" value="" placeholder="0" readonly="readonly" />
-                                    </h4>
-                                    <br><br>
-
-                                    <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
-
-                                    <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
-
-                                    <div style="text-align: right;">
-                                        <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
-                                    </div>
-
+                                <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider" id="demo_dol" name="demo_dol"></span></h3>
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max="<?php echo $plazoMax_dol ?>" value="<?php echo $plazoMax_dol ?>" class="slider" name="range_dol" id="range_dol" onchange="cuota_dol()" onkeyup="cuota_dol()">
                                 </div>
+                                <br><br>
+
+                                <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo" type="number" name="tasa_dol" id="tasa_dol" value="<?php echo $tasaInteres_dol ?>" placeholder="0" readonly="readonly" onchange="cuota_dol()" onkeyup="cuota_dol()" />
+                                </h4>
+                                <br><br>
+
+                                <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_dol" id="cuota_mensual_dol" value="" placeholder="0" readonly="readonly" />
+                                </h4>
+                                <br><br>
+
+                                <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
+
+                                <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
+                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+                                <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
+
+                                <div style="text-align: right;">
+                                    <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
+                                </div>
+
+                            </div>
 
                         </form>
 
@@ -637,9 +641,9 @@ if (isset($_SESSION['u_idRol'])) {
             function cuota_dol() {
                 try {
 
-                    var a = parseFloat(document.p.monto_solicita_dol.value),
-                        b = parseFloat(document.p.range_dol.value),
-                        c = parseFloat(document.p.tasa_dol.value),
+                    var a = parseFloat(document.q.monto_solicita_dol.value),
+                        b = parseFloat(document.q.range_dol.value),
+                        c = parseFloat(document.q.tasa_dol.value),
                         s = '$ ';
 
                     if (a >= <?php echo $min_dol ?> && a <= <?php echo $max_dol ?>) {
@@ -653,12 +657,12 @@ if (isset($_SESSION['u_idRol'])) {
                         var d_final = parseFloat(d).toFixed(2);
                         var d__final = parseFloat(d_final).toLocaleString('en');
                         s_d_final = s + d__final;
-                        document.p.cuota_mensual_dol.value = s_d_final;
-                        document.p.cuota_mensual_natural_dol.value = d_final;
+                        document.q.cuota_mensual_dol.value = s_d_final;
+                        document.q.cuota_mensual_natural_dol.value = d_final;
 
                     } else {
-                        document.p.cuota_mensual_dol.value = "";
-                        document.p.cuota_mensual_natural_dol.value = "";
+                        document.q.cuota_mensual_dol.value = "";
+                        document.q.cuota_mensual_natural_dol.value = "";
                     }
 
 
@@ -671,9 +675,13 @@ if (isset($_SESSION['u_idRol'])) {
                 document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("monto_solicita_col").value = "";
-                document.getElementById("cuota_mensual_col").value = "";
                 document.getElementById("monto_solicita_dol").value = "";
+                
+                document.getElementById("cuota_mensual_col").value = "";
                 document.getElementById("cuota_mensual_dol").value = "";
+
+                document.getElementById("range_col").value = "<?php echo $plazoMax_col ?>";
+                document.getElementById("range_dol").value = "<?php echo $plazoMax_dol ?>";
 
                 var x = document.getElementById("DIV_col");
                 var y = document.getElementById("DIV_dol");
@@ -689,9 +697,13 @@ if (isset($_SESSION['u_idRol'])) {
                 document.getElementById(id2).style.backgroundColor = "#004480";
 
                 document.getElementById("monto_solicita_col").value = "";
-                document.getElementById("cuota_mensual_col").value = "";
                 document.getElementById("monto_solicita_dol").value = "";
+                
+                document.getElementById("cuota_mensual_col").value = "";
                 document.getElementById("cuota_mensual_dol").value = "";
+
+                document.getElementById("range_col").value = "<?php echo $plazoMax_col ?>";
+                document.getElementById("range_dol").value = "<?php echo $plazoMax_dol ?>";
 
                 var x = document.getElementById("DIV_col");
                 var y = document.getElementById("DIV_dol");
