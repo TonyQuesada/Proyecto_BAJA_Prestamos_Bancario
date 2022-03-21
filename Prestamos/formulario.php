@@ -81,6 +81,7 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
             $_SESSION['nombre_formu'] = $datos["NOMBRE_COMPLETO"];
             $_SESSION['ape1_formu'] = $datos["PRIMER_APELLIDO"];
             $_SESSION['ape2_formu'] = $datos["SEGUNDO_APELLIDO"];
+            $_SESSION['correo_formu'] = "";
         }
 
         $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
@@ -93,7 +94,11 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
         }
     }
 } else {
-    $noExiste = 'Ingrese un número de identificación porfavor.';
+    $_SESSION['cedula_formu'] = "";
+    $_SESSION['nombre_formu'] = "";
+    $_SESSION['ape1_formu'] = "";
+    $_SESSION['ape2_formu'] = "";
+    $_SESSION['correo_formu'] = "";
 }
 
 // Conserva los datos de la calculadora
@@ -128,6 +133,18 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
     $_POST['monto_solicita_col'] = array();
     $_POST['monto_solicita_dol'] = array();
+
+    $query = "SELECT * FROM aalvarado.VER_PRESTAMOS WHERE ID_CATEGORIA = '$_SESSION[id_Categoria_Prestamo_final]' AND ID_PRESTAMO = '$_SESSION[id_Tipo_Prestamo_final]'";
+    if ($query == false) {
+        $_SESSION['cate'] = "";
+        $_SESSION['prest'] = "";
+    } else {
+        $results = sqlsrv_query($con, $query); //ejecuta la query
+        $row = sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
+
+        $_SESSION['cate'] = $row['CATEGORIA'];
+        $_SESSION['prest'] = substr($row['PRESTAMO'], 0, -7);
+    }
 }
 
 
@@ -314,7 +331,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
                         <li class="nav__item">
                             <a href="#formulario" class="nav__link i__scroll">
-                                <i class='bx bxs-calculator'></i> Calculadora
+                                <i class='bx bx-edit-alt'></i> Formulario
                             </a>
                         </li>
                         <li class="nav__item">
@@ -430,7 +447,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
             </div>
 
             <!-- <img src="../assets/img/home.gif" alt="" class="home__img"> -->
-            <video src="../assets/video/Personal1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
+            <video src="../assets/video/formulario.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
 
         </section>
 
@@ -499,6 +516,8 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                 <div class="specialty__category_formulario">
                     <div class="specialty__group specialty__line_formulario">
 
+                        <h1 style="color: #fff;">Información de la solicitud</h1>
+
                         <form method="post" name="p" id="p">
 
                             <div class="l_formulario" name="l_formulario">
@@ -530,7 +549,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                                 echo "";
                                                                                                                                                                                                                                                                                             } ?>" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col, 2) ?> | Monto Minimo: <?php echo number_format($min_col, 2) ?></h5>
+                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?> | Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?></h5>
                                         </h4>
                                         <br><br>
 
@@ -601,7 +620,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                         echo "";
                                                                                                                                                                                                                                                                                     } ?>" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
+                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?> | Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?></h5>
                                 </h4>
                                 <br><br>
 
@@ -638,7 +657,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                                 <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
 
                                 <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="2" readonly="readonly">
                                 <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
 
                                 <div style="text-align: left;">
@@ -652,6 +671,8 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
             </div>
 
             <div class="specialty__group ">
+
+                <h1 style="color: #fff; margin-left: -50px;">Información personal</h1>
 
                 <form method="POST">
 
@@ -671,55 +692,84 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
                 <div class="l_formulario l_formulario_3" name="l_formulario">
 
-                    <div class="specialty__category_formulario_2">
+                    <form name="datos0" id="datos0">
+                        <div class="specialty__category_formulario_2">
 
-                        <div class="">
-                            <h3 style="color: #fff;">Tipo identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                            <h4>
-                                <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="tipo_id" id="tipo_id" value='<?php echo ($tipo_id); ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
-                            </h4>
+                            <div class="">
+                                <h3 style="color: #fff;">Tipo identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="tipo_id" id="tipo_id" value='<?php echo ($tipo_id); ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
+                                </h4>
+                            </div>
+                            <div class="">
+                                <h3 style="color: #fff;">Identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cedula" id="cedula" value='<?php if ($_SESSION['cedula_formu'] != "") {
+                                                                                                                                                                        echo $_SESSION['cedula_formu'];
+                                                                                                                                                                    } else {
+                                                                                                                                                                        echo "";
+                                                                                                                                                                    } ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
+                                </h4>
+                                <br>
+                            </div>
+
                         </div>
-                        <div class="">
-                            <h3 style="color: #fff;">Identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                            <h4>
-                                <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cedula" id="cedula" value='<?php echo $_SESSION['cedula_formu'] ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
-                            </h4>
-                            <br>
+                    </form>
+
+                    <form name="datos1" id="datos1">
+                        <div class="specialty__category_formulario_3">
+
+                            <div class="">
+                                <h3 style="color: #fff;">Nombre<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="nombre" id="nombre" value='<?php if ($_SESSION['nombre_formu'] != "") {
+                                                                                                                                                                        echo $_SESSION['nombre_formu'];
+                                                                                                                                                                    } else {
+                                                                                                                                                                        echo "";
+                                                                                                                                                                    } ?>' style="width: 180px;" placeholder="" autocomplete="off" readonly />
+                                </h4>
+                            </div>
+
+                            <div class="medio">
+                                <h3 style="color: #fff;">Primer apellido<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="ape1" id="ape1" value='<?php if ($_SESSION['ape1_formu'] != "") {
+                                                                                                                                                                    echo $_SESSION['ape1_formu'];
+                                                                                                                                                                } else {
+                                                                                                                                                                    echo "";
+                                                                                                                                                                } ?>' style="width: 145px;" placeholder="" autocomplete="off" readonly />
+                                </h4>
+                            </div>
+
+                            <div class="derecha">
+                                <h3 style="color: #fff;">Segundo apellido<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                                <h4>
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="ape2" id="ape2" value='<?php if ($_SESSION['ape2_formu'] != "") {
+                                                                                                                                                                    echo $_SESSION['ape2_formu'];
+                                                                                                                                                                } else {
+                                                                                                                                                                    echo "";
+                                                                                                                                                                } ?>' style="width: 158px;" placeholder="" autocomplete="off" readonly />
+                                </h4>
+                                <br>
+                            </div>
                         </div>
+                    </form>
 
-                    </div>
+                    <form action="../PHP/enviar_formulario.php" method="POST" onSubmit="return validar();" name="datos2" id="datos2">
 
-                    <div class="specialty__category_formulario_3">
+                        <input hidden type="text" name="cedulaForm" id="cedulaForm" value='<?php echo $_SESSION['cedula_formu'] ?>' readonly="readonly">
+                        <input hidden type="text" name="nombreForm" id="nombreForm" value='<?php echo $_SESSION['nombre_formu'] ?>' readonly="readonly">
+                        <input hidden type="text" name="ape1Form" id="ape1Form" value='<?php echo $_SESSION['ape1_formu'] ?>' readonly="readonly">
+                        <input hidden type="text" name="ape2Form" id="ape2Form" value='<?php echo $_SESSION['ape2_formu'] ?>' readonly="readonly">
 
-                        <div class="">
-                            <h3 style="color: #fff;">Nombre<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                            <h4>
-                                <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="nombre" id="nombre" value='<?php echo $_SESSION['nombre_formu'] ?>' style="width: 180px;" placeholder="" autocomplete="off" readonly />
-                            </h4>
-                        </div>
-
-                        <div class="medio">
-                            <h3 style="color: #fff;">Primer apellido<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                            <h4>
-                                <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="ape1" id="ape1" value='<?php echo $_SESSION['ape1_formu'] ?>' style="width: 145px;" placeholder="" autocomplete="off" readonly />
-                            </h4>
-                        </div>
-
-                        <div class="derecha">
-                            <h3 style="color: #fff;">Segundo apellido<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                            <h4>
-                                <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="ape2" id="ape2" value='<?php echo $_SESSION['ape2_formu'] ?>' style="width: 158px;" placeholder="" autocomplete="off" readonly />
-                            </h4>
-                            <br>
-                        </div>
-
-                    </div>
-
-                    <form action="formulario0.php" method="POST" onSubmit="return validar();">
 
                         <h3 style="color: #fff;">Correo electrónico<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                         <h4>
-                            <input class="input__convert input__convert_prestamo" style="width: 97%;" type="email" name="email" id="email" value='<?php echo $_SESSION['u_Correo_electronico']; ?>' placeholder="" autocomplete="off" />
+                            <input class="input__convert input__convert_prestamo" style="width: 97%;" type="email" name="email" id="email" value='<?php if ($_SESSION['correo_formu'] != "") {
+                                                                                                                                                        echo $_SESSION['correo_formu'];
+                                                                                                                                                    } else {
+                                                                                                                                                        echo "";
+                                                                                                                                                    } ?>' placeholder="" autocomplete="off" />
                         </h4>
                         <br>
 
@@ -728,13 +778,13 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                             <div class="">
                                 <h3 style="color: #fff;">Categoría de préstamo<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                 <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="tipo_id" id="tipo_id" value='<?php echo $_SESSION['id_Categoria_Prestamo_final']; ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cat_id" id="cat_id" value='<?php echo $_SESSION['cate'] ?>' style="width: 230px;" placeholder="" autocomplete="off" readonly />
                                 </h4>
                             </div>
                             <div class="">
                                 <h3 style="color: #fff;">Tipo de préstamo<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                 <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cedula" id="cedula" value='<?php echo $_SESSION['id_Tipo_Prestamo_final']; ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
+                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="tipo_pres_id" id="tipo_pres_id" value='<?php echo $_SESSION['prest'] ?>' style="width: 242px;" placeholder="" autocomplete="off" readonly />
                                 </h4>
                             </div>
                         </div>
@@ -743,9 +793,8 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
                             <label style="color: #fff">
                                 <input type="checkbox" id="terminos" name="terminos" value="" data-required="1" style="margin: 5px;">
-                                Aceptar los <a style="color: hsl(197, 100%, 35%);" href="#">Términos y Condiciones</a>.
+                                Aceptar los <a style="color: hsl(197, 100%, 35%);" href="terminosCondiciones.php">Términos y Condiciones</a>.
                             </label>
-
                         </div>
                         <br><br>
 
@@ -769,15 +818,6 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
             </div>
 
-            <script>
-
-            </script>
-
-            <!-- <div style="text-align: right;">
-                                    <button type="submit" class="button button_formulario specialty__button pulse"><span>LLENAR FORMULARIO</span></button>
-                                </div> -->
-
-
             </div>
             </div>
 
@@ -786,6 +826,52 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
         <script>
             function validar() {
+
+                <?php
+                if ($_SESSION['moneda_final'] == 'COLONES') {
+                ?>
+                    var x = document.p.monto_solicita_col.value;
+                    if (x == "") {
+                        alert("Debe ingresar un monto para realizar la solicitud.");
+                        return false;
+                    }
+
+                    if (x >= <?php echo $min_col ?> && x <= <?php echo $max_col ?>) {
+
+                    } else {
+                        alert("Ingrese un monto entre <?php echo 'CRC ' . number_format($min_col, 2) . " y " . 'CRC ' . number_format($max_col, 2) ?>.");
+                        return false;
+                    }
+
+                <?php
+                } else if ($_SESSION['moneda_final'] != 'COLONES') {
+                ?>
+                    var x = document.q.monto_solicita_dol.value;
+                    if (x == "") {
+                        alert("Debe ingresar un monto para realizar la solicitud.");
+                        return false;
+                    }
+
+                    if (x >= <?php echo $min_dol ?> && x <= <?php echo $max_dol ?>) {
+
+                    } else {
+                        alert("Ingrese un monto entre <?php echo '$ ' . number_format($min_dol, 2) . " y " . '$ ' . number_format($max_dol, 2) ?>.");
+                        return false;
+                    }
+                <?php
+                }
+                ?>
+
+                var ced = document.datos0.cedula.value;
+                var nam = document.datos1.nombre.value;
+                var ap1 = document.datos1.ape1.value;
+                var ap2 = document.datos1.ape2.value;
+                var em = document.datos2.email.value;
+
+                if ((ced == "") || (nam == "") || (ap1 == "") || (ap2 == "") || (em == "")) {
+                    alert("Debe buscar su información e ingresar su correo electrónico.");
+                    return false;
+                }
 
                 var response = grecaptcha.getResponse();
 

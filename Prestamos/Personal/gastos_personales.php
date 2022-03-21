@@ -482,7 +482,7 @@ if (isset($_SESSION['u_idRol'])) {
                                     <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                     <h4>
                                         <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_col, 2) ?> | Monto Minimo: <?php echo number_format($min_col, 2) ?></h5>
+                                        <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?> | Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?></h5>
                                     </h4>
                                     <br><br>
 
@@ -538,7 +538,7 @@ if (isset($_SESSION['u_idRol'])) {
                                 <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                 <h4>
                                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo number_format($max_dol, 2) ?> | Monto Minimo: <?php echo number_format($min_dol, 2) ?></h5>
+                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?> | Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?></h5>
                                 </h4>
                                 <br><br>
 
@@ -563,7 +563,7 @@ if (isset($_SESSION['u_idRol'])) {
                                 <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
 
                                 <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="2" readonly="readonly">
                                 <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
 
                                 <div style="text-align: right;">
