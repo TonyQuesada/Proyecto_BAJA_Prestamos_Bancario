@@ -15,14 +15,15 @@ include 'conection.php';
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="StyleSheet" href="estilos.css" type="text/css">
+  <title>Vista general de solicitudes</title>
 </head>
 
 <body>
 
   <table class="table">
-    <h2>VISTA GENERAL DE SOLICITUDES DE CRÉDITO</h2>
-    <tr>
+    <caption>VISTA GENERAL DE SOLICITUDES DE CRÉDITO</caption>
+    <thead tr>
       <th># Solicitud</th>
 
       <th>Fecha de solicitud</th>
@@ -49,6 +50,7 @@ include 'conection.php';
 
     </tr>
 
+    <tbody>
     <tr>
       <?php
       $query = "SELECT * FROM VER_SOLICITUDES_TOTALES";
@@ -82,14 +84,14 @@ include 'conection.php';
         $estado = $fila['ESTADO_ACTUAL'];
 
         echo '
-              <td>' . $num_soli . '</td>
-              <td>' . date_format($fecha_soli, "Y-m-d"). '</td>
+              <th>' . $num_soli . '</th>
+              <td>' . date_format($fecha_soli, "d-m-Y"). '</td>
               <td>' . $num_id . '</td>
               <td>' . $cat_pres . '</td>
               <td>' . $tip_pres. '</td>
               <td>' . $moneda . '</td>
               <td>' . $monto_sol . '</td>
-              <td>' . $tasa. '</td>
+              <td>' . $tasa. ' %</td>
               <td>' . $cuota . '</td>
               <td>' . $plazo . '</td>
               <td>' . $terminos . '</td>
@@ -97,6 +99,7 @@ include 'conection.php';
               </tr>';
       }
       ?>
+      <tbody>
   </table>
 </body>
 
