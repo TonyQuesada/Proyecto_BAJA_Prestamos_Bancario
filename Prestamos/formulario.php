@@ -35,6 +35,9 @@ $ape2 = '';
 $sesion_idCliente = '';
 $correo = '';
 $noExiste = '';
+$CATEGORIA = '';
+$PRESTAMO_COL = '';
+$PRESTAMO_DOL = '';
 
 if (isset($_POST['cedula'])) {
     $cedula = $_POST['cedula'];
@@ -147,7 +150,9 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
     }
 }
 
-
+$CATEGORIA = $_POST['Categoria_Prestamo_name'];
+$PRESTAMO_COL = $_POST['Tipo_Prestamo_name_col'];
+$PRESTAMO_DOL = $_POST['Tipo_Prestamo_name_dol'];
 // echo "monto_solicita: " . $_SESSION['monto_solicita_final'];
 // echo '<br>';
 // echo "range: " . $_SESSION['range_final'];
@@ -398,7 +403,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                         FORMULARIO DE SOLICITUD<span>.</span>
                     </h1>
                     <p class="home__description">
-                        Solicitá tu préstamo de <span style="color: hsla(197, 100%, 42%, 0.8);">gastos personales</span> y hacé realidad todos tus planes<span style="color: hsla(197, 100%, 42%, 0.8);">.</span>
+                        <!-- Solicitá tu préstamo de <span style="color: hsla(197, 100%, 42%, 0.8);">gastos personales</span> y hacé realidad todos tus planes<span style="color: hsla(197, 100%, 42%, 0.8);">.</span> -->
                     </p>
                     <div class="home__data">
                         <div class="home__data-group">
@@ -531,7 +536,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                                     <div id="DIV_col" <?php if ($_SESSION['moneda_final'] != 'COLONES') { ?> style="display:none" <?php } ?>>
 
                                         <?php
-                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_COL'";
                                         $result = sqlsrv_query($con, $sql);
                                         while ($row = sqlsrv_fetch_array($result)) {
                                             $min_col = $row['MONTO_MINIMO'];
@@ -587,6 +592,11 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
                                         <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
                                         <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+
+                                        <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
+                                        <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
+                                        <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
+
                                         <input hidden type="number" id="cuota_mensual_natural_col" name="cuota_mensual_natural_col" value="" readonly="readonly">
 
                                         <div style="text-align: left;">
@@ -601,7 +611,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                             <div id="DIV_dol" <?php if ($_SESSION['moneda_final'] == 'COLONES') { ?> style="display:none" <?php } ?>>
 
                                 <?php
-                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
+                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_DOL'";
                                 $result = sqlsrv_query($con, $sql);
                                 while ($row = sqlsrv_fetch_array($result)) {
                                     $min_dol = $row['MONTO_MINIMO'];
@@ -658,6 +668,11 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
 
                                 <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
                                 <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="2" readonly="readonly">
+
+                                <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
+                                <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
+                                <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
+
                                 <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
 
                                 <div style="text-align: left;">
@@ -1183,7 +1198,7 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">Rápidos</h2>
+                            <h2 class="products__price">Rápiditos</h2>
                             <h3 class="products__name">Te brindamos un crédito de rápida aprobación para tus necesidades inmediatas.</h3>
 
                             <button class="button products__button">

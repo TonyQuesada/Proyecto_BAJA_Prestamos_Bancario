@@ -306,7 +306,7 @@ if ($_SESSION['id_id'] == 1) {
             </div>
 
             <!-- <img src="../assets/img/home.gif" alt="" class="home__img"> -->
-            <video src="../assets/video/Personal1.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
+            <video src="../assets/video/formulario.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
 
         </section>
 
@@ -714,7 +714,7 @@ if ($_SESSION['id_id'] == 1) {
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">Rápidos</h2>
+                            <h2 class="products__price">Rápiditos</h2>
                             <h3 class="products__name">Te brindamos un crédito de rápida aprobación para tus necesidades inmediatas.</h3>
 
                             <button class="button products__button">

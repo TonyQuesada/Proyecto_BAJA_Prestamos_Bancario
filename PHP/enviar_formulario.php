@@ -69,13 +69,10 @@ $params = array(
 
 $procedure_call = "{call Ingresar_Clientes(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
-$query = sqlsrv_query( $con, $procedure_call, $params);
-if( $query == false)
-{
-        header("Location:../Prestamos/recibo.php#recibo");
-    } else {
-        echo "<script>alert('Error al intentar ingresar la solicitud de préstamo.')</script>";
-         header("Location:../index.php");
-    }
-
-?>
+// $query = sqlsrv_query($con, $procedure_call, $params);
+// if ($query == false) {
+//     header("Location:../Prestamos/recibo.php#recibo");
+// } else {
+//     echo "<script>alert('Error al intentar ingresar la solicitud de préstamo.')</script>";
+//     header("Location:../index.php");
+// }

@@ -27,6 +27,10 @@ $sesionRol = null;
 if (isset($_SESSION['u_idRol'])) {
     $sesionRol = $_SESSION['u_idRol'];
 }
+
+$CATEGORIA = 'Personales';
+$PRESTAMO_COL = 'Gastos Personales Colones';
+$PRESTAMO_DOL = 'Gastos Personales Dolares';
 ?>
 
 
@@ -419,7 +423,7 @@ if (isset($_SESSION['u_idRol'])) {
                                         </div>
                                     </div>
                                     <div class="product__details-center-col">
-                                        <h4 class="product__details-center-col_h4"> Requisitos <a <?php if (isset($_SESSION['u_Correo_electronico'])) { ?> href="../../PHP/enviar_requisitos.php" <?php  } else { ?> href="../../PHP/enviar_requisitos22.php" <?php  } ?> class="button_convertir pulse" style="margin-left: 33px;"><span>Enviar Requisitos</span></a></h4>
+                                        <h4 class="product__details-center-col_h4"> Requisitos <a <?php if (isset($_SESSION['u_Correo_electronico'])) { ?> href="../../PHP/enviar_requisitos.php" <?php  } else { ?> onclick="document.getElementById('id01').style.display='block'" <?php  } ?> class="button_convertir pulse" style="margin-left: 33px;"><span>Enviar Requisitos</span></a></h4>
                                         <br>
                                         <div class="product__formalities">
                                             <div>
@@ -429,7 +433,7 @@ if (isset($_SESSION['u_idRol'])) {
                                                 </h4>
 
                                                 <?php
-                                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_COL'";
                                                 $result = sqlsrv_query($con, $sql);
                                                 while ($row = sqlsrv_fetch_array($result)) {
                                                     $min_col_requ = $row['MONTO_MINIMO'];
@@ -468,7 +472,7 @@ if (isset($_SESSION['u_idRol'])) {
                                 <div id="DIV_col">
 
                                     <?php
-                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                    $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_COL'";
                                     $result = sqlsrv_query($con, $sql);
                                     while ($row = sqlsrv_fetch_array($result)) {
                                         $min_col = $row['MONTO_MINIMO'];
@@ -508,6 +512,11 @@ if (isset($_SESSION['u_idRol'])) {
 
                                     <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
                                     <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+
+                                    <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
+                                    <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
+                                    <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
+
                                     <input hidden type="number" id="cuota_mensual_natural_col" name="cuota_mensual_natural_col" value="" readonly="readonly">
 
                                     <div style="text-align: right;">
@@ -523,7 +532,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div id="DIV_dol" style="display:none">
 
                                 <?php
-                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
+                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_DOL'";
                                 $result = sqlsrv_query($con, $sql);
                                 while ($row = sqlsrv_fetch_array($result)) {
                                     $min_dol = $row['MONTO_MINIMO'];
@@ -564,6 +573,11 @@ if (isset($_SESSION['u_idRol'])) {
 
                                 <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
                                 <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="2" readonly="readonly">
+
+                                <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
+                                    <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
+                                    <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
+
                                 <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
 
                                 <div style="text-align: right;">
@@ -582,6 +596,38 @@ if (isset($_SESSION['u_idRol'])) {
             </div>
             </div>
         </section>
+
+
+        <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="../../PHP/enviar_requisitos.php">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <img src="../../assets/img/email.png" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="modal_container">
+                    <label><b>Correo electrónico</b></label>
+                    <input type="email" class="modal_input" placeholder="Ingrese su correo electrónico" name="email_requi" id="email_requi" required autocomplete="FALSE">
+
+                    <button type="submit" class="modal_btn button button_formulario pulse">Enviar requisitos</button>
+                </div>
+                <div class="modal_container" style="background-color:#f1f1f1">
+                </div>
+            </form>
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
 
         <script>
             var slider_col = document.getElementById("range_col");
@@ -676,7 +722,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 document.getElementById("monto_solicita_col").value = "";
                 document.getElementById("monto_solicita_dol").value = "";
-                
+
                 document.getElementById("cuota_mensual_col").value = "";
                 document.getElementById("cuota_mensual_dol").value = "";
 
@@ -698,7 +744,7 @@ if (isset($_SESSION['u_idRol'])) {
 
                 document.getElementById("monto_solicita_col").value = "";
                 document.getElementById("monto_solicita_dol").value = "";
-                
+
                 document.getElementById("cuota_mensual_col").value = "";
                 document.getElementById("cuota_mensual_dol").value = "";
 
@@ -813,7 +859,7 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">Rápidos</h2>
+                            <h2 class="products__price">Rápiditos</h2>
                             <h3 class="products__name">Te brindamos un crédito de rápida aprobación para tus necesidades inmediatas.</h3>
 
                             <button class="button products__button">

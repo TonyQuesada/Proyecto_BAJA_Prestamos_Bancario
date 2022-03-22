@@ -20,6 +20,7 @@
   --black-color       : hsl(208, 100%, 25%);
   --black-color-footer: hsl(206, 12%, 12%);
   --card-color        : hsl(0, 0%, 90%);
+  --card-color-2        : hsl(0, 0%, 85%);
   --text-color-light  : hsl(206, 4%, 75%);
   /*========== Font and typography ==========*/
   --body-font         : 'Lato', sans-serif;
@@ -875,7 +876,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .products__shape {
-  background-color: var(--card-color);
+  background-color: var(--card-color-2);
   /* border-radius: .5rem .5rem 0 0; */
   text-align      : center;
   padding         : .25rem 0;
@@ -1990,4 +1991,114 @@ on the image of the gif */
 .load__gif {
   position: absolute;
   width   : 500px;
+}
+
+
+
+/* Full-width input fields */
+.modal_input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.modal_btn {
+  background-color: #044484;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 35%;
+  border-radius: 50%;
+}
+
+.modal_container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 69%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: hsl(197, 100%, 42%);
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
 }

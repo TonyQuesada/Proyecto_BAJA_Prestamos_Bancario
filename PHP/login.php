@@ -34,6 +34,9 @@ if (isset($_POST['insert'])) {
         // echo $_SESSION['u_idEmpleado'];
         // echo $_SESSION['u_idCliente'];
 
-        header("Location:../index.php");
+        // header("Location:../index.php");
+        echo '<script type="text/javascript">
+        history.back();
+        </script>';
     }
 }

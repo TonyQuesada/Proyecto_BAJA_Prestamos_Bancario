@@ -4,7 +4,11 @@ session_start();
 
 $sesionRol = null;
 if (isset($_SESSION['u_idRol'])) {
-    header('Location: ../index.php');
+    // header('Location: ../index.php');
+    
+    echo '<script type="text/javascript">
+    history.back();
+    </script>';
 }
 
 // Obtener el Tipo de Cambio //

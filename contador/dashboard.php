@@ -635,7 +635,7 @@ $visitas = obtenerVisitasEnRango($inicio, $fin);
                         </div>
 
                         <div class="products__data">
-                            <h2 class="products__price">Rápidos</h2>
+                            <h2 class="products__price">Rápiditos</h2>
                             <h3 class="products__name">Te brindamos un crédito de rápida aprobación para tus necesidades inmediatas.</h3>
 
                             <button class="button products__button">
