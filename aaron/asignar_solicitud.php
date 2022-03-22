@@ -27,4 +27,19 @@ echo "Solicitud: " . $solicitud . "<br>";
 
     header("Location: asignar_solicitudes1.php");
     */
+
+
+
+
+
+    
+    // NOTAAAAAA
+
+    // <a href='asignar_solicitud.php?num_soli=$num_soli&analistas=$analistas'>Enviar variables</a>
+
+    // $analista = $_GET['analistas'];
+    // $solicitud = $_GET['num_soli'];
+
+
  ?>   
+
