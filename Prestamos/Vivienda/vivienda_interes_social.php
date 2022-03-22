@@ -30,7 +30,7 @@ if (isset($_SESSION['u_idRol'])) {
 
 $CATEGORIA = 'Vivienda';
 $PRESTAMO_COL = 'Interes Social Colones';
-$PRESTAMO_DOL = 'Interes Social Colones';
+$PRESTAMO_DOL = 'Interes Social Dolares';
 ?>
 
 
