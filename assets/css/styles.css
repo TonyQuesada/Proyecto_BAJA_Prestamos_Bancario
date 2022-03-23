@@ -1064,7 +1064,7 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: center;
   align-items    : center;
   transform      : translateZ(60px);
-  font-size      : 30px;
+  font-size      : 26px;
   font-style     : italic;
 }
 

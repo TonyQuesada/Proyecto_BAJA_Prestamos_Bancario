@@ -1,1 +1,1 @@
-solicitudes.php
+<a href="analizar_solicitudes1.php">Analizar Solicitudes</a>

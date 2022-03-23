@@ -63,10 +63,33 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
         if ($id_id_cantidad == 9) {
             $_SESSION['id_id'] = 1;
             $tipo_id = "Nacional";
-        } else {
+        } else if ($id_id_cantidad == 12) {
             $_SESSION['id_id'] = 2;
             $tipo_id = "Extranjero";
+        } else {
+            $_SESSION['id_id'] = 3;
+            $tipo_id = "";
         }
+    }
+} else if (preg_replace('/[^0-9.]+/', '', $_POST['cedula']) == '134000086902') {
+
+    $cedula = preg_replace('/[^0-9.]+/', '', $_POST['cedula']);
+
+    $_SESSION['cedula_formu'] = '134000086902';
+    $_SESSION['nombre_formu'] = 'DUNIA MARIA';
+    $_SESSION['ape1_formu'] = 'LAGOS';
+    $_SESSION['ape2_formu'] = 'BACA';
+
+    $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
+    if ($id_id_cantidad == 9) {
+        $_SESSION['id_id'] = 1;
+        $tipo_id = "Nacional";
+    } else if ($id_id_cantidad == 12) {
+        $_SESSION['id_id'] = 2;
+        $tipo_id = "Extranjero";
+    } else {
+        $_SESSION['id_id'] = 3;
+        $tipo_id = "";
     }
 } else if ($cedula != NULL) {
 
@@ -91,9 +114,12 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
         if ($id_id_cantidad == 9) {
             $_SESSION['id_id'] = 1;
             $tipo_id = "Nacional";
-        } else {
+        } else if ($id_id_cantidad == 12) {
             $_SESSION['id_id'] = 2;
             $tipo_id = "Extranjero";
+        } else {
+            $_SESSION['id_id'] = 3;
+            $tipo_id = "";
         }
     }
 } else {
@@ -150,9 +176,14 @@ if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) 
     }
 }
 
-$CATEGORIA = $_POST['Categoria_Prestamo_name'];
-$PRESTAMO_COL = $_POST['Tipo_Prestamo_name_col'];
-$PRESTAMO_DOL = $_POST['Tipo_Prestamo_name_dol'];
+
+$_SESSION['CATEGORIA'] = $_POST['Categoria_Prestamo_name'];
+$_SESSION['PRESTAMO_COL'] = $_POST['Tipo_Prestamo_name_col'];
+$_SESSION['PRESTAMO_DOL'] = $_POST['Tipo_Prestamo_name_dol'];
+
+$CATEGORIA = $_SESSION['CATEGORIA'];
+$PRESTAMO_COL = $_SESSION['PRESTAMO_COL'];
+$PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 // echo "monto_solicita: " . $_SESSION['monto_solicita_final'];
 // echo '<br>';
 // echo "range: " . $_SESSION['range_final'];
@@ -202,6 +233,10 @@ $PRESTAMO_DOL = $_POST['Tipo_Prestamo_name_dol'];
 
     <title>Formulario de Solicitud de Prestamo</title>
 </head>
+
+<script>
+
+</script>
 
 <body>
 
@@ -536,7 +571,7 @@ $PRESTAMO_DOL = $_POST['Tipo_Prestamo_name_dol'];
                                     <div id="DIV_col" <?php if ($_SESSION['moneda_final'] != 'COLONES') { ?> style="display:none" <?php } ?>>
 
                                         <?php
-                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_COL'";
+                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '" . $_SESSION['CATEGORIA'] . "' AND PRESTAMO = '" . $_SESSION['PRESTAMO_COL'] . "'";
                                         $result = sqlsrv_query($con, $sql);
                                         while ($row = sqlsrv_fetch_array($result)) {
                                             $min_col = $row['MONTO_MINIMO'];
@@ -611,7 +646,7 @@ $PRESTAMO_DOL = $_POST['Tipo_Prestamo_name_dol'];
                             <div id="DIV_dol" <?php if ($_SESSION['moneda_final'] == 'COLONES') { ?> style="display:none" <?php } ?>>
 
                                 <?php
-                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '$CATEGORIA' AND PRESTAMO = '$PRESTAMO_DOL'";
+                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '" . $_SESSION['CATEGORIA'] . "' AND PRESTAMO = '" . $_SESSION['PRESTAMO_DOL'] . "'";
                                 $result = sqlsrv_query($con, $sql);
                                 while ($row = sqlsrv_fetch_array($result)) {
                                     $min_dol = $row['MONTO_MINIMO'];
@@ -692,6 +727,10 @@ $PRESTAMO_DOL = $_POST['Tipo_Prestamo_name_dol'];
                 <form method="POST">
 
                     <div class="l_formulario l_formulario_2" name="l_formulario">
+
+                        <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
+                        <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
+                        <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
 
                         <h3 style="color: #fff;">Número de identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                         <h4>
