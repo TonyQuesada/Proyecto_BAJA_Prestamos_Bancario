@@ -14,25 +14,14 @@ $params = array(
         $analista
     );
 
-echo "Id Analista: " . $analista . "<br>";
-echo "Solicitud: " . $solicitud . "<br>";
-
-
-    /*
     $stmt3 = sqlsrv_query($con, $tsql_callSP, $params);
     if ($stmt3 === false) {
         echo "Error in executing statement 3.\n";
         die(print_r(sqlsrv_errors(), true));
     }
 
-    header("Location: asignar_solicitudes1.php");
-    */
-
-
-
-
-
-    
+    header("Location: asignar_solicitudes.php");
+ 
     // NOTAAAAAA
 
     // <a href='asignar_solicitud.php?num_soli=$num_soli&analistas=$analistas'>Enviar variables</a>
