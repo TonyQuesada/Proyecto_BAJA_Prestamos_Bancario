@@ -319,7 +319,6 @@ while ($fila = sqlsrv_fetch_array($ejecutar)) {
 
     <!--=============== MAIN JS ===============-->
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/contador.js"></script>
 </body>
 
 </html>

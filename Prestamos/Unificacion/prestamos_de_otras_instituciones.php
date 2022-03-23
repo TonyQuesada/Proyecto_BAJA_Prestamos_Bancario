@@ -50,7 +50,7 @@ $PRESTAMO_DOL = 'Prestamos otras instituciones Dolares';
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="../../assets/css/styles.css">
 
-    <title>Prestamos de otras instituciones</title>
+    <title>Refundición de Deudas</title>
 </head>
 
 <body>
@@ -251,7 +251,7 @@ $PRESTAMO_DOL = 'Prestamos otras instituciones Dolares';
             <div class="home__container">
                 <div class="home__content container">
                     <h1 class="home__title">
-                        PRESTAMOS DE OTRAS INSTITUCIONES<span>.</span>
+                        REFUNDICIÓN DE DEUDAS<span>.</span>
                     </h1>
                     <p class="home__description">
                         Este financiamiento le permite ganar paz mientras <span style="color: hsla(197, 100%, 42%, 0.8);">unifica</span> todas sus deudas<span style="color: hsla(197, 100%, 42%, 0.8);">.</span>
@@ -374,7 +374,7 @@ $PRESTAMO_DOL = 'Prestamos otras instituciones Dolares';
                     <div class="">
                         <div class="home__data_prestamos">
                             <div class="home__data-group">
-                                <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: calc(var(--h1-font-size) - 4px);">BAJA - Prestamos de otras Instituciones</h3>
+                                <h3 class="home__data-title" style="color: hsl(208, 100%, 25%); font-size: calc(var(--h1-font-size) - 4px);">BAJA - Refundición de Deudas</h3>
 
                                 <div class="product__details-content">
                                     <div class="product__details-left-col">
