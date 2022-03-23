@@ -511,8 +511,8 @@ $PRESTAMO_DOL = 'Viajes Internacionales Dolares';
 
                                     <input hidden type="text" id="moneda_col" name="moneda_col" value="COLONES">
 
-                                    <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                    <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="3" readonly="readonly">
+                                    <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="4" readonly="readonly">
+                                    <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="12" readonly="readonly">
 
                                     <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
                                     <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
@@ -572,8 +572,8 @@ $PRESTAMO_DOL = 'Viajes Internacionales Dolares';
 
                                 <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
 
-                                <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="4" readonly="readonly">
+                                <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="4" readonly="readonly">
+                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="13" readonly="readonly">
 
                                 <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
                                 <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
