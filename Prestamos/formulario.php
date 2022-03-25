@@ -71,26 +71,26 @@ if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
             $tipo_id = "";
         }
     }
-} else if (preg_replace('/[^0-9.]+/', '', $_POST['cedula']) == '134000086902') {
+// } else if (preg_replace('/[^0-9.]+/', '', $_POST['cedula']) == '134000086902') {
 
-    $cedula = preg_replace('/[^0-9.]+/', '', $_POST['cedula']);
+//     $cedula = preg_replace('/[^0-9.]+/', '', $_POST['cedula']);
 
-    $_SESSION['cedula_formu'] = '134000086902';
-    $_SESSION['nombre_formu'] = 'DUNIA MARIA';
-    $_SESSION['ape1_formu'] = 'LAGOS';
-    $_SESSION['ape2_formu'] = 'BACA';
+//     $_SESSION['cedula_formu'] = '134000086902';
+//     $_SESSION['nombre_formu'] = 'DUNIA MARIA';
+//     $_SESSION['ape1_formu'] = 'LAGOS';
+//     $_SESSION['ape2_formu'] = 'BACA';
 
-    $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
-    if ($id_id_cantidad == 9) {
-        $_SESSION['id_id'] = 1;
-        $tipo_id = "Nacional";
-    } else if ($id_id_cantidad == 12) {
-        $_SESSION['id_id'] = 2;
-        $tipo_id = "Extranjero";
-    } else {
-        $_SESSION['id_id'] = 3;
-        $tipo_id = "";
-    }
+//     $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
+//     if ($id_id_cantidad == 9) {
+//         $_SESSION['id_id'] = 1;
+//         $tipo_id = "Nacional";
+//     } else if ($id_id_cantidad == 12) {
+//         $_SESSION['id_id'] = 2;
+//         $tipo_id = "Extranjero";
+//     } else {
+//         $_SESSION['id_id'] = 3;
+//         $tipo_id = "";
+//     }
 } else if ($cedula != NULL) {
 
     if (isset($_POST['cedula'])) {
@@ -184,6 +184,9 @@ $_SESSION['PRESTAMO_DOL'] = $_POST['Tipo_Prestamo_name_dol'];
 $CATEGORIA = $_SESSION['CATEGORIA'];
 $PRESTAMO_COL = $_SESSION['PRESTAMO_COL'];
 $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
+
+$ID_CATEGORIA = $_POST['id_Categoria_Prestamo'];
+$ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
 // echo "monto_solicita: " . $_SESSION['monto_solicita_final'];
 // echo '<br>';
 // echo "range: " . $_SESSION['range_final'];
@@ -550,7 +553,7 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
         <section class="section container specialty" id="formulario">
             <div class="specialty__container">
                 <h2 class="section__title">
-                    ¡Hágalo sus sueños realidad!
+                    ¡A tan solo un paso de cumplir su sueño!
                 </h2>
 
                 <div class="specialty__category_formulario">
@@ -584,12 +587,12 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
                                         <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                         <h4>
-                                            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_col" id="monto_solicita_col" value="<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                                                                                                                                                                                                                                                echo $_SESSION['monto_solicita_final'];
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo "";
-                                                                                                                                                                                                                                                                                            } ?>" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?> | Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?></h5>
+                                            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo caja" type="number" name="monto_solicita_col" id="monto_solicita_col" value="<?php if ($_SESSION['moneda_final'] == 'COLONES') {
+                                                                                                                                                                                                                                                                                                    echo $_SESSION['monto_solicita_final'];
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo "";
+                                                                                                                                                                                                                                                                                                } ?>" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
+                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?> | Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?> </h5>
                                         </h4>
                                         <br><br>
 
@@ -625,8 +628,8 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
                                         <input hidden type="text" id="moneda_col" name="moneda_col" value="COLONES">
 
-                                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="1" readonly="readonly">
+                                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="<?php echo $ID_CATEGORIA ?>" readonly="readonly">
+                                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="<?php echo $ID_PRESTAMO ?>" readonly="readonly">
 
                                         <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
                                         <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
@@ -660,12 +663,12 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
                                 <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                                 <h4>
-                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                                                                                                                                                                                                                                        echo $_SESSION['monto_solicita_final'];
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo "";
-                                                                                                                                                                                                                                                                                    } ?>" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?> | Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?></h5>
+                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo caja" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="<?php if ($_SESSION['moneda_final'] != 'COLONES') {
+                                                                                                                                                                                                                                                                                            echo $_SESSION['monto_solicita_final'];
+                                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                                            echo "";
+                                                                                                                                                                                                                                                                                        } ?>" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
+                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?> | Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?></h5>
                                 </h4>
                                 <br><br>
 
@@ -701,8 +704,8 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
                                 <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
 
-                                <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="1" readonly="readonly">
-                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="2" readonly="readonly">
+                                <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="<?php echo $ID_CATEGORIA ?>" readonly="readonly">
+                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="<?php echo $ID_PRESTAMO ?>" readonly="readonly">
 
                                 <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
                                 <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
@@ -728,13 +731,17 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
                     <div class="l_formulario l_formulario_2" name="l_formulario">
 
+
+                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="<?php echo $ID_CATEGORIA ?>" readonly="readonly">
+                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="<?php echo $ID_PRESTAMO ?>" readonly="readonly">
+
                         <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
                         <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
                         <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
 
                         <h3 style="color: #fff;">Número de identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                         <h4>
-                            <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cedula" id="cedula" value="" maxlength="12" placeholder="X-XXXX-XXXX" autocomplete="off" />
+                            <input class="input__convert input__convert_prestamo input__convert_formulario caja" type="text" name="cedula" id="cedula" value="" maxlength="12" placeholder="X-XXXX-XXXX" autocomplete="off" />
                             <button class="button_convertir pulse btn_formulario_consulta" type="submit" value="Consultar">Consultar</button>
                             <h5 style="color: hsl(197, 100%, 35%);">Ejemplo: 1-2345-6789 | Ejemplo: 1-2345-6789-1011</h5>
                             <h5 style="color: #B22222;"> <?php echo $noExiste; ?> </h5>
@@ -819,7 +826,7 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
                         <h3 style="color: #fff;">Correo electrónico<span style="color: hsl(197, 100%, 42%);">:</span></h3>
                         <h4>
-                            <input class="input__convert input__convert_prestamo" style="width: 97%;" type="email" name="email" id="email" value='<?php if ($_SESSION['correo_formu'] != "") {
+                            <input class="input__convert input__convert_prestamo caja" style="width: 97%;" type="email" name="email" id="email" value='<?php if ($_SESSION['correo_formu'] != "") {
                                                                                                                                                         echo $_SESSION['correo_formu'];
                                                                                                                                                     } else {
                                                                                                                                                         echo "";

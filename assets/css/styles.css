@@ -667,7 +667,7 @@ button {
 
 .input__convert {
   width        : 40%;
-  background   : silver;
+  background   : rgb(168, 168, 168);
   border       : 1px solid #001930;
   border-radius: 5px 5px 5px 5px;
   color        : #393939;
@@ -1417,6 +1417,7 @@ input[type=number]::-webkit-outer-spin-button {
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px) {
+  
   .container {
     margin-left : 1rem;
     margin-right: 1rem;
@@ -1462,6 +1463,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media screen and (min-width: 412px) {
 
+  .home__video {
+    display: none;
+  }
   .home__data_prestamos {
     text-align : center;
     padding-top: 2rem;
@@ -1474,6 +1478,9 @@ input[type=number]::-webkit-outer-spin-button {
     position  : absolute;
   }
 
+  .section__title{
+    margin-bottom: 35px;
+  }
 
 
   .product__details-left-col {
@@ -1564,6 +1571,13 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
+  .home__video {
+    display: block;
+    width        : 150%;
+    height       : 1000px;
+    -o-object-fit: cover;
+    object-fit   : cover;
+  }
   .container {
     margin-left : 10%;
     margin-right: 10%;
@@ -2101,4 +2115,12 @@ span.psw {
   .cancelbtn {
      width: 100%;
   }
+}
+
+.caja{
+  background-color: #ffffffde;
+}
+
+.caja:hover{  
+  background-color: #ffffff;
 }

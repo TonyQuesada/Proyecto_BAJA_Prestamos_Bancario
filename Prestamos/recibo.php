@@ -32,6 +32,14 @@ if ($_SESSION['id_id'] == 1) {
     $tipo_id = "Extranjero";
 }
 
+$_SESSION['CATEGORIA'] = $_POST['Categoria_Prestamo_name'];
+$_SESSION['PRESTAMO_COL'] = $_POST['Tipo_Prestamo_name_col'];
+$_SESSION['PRESTAMO_DOL'] = $_POST['Tipo_Prestamo_name_dol'];
+
+$CATEGORIA = $_SESSION['CATEGORIA'];
+$PRESTAMO_COL = $_SESSION['PRESTAMO_COL'];
+$PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
+
 ?>
 
 
@@ -387,7 +395,7 @@ if ($_SESSION['id_id'] == 1) {
                                     <div id="DIV_col" <?php if ($_SESSION['moneda_final'] != 'COLONES') { ?> style="display:none" <?php } ?>>
 
                                         <?php
-                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Colones'";
+                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '" . $_SESSION['CATEGORIA'] . "' AND PRESTAMO = '" . $_SESSION['PRESTAMO_COL'] . "'";
                                         $result = sqlsrv_query($con, $sql);
                                         while ($row = sqlsrv_fetch_array($result)) {
                                             $min_col = $row['MONTO_MINIMO'];
@@ -405,7 +413,7 @@ if ($_SESSION['id_id'] == 1) {
                                                                                                                                                                         } else {
                                                                                                                                                                             echo "";
                                                                                                                                                                         } ?>" placeholder="0" autocomplete="off" readonly />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?> | Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?></h5>
+                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?> | Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?></h5>
                                         </h4>
                                         <br>
 
@@ -450,7 +458,7 @@ if ($_SESSION['id_id'] == 1) {
                                     <div id="DIV_dol" <?php if ($_SESSION['moneda_final'] == 'COLONES') { ?> style="display:none" <?php } ?>>
 
                                         <?php
-                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = 'Personales' AND PRESTAMO = 'Gastos Personales Dolares'";
+                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '" . $_SESSION['CATEGORIA'] . "' AND PRESTAMO = '" . $_SESSION['PRESTAMO_DOL'] . "'";
                                         $result = sqlsrv_query($con, $sql);
                                         while ($row = sqlsrv_fetch_array($result)) {
                                             $min_dol = $row['MONTO_MINIMO'];
@@ -469,7 +477,7 @@ if ($_SESSION['id_id'] == 1) {
                                                                                                                                                                         } else {
                                                                                                                                                                             echo "";
                                                                                                                                                                         } ?>" placeholder="0" autocomplete="off" readonly />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?> | Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?></h5>
+                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?> | Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?></h5>
                                         </h4>
                                         <br>
 

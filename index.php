@@ -297,9 +297,9 @@ if (isset($_SESSION['u_idRol'])) {
                         </div>
                     </form>
 
-                    <a href="#specialty">
+                    <!-- <a href="#specialty">
                         <img src="assets/img/scroll.png" alt="" class="home__scroll">
-                    </a>
+                    </a> -->
                 </div>
             </div>
 
