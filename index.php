@@ -600,8 +600,6 @@ if (isset($_SESSION['u_idRol'])) {
         </section>
 
         <!--==================== CONCEPTS ====================-->
-        <!-- <section class="section quality" id="premium"> -->
-        <!-- <section> -->
         <section class="section quality" id="premium">
             <div class="quality__container container">
                 <h2 class="section__title">
@@ -738,100 +736,380 @@ if (isset($_SESSION['u_idRol'])) {
         <section class="section blog" id="blog">
             <div class="blog__container container">
                 <h2 class="section__title">
-                    ¡Prestamos Más Solicitados!
+                    ¡Nuestros Prestamos Más Solicitados!
                 </h2>
 
-                <!-- <div class="blog__content grid">
-                        <article class="blog__card">
-                            <div class="blog__image">
-                                <img src="assets/img/blog1.png" alt="" class="blog__img">
-                                <a href="#" class="blog__button">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                </a>
-                            </div>
-                            <div class="blog__data">
-                                <h2 class="blog__title">
-                                    10 Coffee Recommendations
-                                </h2>
-                                <p class="blog__description">
-                                    The blogs about coffee will help you a lot about
-                                    how it is prepared, its waiting time, for a good
-                                    quality coffee.
-                                </p>
+                <div class="blog__content grid">
 
-                                <div class="blog__footer">
-                                    <div class="blog__reaction">
-                                        <i class='bx bx-comment'></i>
-                                        <span>12</span>
-                                    </div>
-                                    <div class="blog__reaction">
-                                        <i class='bx bx-show'></i>
-                                        <span>76,5K</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                    <?php
+                    $queryMax = "SELECT * FROM aalvarado.MAS_SOLICITADOS";
+                    $result = sqlsrv_query($con, $queryMax);
+                    $i = 1;
+                    while ($row = sqlsrv_fetch_array($result)) {
 
-                        <article class="blog__card">
-                            <div class="blog__image">
-                                <img src="assets/img/blog1.png" alt="" class="blog__img">
-                                <a href="#" class="blog__button">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                </a>
-                            </div>
-                            <div class="blog__data">
-                                <h2 class="blog__title">
-                                    10 Coffee Recommendations
-                                </h2>
-                                <p class="blog__description">
-                                    The blogs about coffee will help you a lot about
-                                    how it is prepared, its waiting time, for a good
-                                    quality coffee.
-                                </p>
+                        $Categoria = $row['Categoria'];
+                        $Prestamo = $row['Prestamo'];
+                        $Solicitudes = $row['Solicitudes'];
 
-                                <div class="blog__footer">
-                                    <div class="blog__reaction">
-                                        <i class='bx bx-comment'></i>
-                                        <span>12</span>
-                                    </div>
-                                    <div class="blog__reaction">
-                                        <i class='bx bx-show'></i>
-                                        <span>76,5K</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                        if ($i == 1) {
+                    ?>
 
-                        <article class="blog__card">
-                            <div class="blog__image">
-                                <img src="assets/img/blog2.png" alt="" class="blog__img">
-                                <a href="#" class="blog__button">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                </a>
-                            </div>
-                            <div class="blog__data">
-                                <h2 class="blog__title">
-                                    12 Benefits Of Drinking Coffee
-                                </h2>
-                                <p class="blog__description">
-                                    The blogs about coffee will help you a lot about
-                                    how it is prepared, its waiting time, for a good
-                                    quality coffee.
-                                </p>
+                            <article class="blog__card zoom">
 
-                                <div class="blog__footer">
-                                    <div class="blog__reaction">
-                                        <i class='bx bx-comment'></i>
-                                        <span>45</span>
-                                    </div>
-                                    <div class="blog__reaction">
-                                        <i class='bx bx-show'></i>
-                                        <span>356,5K</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div> -->
+                                <?php
+                                if (substr($Prestamo, 0, -8) == "Gastos Personales") {
+                                ?>
+                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Personal/gastos_personales.php#calculador" class="">
+                                    <?php
+                                } else if (substr($Prestamo, 0, -8) == "Rapidos") {
+                                    ?>
+                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Personal/rapidos.php#calculador" class="">
+                                        <?php
+                                    } else if (substr($Prestamo, 0, -8) == "Construccion Vivienda") {
+                                        ?>
+                                            <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vivienda/construccion_vivienda.php#calculador" class="">
+                                            <?php
+                                        } else if (substr($Prestamo, 0, -8) == "Interes Social") {
+                                            ?>
+                                                <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vivienda/vivienda_interes_social.php#calculador" class="">
+                                                <?php
+                                            } else if (substr($Prestamo, 0, -8) == "Vehiculo Nuevo") {
+                                                ?>
+                                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vehiculo/vehiculo_nuevo.php#calculador" class="">
+                                                    <?php
+                                                } else if (substr($Prestamo, 0, -8) == "Vehiculo Usado") {
+                                                    ?>
+                                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vehiculo/vehiculo_usado.php#calculador" class="">
+                                                        <?php
+                                                    } else if (substr($Prestamo, 0, -8) == "Viajes Internacionales") {
+                                                        ?>
+                                                            <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Viajes/viajes_internacionales.php#calculador" class="">
+                                                            <?php
+                                                        } else if (substr($Prestamo, 0, -8) == "Viajes Nacionales") {
+                                                            ?>
+                                                                <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Viajes/viajes_nacionales.php#calculador" class="">
+                                                                <?php
+                                                            } else if (substr($Prestamo, 0, -8) == "Pago Tarjetas de Credito") {
+                                                                ?>
+                                                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Unificacion/pagos_tarjeta_credito.php#calculador" class="">
+                                                                    <?php
+                                                                } else if (substr($Prestamo, 0, -8) == "Prestamos otras instituciones") {
+                                                                    ?>
+                                                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Unificacion/prestamos_de_otras_instituciones.php#calculador" class="">
+                                                                        <?php
+                                                                    }
+                                                                        ?>
+
+                                                                        <div class="blog__image">
+                                                                            <img src="<?php echo "assets/img/" . substr($Prestamo, 0, -8) . ".png" ?>" alt="" class="blog__img">
+
+                                                                        </div>
+                                                                        <div class="blog__data">
+                                                                            <h2 class="blog__title">
+                                                                                <?php echo $Prestamo ?>
+                                                                            </h2>
+
+                                                                            <?php
+                                                                            if ($Categoria == "Personales") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Solicitá tu préstamo personal y hacé realidad todos los planes que has estado posponiendo.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Vivienda") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Te ofrecemos una solución ágil de financiamiento para que estrenés en menor tiempo tu nuevo hogar.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Vehiculos") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Te ofrecemos tasas competitivas y rápidos tiempos de respuesta para comprar tu carro nuevo o usado.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Viajes") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Nosotros le ayudamos a cumplir sus sueños de viajar y disfrutar.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Unificacion de deudas") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Este financiamiento le permite ganar paz mientras unifica todas sus deudas.
+                                                                                </p>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+
+                                                                            <?php
+                                                                            $queryNum = "SELECT COUNT(*) AS NUM FROM aalvarado.visitas WHERE pagina = '" . substr($Prestamo, 0, -8) . "'";
+                                                                            $resultNum = sqlsrv_query($con, $queryNum);
+                                                                            while ($rowNum = sqlsrv_fetch_array($resultNum)) {
+
+                                                                                $NUM = $rowNum['NUM'];
+                                                                            }
+
+                                                                            ?>
+
+                                                                            <div class="blog__footer">
+                                                                                <div class="blog__reaction">
+                                                                                    <i class='bx bxs-edit'></i>
+                                                                                    <span><?php echo $Solicitudes ?></span>
+                                                                                </div>
+                                                                                <div class="blog__reaction">
+                                                                                    <i class='bx bx-show'></i>
+                                                                                    <span><?php echo $NUM ?></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        </a>
+                            </article>
+
+                        <?php
+                        } else if ($i == 2) {
+                        ?>
+
+                            <article class="blog__card zoom">
+
+                                <?php
+                                if (substr($Prestamo, 0, -8) == "Gastos Personales") {
+                                ?>
+                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Personal/gastos_personales.php#calculador" class="">
+                                    <?php
+                                } else if (substr($Prestamo, 0, -8) == "Rapidos") {
+                                    ?>
+                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Personal/rapidos.php#calculador" class="">
+                                        <?php
+                                    } else if (substr($Prestamo, 0, -8) == "Construccion Vivienda") {
+                                        ?>
+                                            <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vivienda/construccion_vivienda.php#calculador" class="">
+                                            <?php
+                                        } else if (substr($Prestamo, 0, -8) == "Interes Social") {
+                                            ?>
+                                                <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vivienda/vivienda_interes_social.php#calculador" class="">
+                                                <?php
+                                            } else if (substr($Prestamo, 0, -8) == "Vehiculo Nuevo") {
+                                                ?>
+                                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vehiculo/vehiculo_nuevo.php#calculador" class="">
+                                                    <?php
+                                                } else if (substr($Prestamo, 0, -8) == "Vehiculo Usado") {
+                                                    ?>
+                                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vehiculo/vehiculo_usado.php#calculador" class="">
+                                                        <?php
+                                                    } else if (substr($Prestamo, 0, -8) == "Viajes Internacionales") {
+                                                        ?>
+                                                            <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Viajes/viajes_internacionales.php#calculador" class="">
+                                                            <?php
+                                                        } else if (substr($Prestamo, 0, -8) == "Viajes Nacionales") {
+                                                            ?>
+                                                                <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Viajes/viajes_nacionales.php#calculador" class="">
+                                                                <?php
+                                                            } else if (substr($Prestamo, 0, -8) == "Pago Tarjetas de Credito") {
+                                                                ?>
+                                                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Unificacion/pagos_tarjeta_credito.php#calculador" class="">
+                                                                    <?php
+                                                                } else if (substr($Prestamo, 0, -8) == "Prestamos otras instituciones") {
+                                                                    ?>
+                                                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Unificacion/prestamos_de_otras_instituciones.php#calculador" class="">
+                                                                        <?php
+                                                                    }
+                                                                        ?>
+
+                                                                        <div class="blog__image">
+                                                                            <img src="<?php echo "assets/img/" . substr($Prestamo, 0, -8) . ".png" ?>" alt="" class="blog__img">
+
+                                                                        </div>
+                                                                        <div class="blog__data">
+                                                                            <h2 class="blog__title">
+                                                                                <?php echo $Prestamo ?>
+                                                                            </h2>
+
+                                                                            <?php
+                                                                            if ($Categoria == "Personales") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Solicitá tu préstamo personal y hacé realidad todos los planes que has estado posponiendo.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Vivienda") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Te ofrecemos una solución ágil de financiamiento para que estrenés en menor tiempo tu nuevo hogar.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Vehiculos") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Te ofrecemos tasas competitivas y rápidos tiempos de respuesta para comprar tu carro nuevo o usado.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Viajes") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Nosotros le ayudamos a cumplir sus sueños de viajar y disfrutar.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Unificacion de deudas") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Este financiamiento le permite ganar paz mientras unifica todas sus deudas.
+                                                                                </p>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+
+                                                                            <?php
+                                                                            $queryNum = "SELECT COUNT(*) AS NUM FROM aalvarado.visitas WHERE pagina = '" . substr($Prestamo, 0, -8) . "'";
+                                                                            $resultNum = sqlsrv_query($con, $queryNum);
+                                                                            while ($rowNum = sqlsrv_fetch_array($resultNum)) {
+
+                                                                                $NUM = $rowNum['NUM'];
+                                                                            }
+
+                                                                            ?>
+
+                                                                            <div class="blog__footer">
+                                                                                <div class="blog__reaction">
+                                                                                    <i class='bx bxs-edit'></i>
+                                                                                    <span><?php echo $Solicitudes ?></span>
+                                                                                </div>
+                                                                                <div class="blog__reaction">
+                                                                                    <i class='bx bx-show'></i>
+                                                                                    <span><?php echo $NUM ?></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        </a>
+                            </article>
+
+                        <?php
+                        } else if ($i == 3) {
+                        ?>
+
+                            <article class="blog__card zoom">
+
+                                <?php
+                                if (substr($Prestamo, 0, -8) == "Gastos Personales") {
+                                ?>
+                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Personal/gastos_personales.php#calculador" class="">
+                                    <?php
+                                } else if (substr($Prestamo, 0, -8) == "Rapidos") {
+                                    ?>
+                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Personal/rapidos.php#calculador" class="">
+                                        <?php
+                                    } else if (substr($Prestamo, 0, -8) == "Construccion Vivienda") {
+                                        ?>
+                                            <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vivienda/construccion_vivienda.php#calculador" class="">
+                                            <?php
+                                        } else if (substr($Prestamo, 0, -8) == "Interes Social") {
+                                            ?>
+                                                <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vivienda/vivienda_interes_social.php#calculador" class="">
+                                                <?php
+                                            } else if (substr($Prestamo, 0, -8) == "Vehiculo Nuevo") {
+                                                ?>
+                                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vehiculo/vehiculo_nuevo.php#calculador" class="">
+                                                    <?php
+                                                } else if (substr($Prestamo, 0, -8) == "Vehiculo Usado") {
+                                                    ?>
+                                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Vehiculo/vehiculo_usado.php#calculador" class="">
+                                                        <?php
+                                                    } else if (substr($Prestamo, 0, -8) == "Viajes Internacionales") {
+                                                        ?>
+                                                            <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Viajes/viajes_internacionales.php#calculador" class="">
+                                                            <?php
+                                                        } else if (substr($Prestamo, 0, -8) == "Viajes Nacionales") {
+                                                            ?>
+                                                                <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Viajes/viajes_nacionales.php#calculador" class="">
+                                                                <?php
+                                                            } else if (substr($Prestamo, 0, -8) == "Pago Tarjetas de Credito") {
+                                                                ?>
+                                                                    <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Unificacion/pagos_tarjeta_credito.php#calculador" class="">
+                                                                    <?php
+                                                                } else if (substr($Prestamo, 0, -8) == "Prestamos otras instituciones") {
+                                                                    ?>
+                                                                        <a href="https://intelligent-hellman.138-59-135-33.plesk.page/Prestamos/Unificacion/prestamos_de_otras_instituciones.php#calculador" class="">
+                                                                        <?php
+                                                                    }
+                                                                        ?>
+
+                                                                        <div class="blog__image">
+                                                                            <img src="<?php echo "assets/img/" . substr($Prestamo, 0, -8) . ".png" ?>" alt="" class="blog__img">
+
+                                                                        </div>
+                                                                        <div class="blog__data">
+                                                                            <h2 class="blog__title">
+                                                                                <?php echo $Prestamo ?>
+                                                                            </h2>
+
+                                                                            <?php
+                                                                            if ($Categoria == "Personales") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Solicitá tu préstamo personal y hacé realidad todos los planes que has estado posponiendo.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Vivienda") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Te ofrecemos una solución ágil de financiamiento para que estrenés en menor tiempo tu nuevo hogar.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Vehiculos") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Te ofrecemos tasas competitivas y rápidos tiempos de respuesta para comprar tu carro nuevo o usado.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Viajes") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Nosotros le ayudamos a cumplir sus sueños de viajar y disfrutar.
+                                                                                </p>
+                                                                            <?php
+                                                                            } else if ($Categoria == "Unificacion de deudas") {
+                                                                            ?>
+                                                                                <p class="blog__description">
+                                                                                    Este financiamiento le permite ganar paz mientras unifica todas sus deudas.
+                                                                                </p>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+
+                                                                            <?php
+                                                                            $queryNum = "SELECT COUNT(*) AS NUM FROM aalvarado.visitas WHERE pagina = '" . substr($Prestamo, 0, -8) . "'";
+                                                                            $resultNum = sqlsrv_query($con, $queryNum);
+                                                                            while ($rowNum = sqlsrv_fetch_array($resultNum)) {
+
+                                                                                $NUM = $rowNum['NUM'];
+                                                                            }
+
+                                                                            ?>
+
+                                                                            <div class="blog__footer">
+                                                                                <div class="blog__reaction">
+                                                                                    <i class='bx bxs-edit'></i>
+                                                                                    <span><?php echo $Solicitudes ?></span>
+                                                                                </div>
+                                                                                <div class="blog__reaction">
+                                                                                    <i class='bx bx-show'></i>
+                                                                                    <span><?php echo $NUM ?></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        </a>
+                            </article>
+
+                    <?php
+                        }
+
+                        $i++;
+                    }
+
+                    ?>
+
+                </div>
 
             </div>
         </section>

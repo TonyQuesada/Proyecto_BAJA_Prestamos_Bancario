@@ -20,7 +20,7 @@
   --black-color       : hsl(208, 100%, 25%);
   --black-color-footer: hsl(206, 12%, 12%);
   --card-color        : hsl(0, 0%, 90%);
-  --card-color-2        : hsl(0, 0%, 85%);
+  --card-color-2      : hsl(0, 0%, 85%);
   --text-color-light  : hsl(206, 4%, 75%);
   /*========== Font and typography ==========*/
   --body-font         : 'Lato', sans-serif;
@@ -1141,6 +1141,21 @@ input[type=number]::-webkit-outer-spin-button {
   row-gap: 3rem;
 }
 
+.blog__card {
+  /* border          : 2px solid #002647; */
+  border-radius   : 5%;
+  padding         : 1rem;
+  background-color: rgb(233, 233, 233);
+}
+
+.blog__card:hover {
+  background-color: rgb(201, 217, 223);
+}
+
+.blog__img {
+  border-radius: 3%;
+}
+
 .blog__image {
   position     : relative;
   margin-bottom: 1.5rem;
@@ -1168,16 +1183,18 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .blog__title {
-  font-size    : var(--h2-font-size);
+  font-size    : calc(var(--h2-font-size) - 1px);
   margin-bottom: .75rem;
 }
 
 .blog__description {
+  color        : #555;
   margin-bottom: 1.5rem;
 }
 
 .blog__footer,
 .blog__reaction {
+  color      : #555;
   display    : flex;
   align-items: center;
 }
@@ -1417,7 +1434,7 @@ input[type=number]::-webkit-outer-spin-button {
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px) {
-  
+
   .container {
     margin-left : 1rem;
     margin-right: 1rem;
@@ -1466,6 +1483,7 @@ input[type=number]::-webkit-outer-spin-button {
   .home__video {
     display: none;
   }
+
   .home__data_prestamos {
     text-align : center;
     padding-top: 2rem;
@@ -1478,7 +1496,7 @@ input[type=number]::-webkit-outer-spin-button {
     position  : absolute;
   }
 
-  .section__title{
+  .section__title {
     margin-bottom: 35px;
   }
 
@@ -1572,12 +1590,13 @@ input[type=number]::-webkit-outer-spin-button {
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .home__video {
-    display: block;
+    display      : block;
     width        : 150%;
     height       : 1000px;
     -o-object-fit: cover;
     object-fit   : cover;
   }
+
   .container {
     margin-left : 10%;
     margin-right: 10%;
@@ -1821,9 +1840,10 @@ input[type=number]::-webkit-outer-spin-button {
   }
 
   .blog__content {
-    grid-template-columns: repeat(3, 290px);
-    column-gap           : 5rem;
+    grid-template-columns: repeat(3, 346px);
+    column-gap           : 3rem;
     padding-top          : 2rem;
+    margin-left          : 50px;
   }
 
   .footer__content {
@@ -2010,117 +2030,163 @@ on the image of the gif */
 
 
 /* Full-width input fields */
-.modal_input{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
+.modal_input {
+  width     : 100%;
+  padding   : 12px 20px;
+  margin    : 8px 0;
+  display   : inline-block;
+  border    : 1px solid #ccc;
   box-sizing: border-box;
 }
 
 /* Set a style for all buttons */
 .modal_btn {
   background-color: #044484;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+  color           : white;
+  padding         : 14px 20px;
+  margin          : 5px 0;
+  margin-top      : 20px;
+  border          : none;
+  cursor          : pointer;
+  width           : 100%;
 }
 
 /* Center the image and position the close button */
 .imgcontainer {
   text-align: center;
-  margin: 24px 0 12px 0;
-  position: relative;
+  margin    : 24px 0 12px 0;
+  position  : relative;
+}
+
+.imgcontainer_formulario {
+  text-align: center;
+  margin    : 24px 0 12px 0;
+  position  : relative;
 }
 
 img.avatar {
-  width: 35%;
+  width        : 35%;
   border-radius: 50%;
+}
+
+img.avatar_formulario {
+  border-radius: 50%;
+  height       : 20%;
+  width        : 20%;
 }
 
 .modal_container {
   padding: 16px;
 }
 
+.modal_container_formulario {
+  margin-right: 50px;
+  margin-left : 50px;
+}
+
 span.psw {
-  float: right;
+  float      : right;
   padding-top: 16px;
 }
 
 /* The Modal (background) */
 .modal {
-  display: none;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
+  display         : none;
+  position        : fixed;
+  /* Stay in place */
+  z-index         : 1;
+  /* Sit on top */
+  left            : 0;
+  top             : 0;
+  width           : 100%;
+  /* Full width */
+  height          : 100%;
+  /* Full height */
+  overflow        : auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  padding-top     : 60px;
 }
 
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 69%; /* Could be more or less, depending on screen size */
+  margin          : 5% auto 15% auto;
+  /* 5% from the top, 15% from the bottom and centered */
+  border          : 1px solid #888;
+  width           : 69%;
+  /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
 .close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
+  position   : absolute;
+  right      : 25px;
+  top        : 0;
+  color      : #000;
+  font-size  : 35px;
   font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: hsl(197, 100%, 42%);
+  color : hsl(197, 100%, 42%);
   cursor: pointer;
 }
 
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+  animation        : animatezoom 0.6s
 }
 
 @-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
 }
-  
+
 @keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
 }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
-     display: block;
-     float: none;
+    display: block;
+    float  : none;
   }
+
   .cancelbtn {
-     width: 100%;
+    width: 100%;
   }
 }
 
-.caja{
+.caja {
   background-color: #ffffffde;
 }
 
-.caja:hover{  
+.caja:hover {
   background-color: #ffffff;
+}
+
+.zoom {
+  transition: transform 0.5s;
+}
+
+.zoom:hover {
+  transform: scale(1.05);
 }
