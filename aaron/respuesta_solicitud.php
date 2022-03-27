@@ -29,5 +29,6 @@ if (isset($_POST['aprobar'])) {
     }
 }
 
-header("Location: analizar_solicitudes.php");
+//header("Location: analizar_solicitudes.php");
+header("Location: analizar_solicitudes1.php");
 ?>
