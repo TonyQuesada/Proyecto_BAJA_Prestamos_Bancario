@@ -277,7 +277,7 @@ $ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
                             <img src="../assets/img/userAdmin.png" alt="" class="nav__img">
                         </div>
 
-                        <span class="nav__greeting">Bienvenid@</span>
+                        <span class="nav__greeting">Bienvenid@ <?php echo $_SESSION['u_NombreRol'] ?></span>
                         <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                     </div>
 
@@ -295,7 +295,7 @@ $ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
                                 <img src="../assets/img/userMale.png" alt="" class="nav__img">
                             </div>
 
-                            <span class="nav__greeting">Bienvenid@</span>
+                            <span class="nav__greeting">Bienvenid@ <?php echo $_SESSION['u_NombreRol'] ?></span>
                             <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                         </div>
 

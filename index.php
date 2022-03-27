@@ -91,7 +91,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <img src="assets/img/userAdmin.png" alt="" class="nav__img">
                         </div>
 
-                        <span class="nav__greeting">Bienvenid@</span>
+                        <span class="nav__greeting">Bienvenid@ <?php echo $_SESSION['u_NombreRol'] ?></span>
                         <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                     </div>
 
@@ -110,7 +110,7 @@ if (isset($_SESSION['u_idRol'])) {
                                 <img src="assets/img/userMale.png" alt="" class="nav__img">
                             </div>
 
-                            <span class="nav__greeting">Bienvenid@</span>
+                            <span class="nav__greeting">Bienvenid@ <?php echo $_SESSION['u_NombreRol'] ?></span>
                             <h1 class="nav__name"><?php echo $_SESSION['u_Nombre_Usuario'] ?></h1>
                         </div>
 
@@ -621,7 +621,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div class="body__card_back">
                                 <h1>Capital</h1>
                                 <p>Es el monto de dinero que presta la institución financiera.</p>
-                                <input type="button" value="Leer Más">
+                                <input type="button" onclick="document.getElementById('capital').style.display='block'" value="Leer Más">
                             </div>
                         </div>
                     </div>
@@ -639,7 +639,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div class="body__card_back">
                                 <h1>Interés</h1>
                                 <p>Es el costo del uso del dinero entregado en préstamo, que se expresa como porcentaje.</p>
-                                <input type="button" value="Leer Más">
+                                <input type="button" onclick="document.getElementById('interes').style.display='block'" value="Leer Más">
                             </div>
                         </div>
                     </div>
@@ -657,7 +657,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div class="body__card_back">
                                 <h1>Préstamo Personal</h1>
                                 <p>Dinero que te presta un banco o entidad financiera de forma inmediata.</p>
-                                <input type="button" value="Leer Más">
+                                <input type="button" onclick="document.getElementById('personal').style.display='block'" value="Leer Más">
                             </div>
                         </div>
                     </div>
@@ -675,7 +675,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div class="body__card_back">
                                 <h1>Mensualidad</h1>
                                 <p>Cantidad de dinero que se abona mes a mes al credito o préstamo.</p>
-                                <input type="button" value="Leer Más">
+                                <input type="button" onclick="document.getElementById('mensualidad').style.display='block'" value="Leer Más">
                             </div>
                         </div>
                     </div>
@@ -693,7 +693,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div class="body__card_back">
                                 <h1>Plazo</h1>
                                 <p>Tiempo en el que debes devolver el préstamo, este puede ser días, meses o años depende de la institución financiera.</p>
-                                <input type="button" value="Leer Más">
+                                <input type="button" onclick="document.getElementById('plazo').style.display='block'" value="Leer Más">
                             </div>
                         </div>
                     </div>
@@ -711,7 +711,7 @@ if (isset($_SESSION['u_idRol'])) {
                             <div class="body__card_back">
                                 <h1>Fecha de Pago</h1>
                                 <p> Corresponde al día definido para que el deudor efectúe el pago correspondiente según la frecuencia de pago de intereses o amortización.</p>
-                                <input type="button" value="Leer Más">
+                                <input type="button" onclick="document.getElementById('fecha').style.display='block'" value="Leer Más">
                             </div>
                         </div>
                     </div>
@@ -721,16 +721,9 @@ if (isset($_SESSION['u_idRol'])) {
 
         </section>
 
-        <!--==================== LOGOS ====================-->
-        <!-- <section class="section logo">
-            <div class="logo__container container grid">
-                <img src="assets/img/logocoffee1.png" alt="" class="logo__img">
-                <img src="assets/img/logocoffee2.png" alt="" class="logo__img">
-                <img src="assets/img/logocoffee3.png" alt="" class="logo__img">
-                <img src="assets/img/logocoffee4.png" alt="" class="logo__img">
-                <img src="assets/img/logocoffee5.png" alt="" class="logo__img">
-            </div>
-        </section> -->
+        <?php
+        require "Default/Conceptos.php"
+        ?>
 
         <!--==================== TREND (Tendencia) ====================-->
         <section class="section blog" id="blog">

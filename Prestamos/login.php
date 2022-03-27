@@ -5,7 +5,7 @@ session_start();
 $sesionRol = null;
 if (isset($_SESSION['u_idRol'])) {
     // header('Location: ../index.php');
-    
+
     echo '<script type="text/javascript">
     history.back();
     </script>';
@@ -99,7 +99,7 @@ while ($fila = sqlsrv_fetch_array($ejecutar)) {
                         <button type="submit" class="button specialty__button pulse" name="insert" style="margin-right: 18.5px;"><span>Ingresar</span></button>
                         <br>
                         <br>
-                        <a href="#" class="a a_login">¿Olvidó su contraseña?</a>
+                        <a onclick="document.getElementById('id01').style.display='block'" class="a a_login" style="cursor: pointer;">¿Olvidó su contraseña?</a>
                         <br>
                         <br>
                         <br>
@@ -112,6 +112,46 @@ while ($fila = sqlsrv_fetch_array($ejecutar)) {
             <video src="../assets/video/login.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
 
         </section>
+
+
+        <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="../PHP/cambiar_password.php" method="POST">
+
+                <div class="imgcontainer_formulario">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <img src="../assets/img/passwordF.png" alt="Avatar" class="avatar_formulario">
+                </div>
+
+                <div class="modal_container_formulario">
+                    <label><b>Usuario</b></label>
+                    <input type="text" class="modal_input" placeholder="Ingrese su usuario" name="usuario" id="usuario" required autocomplete="FALSE">
+
+                    <label><b>Antigua Contraseña</b></label>
+                    <input type="password" class="modal_input" placeholder="Ingrese su antigua contraseña" name="contrasena" id="contrasena" required autocomplete="FALSE">
+
+                    <label><b>Nueva Contraseña</b></label>
+                    <input type="password" class="modal_input" placeholder="Ingrese su nueva contraseña" name="contrasenaNew" id="contrasenaNew" required autocomplete="FALSE">
+
+                    <button type="submit" class="modal_btn button button_formulario pulse">Cambiar Contraseña</button>
+                </div>
+                <div class="modal_container" style="background-color:#f1f1f1">
+                </div>
+
+            </form>
+        </div>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
 
         <script>
             function cal_1() {
