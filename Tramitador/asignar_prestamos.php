@@ -1,4 +1,4 @@
-<a href="asignar_solicitudes1.php">Asignar Solicitudes</a>
+<a href="asignar_solicitudes.php">Asignar Solicitudes</a>
 <br>
 <br>
 <a href="vista_asignadas.php">Solicitudes Asignadas</a>

@@ -1,7 +1,6 @@
 <?php
 include '../conection.php';
 session_start();
-setlocale(LC_TIME, "spanish");
 
 // Obtener el Tipo de Cambio //
 $consulta = "SELECT * FROM Tipo_Cambio";
@@ -25,193 +24,18 @@ if (isset($_SESSION['u_idRol'])) {
     $sesionRol = $_SESSION['u_idRol'];
 }
 
-// Busca a la persona //
-$cedula = '';
-$id_id = '';
-$tipo_id = '';
-$nombre = '';
-$ape1 = '';
-$ape2 = '';
-$sesion_idCliente = '';
-$correo = '';
-$noExiste = '';
-$CATEGORIA = '';
-$PRESTAMO_COL = '';
-$PRESTAMO_DOL = '';
+$num_soli = 0;
+$fecha_soli = date_create("YYYY-MM-DD");
+$num_id = 0;
+$cat_pres = '';
+$tip_pres = '';
+$moneda = '';
+$monto_sol = 0;
+$tasa = 0;
+$cuota = 0;
+$plazo = 0;
+$estado = '';
 
-if (isset($_POST['cedula'])) {
-    $cedula = $_POST['cedula'];
-}
-
-if (isset($_SESSION['u_idCliente']) && ($cedula == NULL)) {
-
-    $cedula = $_SESSION['u_idCliente'];
-
-    $datos = json_decode(file_get_contents("http://aaron040291-001-site1.ctempurl.com/api/Personas/" . $cedula), true);
-
-    if ($datos == '') {
-        $noExiste = 'Número de identificación de la sesión incorrecto.';
-    } else {
-
-        $_SESSION['cedula_formu'] = $datos["CEDULA"];
-        $_SESSION['nombre_formu'] = $datos["NOMBRE_COMPLETO"];
-        $_SESSION['ape1_formu'] = $datos["PRIMER_APELLIDO"];
-        $_SESSION['ape2_formu'] = $datos["SEGUNDO_APELLIDO"];
-        $_SESSION['correo_formu'] = $_SESSION['u_Correo_electronico'];
-
-        $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
-        if ($id_id_cantidad == 9) {
-            $_SESSION['id_id'] = 1;
-            $tipo_id = "Nacional";
-        } else if ($id_id_cantidad == 12) {
-            $_SESSION['id_id'] = 2;
-            $tipo_id = "Extranjero";
-        } else {
-            $_SESSION['id_id'] = 3;
-            $tipo_id = "";
-        }
-    }
-    // } else if (preg_replace('/[^0-9.]+/', '', $_POST['cedula']) == '134000086902') {
-
-    //     $cedula = preg_replace('/[^0-9.]+/', '', $_POST['cedula']);
-
-    //     $_SESSION['cedula_formu'] = '134000086902';
-    //     $_SESSION['nombre_formu'] = 'DUNIA MARIA';
-    //     $_SESSION['ape1_formu'] = 'LAGOS';
-    //     $_SESSION['ape2_formu'] = 'BACA';
-
-    //     $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
-    //     if ($id_id_cantidad == 9) {
-    //         $_SESSION['id_id'] = 1;
-    //         $tipo_id = "Nacional";
-    //     } else if ($id_id_cantidad == 12) {
-    //         $_SESSION['id_id'] = 2;
-    //         $tipo_id = "Extranjero";
-    //     } else {
-    //         $_SESSION['id_id'] = 3;
-    //         $tipo_id = "";
-    //     }
-} else if ($cedula != NULL) {
-
-    if (isset($_POST['cedula'])) {
-
-        $cedula = preg_replace('/[^0-9.]+/', '', $_POST['cedula']);
-        $datos = json_decode(file_get_contents("http://aaron040291-001-site1.ctempurl.com/api/Personas/" . $cedula), true);
-
-
-        if ($datos == '') {
-            $noExiste = 'Número de identificación incorrecta.';
-        } else {
-
-            $_SESSION['cedula_formu'] = $datos["CEDULA"];
-            $_SESSION['nombre_formu'] = $datos["NOMBRE_COMPLETO"];
-            $_SESSION['ape1_formu'] = $datos["PRIMER_APELLIDO"];
-            $_SESSION['ape2_formu'] = $datos["SEGUNDO_APELLIDO"];
-            $_SESSION['correo_formu'] = "";
-        }
-
-        $id_id_cantidad = strlen(str_replace(",", "", number_format($cedula)));
-        if ($id_id_cantidad == 9) {
-            $_SESSION['id_id'] = 1;
-            $tipo_id = "Nacional";
-        } else if ($id_id_cantidad == 12) {
-            $_SESSION['id_id'] = 2;
-            $tipo_id = "Extranjero";
-        } else {
-            $_SESSION['id_id'] = 3;
-            $tipo_id = "";
-        }
-    }
-} else {
-    $_SESSION['cedula_formu'] = "";
-    $_SESSION['nombre_formu'] = "";
-    $_SESSION['ape1_formu'] = "";
-    $_SESSION['ape2_formu'] = "";
-    $_SESSION['correo_formu'] = "";
-}
-
-// Conserva los datos de la calculadora
-
-if (isset($_POST['monto_solicita_col']) or isset($_POST['monto_solicita_dol'])) {
-
-    $mon = '';
-
-    if (isset($_POST['monto_solicita_col'])) {
-        $mon = 'col';
-    } else if (isset($_POST['monto_solicita_dol'])) {
-        $mon = 'dol';
-    }
-
-    $monto_solicita_ = 'monto_solicita_' . $mon;
-    $range_ = 'range_' . $mon;
-    $tasa_ = 'tasa_' . $mon;
-    $cuota_mensual_ = 'cuota_mensual_' . $mon;
-    $moneda_ = 'moneda_' . $mon;
-    $cuota_mensual_natural_ = 'cuota_mensual_natural_' . $mon;
-    $id_Categoria_Prestamo = 'id_Categoria_Prestamo';
-    $id_Tipo_Prestamo = 'id_Tipo_Prestamo';
-
-    $_SESSION['monto_solicita_final'] = $_POST[$monto_solicita_];
-    $_SESSION['range_final'] = $_POST[$range_];
-    $_SESSION['tasa_final'] = $_POST[$tasa_];
-    $_SESSION['cuota_mensual_final'] = $_POST[$cuota_mensual_];
-    $_SESSION['moneda_final'] = $_POST[$moneda_];
-    $_SESSION['cuota_mensual_natural_final'] = $_POST[$cuota_mensual_natural_];
-    $_SESSION['id_Categoria_Prestamo_final'] = $_POST[$id_Categoria_Prestamo];
-    $_SESSION['id_Tipo_Prestamo_final'] = $_POST[$id_Tipo_Prestamo];
-
-    $_POST['monto_solicita_col'] = array();
-    $_POST['monto_solicita_dol'] = array();
-
-    $query = "SELECT * FROM aalvarado.VER_PRESTAMOS WHERE ID_CATEGORIA = '$_SESSION[id_Categoria_Prestamo_final]' AND ID_PRESTAMO = '$_SESSION[id_Tipo_Prestamo_final]'";
-    if ($query == false) {
-        $_SESSION['cate'] = "";
-        $_SESSION['prest'] = "";
-    } else {
-        $results = sqlsrv_query($con, $query); //ejecuta la query
-        $row = sqlsrv_fetch_array($results, SQLSRV_FETCH_ASSOC);
-
-        $_SESSION['cate'] = $row['CATEGORIA'];
-        $_SESSION['prest'] = substr($row['PRESTAMO'], 0, -7);
-    }
-}
-
-
-$_SESSION['CATEGORIA'] = $_POST['Categoria_Prestamo_name'];
-$_SESSION['PRESTAMO_COL'] = $_POST['Tipo_Prestamo_name_col'];
-$_SESSION['PRESTAMO_DOL'] = $_POST['Tipo_Prestamo_name_dol'];
-
-$CATEGORIA = $_SESSION['CATEGORIA'];
-$PRESTAMO_COL = $_SESSION['PRESTAMO_COL'];
-$PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
-
-$ID_CATEGORIA = $_POST['id_Categoria_Prestamo'];
-$ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
-// echo "monto_solicita: " . $_SESSION['monto_solicita_final'];
-// echo '<br>';
-// echo "range: " . $_SESSION['range_final'];
-// echo '<br>';
-// echo "tasa: " . $_SESSION['tasa_final'];
-// echo '<br>';
-// echo "cuota_mensual: " . $_SESSION['cuota_mensual_final'];
-// echo '<br>';
-// echo  "ID: " . $_SESSION['cedula_formu'];
-// echo '<br>';
-// echo  "Correo: " . $_SESSION['correo_formu'];
-// echo '<br>';
-// echo "moneda: " . $_SESSION['moneda_final'];
-// echo '<br>';
-// echo "id_Identificacion: " . $_SESSION['id_id'];
-// echo '<br>';
-// echo "id_Cate: " . $_SESSION['id_Categoria_Prestamo_final'];
-// echo '<br>';
-// echo "id_Tipo: " . $_SESSION['id_Tipo_Prestamo_final'];
-// echo '<br>';
-// echo "cuota_mensual_natural: " . $_SESSION['cuota_mensual_natural_final'];
-// echo '<br>';
-// echo "Fecha que ve el usuario: " . strftime("%A, %d de %B de %Y");
-// echo '<br>';
-// echo "Fecha que guarda la base: " . strftime("%Y-%m-%d");
 ?>
 
 
@@ -234,12 +58,8 @@ $ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
     <!--=============== API ===============-->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <title>Formulario de Solicitud de Prestamo</title>
+    <title>Asignación de solicitudes</title>
 </head>
-
-<script>
-
-</script>
 
 <body>
 
@@ -450,7 +270,7 @@ $ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
             <div class="home__container">
                 <div class="home__content container">
                     <h1 class="home__title">
-                        FORMULARIO DE SOLICITUD<span>.</span>
+                        ASIGNACIÓN DE SOLICITUDES<span>.</span>
                     </h1>
                     <p class="home__description">
                         <!-- Solicitá tu préstamo de <span style="color: hsla(197, 100%, 42%, 0.8);">gastos personales</span> y hacé realidad todos tus planes<span style="color: hsla(197, 100%, 42%, 0.8);">.</span> -->
@@ -502,7 +322,7 @@ $ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
             </div>
 
             <!-- <img src="../assets/img/home.gif" alt="" class="home__img"> -->
-            <video src="../assets/video/formulario.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
+            <video src="../assets/video/TramitadorAsignar.mp4" class="home__video" type="video/mp4" autoPlay loop muted playsInline></video>
 
         </section>
 
@@ -565,631 +385,171 @@ $ID_PRESTAMO = $_POST['id_Tipo_Prestamo'];
         <section class="section container specialty" id="formulario">
             <div class="specialty__container">
                 <h2 class="section__title">
-                    ¡A tan solo un paso de cumplir su sueño!
+                    ¡Asignación de Solicitudes de Crédito! <span style="color: #009ad6; margin-left: 15px;"><?php if ($NUM >= 2) {
+                                                                                                                echo "( " . $NUM . " - Pendientes )";
+                                                                                                            } else if ($NUM = 1) {
+                                                                                                                echo "( " . $NUM . " - Pendiente )";
+                                                                                                            } else {
+                                                                                                                echo "";
+                                                                                                            } ?></span>
                 </h2>
 
-                <div class="specialty__category_formulario">
-                    <div class="specialty__group specialty__line_formulario">
+                <div class="specialty__category_tabla">
 
-                        <h1 style="color: #fff;">Información de la solicitud</h1>
+                    <div class="items">
+                        <h3 type="text" style="color: #fff;">Buscar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
+                        <input type="text" class="input__convert" style="width: 262px;" id="Buscar" placeholder="">
+                        <br>
+                        <br>
+                    </div>
 
-                        <form method="post" name="p" id="p">
+                    <form action="../PHP/asignar_solicitud.php" method="POST" name="input">
 
-                            <div class="l_formulario" name="l_formulario">
-                                <div>
-                                    <h3 class="" style="color: #fff;">Tipo de Monedas<span style="color: hsl(197, 100%, 42%);">:</span>
-                                        <a onclick="myFunction_col('col', 'dol')" class="button_convertir pulse" id="col" style="margin-left: 0.3rem; <?php if ($_SESSION['moneda_final'] == 'COLONES') { ?> background-color: #009ad6; <?php } ?> "><span>Colones</span></a>
-                                        <a onclick="myFunction_dol('dol', 'col')" class="button_convertir pulse" id="dol" <?php if ($_SESSION['moneda_final'] != 'COLONES') { ?> style="background-color: #009ad6;" <?php } ?>><span>Dólares</span></a>
-                                    </h3>
-                                    <br>
+                        <table class="table" id="tableData" name="tableData">
+                            <thead class="thead">
+                                <tr>
+                                    <th class="th" style="width: 20px;">#</th>
+                                    <th class="th">Fecha solicitud</th>
+                                    <th class="th">Identificación</th>
+                                    <th class="th">Categoría</th>
+                                    <th class="th">Tipo de préstamo</th>
+                                    <th class="th">Moneda</th>
+                                    <th class="th">Monto</th>
+                                    <th class="th">Tasa</th>
+                                    <th class="th">Cuota</th>
+                                    <th class="th">Plazo</th>
+                                    <th class="th">Estado</th>
+                                    <th class="th">Asignación</th>
+                                </tr>
+                            </thead>
 
-                                    <div id="DIV_col" <?php if ($_SESSION['moneda_final'] != 'COLONES') { ?> style="display:none" <?php } ?>>
-
-                                        <?php
-                                        $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '" . $_SESSION['CATEGORIA'] . "' AND PRESTAMO = '" . $_SESSION['PRESTAMO_COL'] . "'";
-                                        $result = sqlsrv_query($con, $sql);
-                                        while ($row = sqlsrv_fetch_array($result)) {
-                                            $min_col = $row['MONTO_MINIMO'];
-                                            $max_col = $row['MONTO_MAXIMO'];
-                                            $plazoMin_col = $row['PLAZO_MINIMO'];
-                                            $plazoMax_col = $row['PLAZO_MAXIMO'];
-                                            $tasaInteres_col = $row['TASA_DE_INTERES'];
-                                        }
-                                        ?>
-
-                                        <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                        <h4>
-                                            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo caja" type="number" name="monto_solicita_col" id="monto_solicita_col" value="<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                                                                                                                                                                                                                                                    echo $_SESSION['monto_solicita_final'];
-                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                    echo "";
-                                                                                                                                                                                                                                                                                                } ?>" placeholder="0" min="<?php echo $min_col ?>" max="<?php echo $max_col ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_col))); ?>" onchange="cuota_col()" onkeyup="cuota_col()" autocomplete="off" />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?> | Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?> </h5>
-                                        </h4>
-                                        <br><br>
-
-                                        <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider value_slider_formulario" id="demo_col" name="demo_col"></span></h3>
-                                        <div class="slidecontainer" style="margin-top: 7px;">
-                                            <input type="range" min="1" max="<?php echo $plazoMax_col ?>" value="<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                                                                        echo $_SESSION['range_final'];
-                                                                                                                    } else {
-                                                                                                                        echo $plazoMax_col;
-                                                                                                                    } ?>" class="slider" name="range_col" id="range_col" onchange="cuota_col()" onkeyup="cuota_col()">
-                                        </div>
-                                        <br><br>
-
-                                        <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                        <h4>
-                                            <input class="input__convert input__convert_prestamo" type="number" name="tasa_col" id="tasa_col" value="<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                                                                                                            echo $_SESSION['tasa_final'];
-                                                                                                                                                        } else {
-                                                                                                                                                            echo $tasaInteres_col;
-                                                                                                                                                        } ?>" placeholder="0" readonly="readonly" onchange="cuota_col()" onkeyup="cuota_col()" />
-                                        </h4>
-                                        <br><br>
-
-                                        <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                        <h4>
-                                            <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_col" id="cuota_mensual_col" value="<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                                                                                                                            echo $_SESSION['cuota_mensual_final'];
-                                                                                                                                                                        } else {
-                                                                                                                                                                            echo "";
-                                                                                                                                                                        } ?>" placeholder="0" readonly="readonly" />
-                                        </h4>
-                                        <br><br>
-
-                                        <input hidden type="text" id="moneda_col" name="moneda_col" value="COLONES">
-
-                                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="<?php echo $ID_CATEGORIA ?>" readonly="readonly">
-                                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="<?php echo $ID_PRESTAMO ?>" readonly="readonly">
-
-                                        <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
-                                        <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
-                                        <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
-
-                                        <input hidden type="number" id="cuota_mensual_natural_col" name="cuota_mensual_natural_col" value="" readonly="readonly">
-
-                                        <div style="text-align: left;">
-                                            <button type="submit" class="button button_formulario specialty__button pulse"><span>ACTUALIZAR SOLICITUD</span></button>
-                                        </div>
-                                    </div>
-
-                        </form>
-
-                        <form method="post" name="q" id="q">
-
-                            <div id="DIV_dol" <?php if ($_SESSION['moneda_final'] == 'COLONES') { ?> style="display:none" <?php } ?>>
-
+                            <tbody class="tbody">
                                 <?php
-                                $sql = "SELECT * FROM VER_TIPOS_PRESTAMOS WHERE CATEGORIA = '" . $_SESSION['CATEGORIA'] . "' AND PRESTAMO = '" . $_SESSION['PRESTAMO_DOL'] . "'";
-                                $result = sqlsrv_query($con, $sql);
-                                while ($row = sqlsrv_fetch_array($result)) {
-                                    $min_dol = $row['MONTO_MINIMO'];
-                                    $max_dol = $row['MONTO_MAXIMO'];
-                                    $plazoMin_dol = $row['PLAZO_MINIMO'];
-                                    $plazoMax_dol = $row['PLAZO_MAXIMO'];
-                                    $tasaInteres_dol = $row['TASA_DE_INTERES'];
+                                $query = "SELECT * FROM aalvarado.VER_SOLICITUDES_PENDIENTES";
+                                $ejecutar = sqlsrv_query($con, $query);
+
+                                while ($fila = sqlsrv_fetch_array($ejecutar)) {
+                                    $num_soli = $fila['NUMERO_SOLICITUD'];
+                                    $fecha_soli = $fila['FECHA_DE_SOLICITUD'];
+                                    $num_id = $fila['NUMERO_IDENTIFICACION'];
+                                    $cat_pres = $fila['CATEGORÍA_PRESTAMO'];
+                                    $tip_pres = $fila['TIPO_DE_PRESTAMO'];
+                                    $moneda = $fila['MONEDA'];
+                                    $monto_sol = $fila['MONTO_SOLICITADO'];
+                                    $tasa = $fila['TASA_DE_INTERES'];
+                                    $cuota = $fila['CUOTA_MENSUAL'];
+                                    $plazo = $fila['PLAZO_EN_ANIOS'];
+                                    $estado = $fila['ESTADO_ACTUAL'];
+
+                                    echo
+                                    '<tr>
+                                        <th class="th">' . $num_soli . '</th>
+                                        <td class="td">' . date_format($fecha_soli, "d-m-Y") . '</td>
+                                        <td class="td">' . $num_id . '</td>
+                                        <td class="td">' . $cat_pres . '</td>
+                                        <td class="td">' . substr($tip_pres, 0, -8) . '</td>
+                                        <td class="td">' . $moneda . '</td>';
+                                            if ($moneda == "Colones") {
+                                                echo '<td class="td">₡' . number_format($monto_sol, 2) . '</td>';
+                                            } else if ($moneda == "Dolares") {
+                                                echo '<td class="td">$' . number_format($monto_sol, 2) . '</td>';
+                                            }
+                                            echo
+                                            '<td class="td">' . $tasa . ' %</td>';
+                                            if ($moneda == "Colones") {
+                                                echo '<td class="td">₡' . number_format($cuota, 2) . '</td>';
+                                            } else if ($moneda == "Dolares") {
+                                                echo '<td class="td">$' . number_format($cuota, 2) . '</td>';
+                                            }
+                                            if ($plazo > 1) {
+                                                echo '<td class="td">' . $plazo . ' años</td>';
+                                            } else if ($plazo <= 1) {
+                                                echo '<td class="td">' . $plazo . ' año</td>';
+                                            }
+                                            echo
+                                        '<td class="th">' . $estado . '</td>                
+                                         <td class="td">
+                                            <select id="analistas" name="analistas" style="text-align: center;" class="small">
+                                                <option selected disabled hidden>SELECCIONE EL ANALISTA</option>';
+
+                                                    $query2 = "SELECT * FROM VER_ANALISTAS WHERE CATEGORIA_PRESTAMOS = '$cat_pres' ";
+                                                    $ejecutar2 = sqlsrv_query($con, $query2);
+                                                    $nom_ana = '';
+                                                    while ($fila2 = sqlsrv_fetch_array($ejecutar2)) {
+
+                                                        $cantidad = "SELECT COUNT(*) AS NUME FROM VER_SOLICITUDES_ASIGNADAS WHERE ANALISTA = '" . $fila2['NOMBRE_ANALISTA'] . "' ";
+                                                        $ejecutar3 = sqlsrv_query($con, $cantidad);
+                                                        $cantSoli = 0;
+                                                        while ($fila3 = sqlsrv_fetch_array($ejecutar3)) {
+                                                            $cantSoli = $fila3['NUME'];
+                                                        }
+                                                echo
+                                                '<option class="small" value="' . $fila2['ID_ANALISTA'] . '">' . $fila2['NOMBRE_ANALISTA'] . ' ( ' . $cantSoli . ' )</option>';
+                                                // '<option value="' . $fila2['ID_ANALISTA'] . '">' . $fila2['CATEGORIA_PRESTAMOS'] . ' ( ' . $cantSoli . ' )</option>';
+                                                     }
+
+                                        echo
+                                        '</select>
+                                        <button type="submit" class="button_convertir pulse" style="background-color: #009ae0; border: 1px solid #000;" id="num_soli" name="num_soli" value="' . $num_soli . '">ASIGNAR</button></td>
+                                    </tr>';
                                 }
                                 ?>
+                            <tbody>
 
-
-                                <h3 style="color: #fff;">Monto a solicitar<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input__convert input__convert_prestamo caja" type="number" name="monto_solicita_dol" id="monto_solicita_dol" value="<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                                                                                                                                                                                                                                            echo $_SESSION['monto_solicita_final'];
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo "";
-                                                                                                                                                                                                                                                                                        } ?>" placeholder="0" min="<?php echo $min_dol ?>" max="<?php echo $max_dol ?>" maxlength="<?php echo strlen(str_replace(",", "", number_format($max_dol))); ?>" onchange="cuota_dol()" onkeyup="cuota_dol()" autocomplete="off" />
-                                    <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?> | Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?></h5>
-                                </h4>
-                                <br><br>
-
-                                <h3 style="color: #fff;">Plazo estimado (Años)<span style="color: hsl(197, 100%, 42%);">:</span><span class="value_slider value_slider_formulario" id="demo_dol" name="demo_dol"></span></h3>
-                                <div class="slidecontainer" style="margin-top: 7px;">
-                                    <input type="range" min="1" max="<?php echo $plazoMax_dol ?>" value="<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                                                                echo $_SESSION['range_final'];
-                                                                                                            } else {
-                                                                                                                echo $plazoMax_dol;
-                                                                                                            } ?>" class="slider" name="range_dol" id="range_dol" onchange="cuota_dol()" onkeyup="cuota_dol()">
-                                </div>
-                                <br><br>
-
-                                <h3 style="color: #fff;">Tasa (%)<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo" type="number" name="tasa_dol" id="tasa_dol" value="<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                                                                                                    echo $_SESSION['tasa_final'];
-                                                                                                                                                } else {
-                                                                                                                                                    echo $tasaInteres_dol;
-                                                                                                                                                } ?>" placeholder="0" readonly="readonly" onchange="cuota_dol()" onkeyup="cuota_dol()" />
-                                </h4>
-                                <br><br>
-
-                                <h3 style="color: #fff;">Cuota mensual<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo" type="text" name="cuota_mensual_dol" id="cuota_mensual_dol" value="<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                                                                                                                    echo $_SESSION['cuota_mensual_final'];
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo "";
-                                                                                                                                                                } ?>" placeholder="0" readonly="readonly" />
-                                </h4>
-                                <br><br>
-
-                                <input hidden type="text" id="moneda_dol" name="moneda_dol" value="DÓLARES">
-
-                                <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="<?php echo $ID_CATEGORIA ?>" readonly="readonly">
-                                <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="<?php echo $ID_PRESTAMO ?>" readonly="readonly">
-
-                                <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
-                                <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
-                                <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
-
-                                <input hidden type="number" id="cuota_mensual_natural_dol" name="cuota_mensual_natural_dol" value="" readonly="readonly">
-
-                                <div style="text-align: left;">
-                                    <button type="submit" class="button button_formulario specialty__button pulse"><span>ACTUALIZAR SOLICITUD</span></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="specialty__group ">
-
-                <h1 style="color: #fff; margin-left: -50px;">Información personal</h1>
-
-                <form method="POST">
-
-                    <div class="l_formulario l_formulario_2" name="l_formulario">
-
-
-                        <input hidden type="number" id="id_Categoria_Prestamo" name="id_Categoria_Prestamo" value="<?php echo $ID_CATEGORIA ?>" readonly="readonly">
-                        <input hidden type="number" id="id_Tipo_Prestamo" name="id_Tipo_Prestamo" value="<?php echo $ID_PRESTAMO ?>" readonly="readonly">
-
-                        <input hidden type="text" id="Categoria_Prestamo_name" name="Categoria_Prestamo_name" value="<?php echo $CATEGORIA ?>" readonly="readonly">
-                        <input hidden type="text" id="Tipo_Prestamo_name_col" name="Tipo_Prestamo_name_col" value="<?php echo $PRESTAMO_COL ?>" readonly="readonly">
-                        <input hidden type="text" id="Tipo_Prestamo_name_dol" name="Tipo_Prestamo_name_dol" value="<?php echo $PRESTAMO_DOL ?>" readonly="readonly">
-
-                        <h3 style="color: #fff;">Número de identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                        <h4>
-                            <input class="input__convert input__convert_prestamo input__convert_formulario caja" type="text" name="cedula" id="cedula" value="" maxlength="12" placeholder="X-XXXX-XXXX" autocomplete="off" />
-                            <button class="button_convertir pulse btn_formulario_consulta" type="submit" value="Consultar">Consultar</button>
-                            <h5 style="color: hsl(197, 100%, 35%);">Ejemplo: 1-2345-6789 | Ejemplo: 1-2345-6789-1011</h5>
-                            <h5 style="color: #B22222;"> <?php echo $noExiste; ?> </h5>
-                        </h4>
-
-                    </div>
-
-                </form>
-
-                <div class="l_formulario l_formulario_3" name="l_formulario">
-
-                    <form name="datos0" id="datos0">
-                        <div class="specialty__category_formulario_2">
-
-                            <div class="">
-                                <h3 style="color: #fff;">Tipo identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="tipo_id" id="tipo_id" value='<?php echo ($tipo_id); ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                            </div>
-                            <div class="">
-                                <h3 style="color: #fff;">Identificación<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cedula" id="cedula" value='<?php if ($_SESSION['cedula_formu'] != "") {
-                                                                                                                                                                        echo $_SESSION['cedula_formu'];
-                                                                                                                                                                    } else {
-                                                                                                                                                                        echo "";
-                                                                                                                                                                    } ?>' style="width: 235px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                                <br>
-                            </div>
-
-                        </div>
-                    </form>
-
-                    <form name="datos1" id="datos1">
-                        <div class="specialty__category_formulario_3">
-
-                            <div class="">
-                                <h3 style="color: #fff;">Nombre<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="nombre" id="nombre" value='<?php if ($_SESSION['nombre_formu'] != "") {
-                                                                                                                                                                        echo $_SESSION['nombre_formu'];
-                                                                                                                                                                    } else {
-                                                                                                                                                                        echo "";
-                                                                                                                                                                    } ?>' style="width: 180px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                            </div>
-
-                            <div class="medio">
-                                <h3 style="color: #fff;">Primer apellido<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="ape1" id="ape1" value='<?php if ($_SESSION['ape1_formu'] != "") {
-                                                                                                                                                                    echo $_SESSION['ape1_formu'];
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo "";
-                                                                                                                                                                } ?>' style="width: 145px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                            </div>
-
-                            <div class="derecha">
-                                <h3 style="color: #fff;">Segundo apellido<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="ape2" id="ape2" value='<?php if ($_SESSION['ape2_formu'] != "") {
-                                                                                                                                                                    echo $_SESSION['ape2_formu'];
-                                                                                                                                                                } else {
-                                                                                                                                                                    echo "";
-                                                                                                                                                                } ?>' style="width: 158px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                                <br>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form action="../PHP/enviar_formulario.php" method="POST" onSubmit="return validar();" name="datos2" id="datos2">
-
-                        <input hidden type="text" name="cedulaForm" id="cedulaForm" value='<?php echo $_SESSION['cedula_formu'] ?>' readonly="readonly">
-                        <input hidden type="text" name="nombreForm" id="nombreForm" value='<?php echo $_SESSION['nombre_formu'] ?>' readonly="readonly">
-                        <input hidden type="text" name="ape1Form" id="ape1Form" value='<?php echo $_SESSION['ape1_formu'] ?>' readonly="readonly">
-                        <input hidden type="text" name="ape2Form" id="ape2Form" value='<?php echo $_SESSION['ape2_formu'] ?>' readonly="readonly">
-
-
-                        <h3 style="color: #fff;">Correo electrónico<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                        <h4>
-                            <input class="input__convert input__convert_prestamo caja" style="width: 97%;" type="email" name="email" id="email" value='<?php if ($_SESSION['correo_formu'] != "") {
-                                                                                                                                                            echo $_SESSION['correo_formu'];
-                                                                                                                                                        } else {
-                                                                                                                                                            echo "";
-                                                                                                                                                        } ?>' placeholder="" autocomplete="off" />
-                        </h4>
-                        <br>
-
-                        <div class="specialty__category_formulario_2">
-
-                            <div class="">
-                                <h3 style="color: #fff;">Categoría de préstamo<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="cat_id" id="cat_id" value='<?php echo $_SESSION['cate'] ?>' style="width: 230px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                            </div>
-                            <div class="">
-                                <h3 style="color: #fff;">Tipo de préstamo<span style="color: hsl(197, 100%, 42%);">:</span></h3>
-                                <h4>
-                                    <input class="input__convert input__convert_prestamo input__convert_formulario" type="text" name="tipo_pres_id" id="tipo_pres_id" value='<?php echo $_SESSION['prest'] ?>' style="width: 242px;" placeholder="" autocomplete="off" readonly />
-                                </h4>
-                            </div>
-                        </div>
-
-                        <div style="margin-top: 15px;">
-
-                            <label style="color: #fff">
-                                <input type="checkbox" id="terminos" name="terminos" value="" data-required="1" style="margin: 5px;">
-                                Aceptar los <a style="color: hsl(197, 100%, 35%); cursor: pointer;" onclick="document.getElementById('id01').style.display='block'">Términos y Condiciones</a>.
-                            </label>
-                        </div>
-                        <br><br>
-
-                        <div class="specialty__category_formulario_2">
-
-                            <div class="">
-                                <div class="g-recaptcha" data-sitekey="6LfsJ_YeAAAAAKoJi_ayso6wUv4_ziuqtE7V9Ien"></div>
-                            </div>
-
-                            <div class="">
-                                <div style="text-align: right; margin-top: -5px; margin-top: 11px;">
-                                    <button type="submit" class="button specialty__button pulse" style="margin-right: 15px;"><span>ENVIAR SOLICITUD</span></button>
-                                </div>
-                            </div>
-
-                        </div>
+                        </table>
 
                     </form>
+
 
                 </div>
 
             </div>
 
-            </div>
-            </div>
-
-            </div>
         </section>
 
-        <div id="id01" class="modal">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="../assets/js/paging.js"></script>
 
-            <div class="modal-content animate">
-                <div class="imgcontainer_formulario">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <img src="../assets/img/terminos.png" alt="Avatar" class="avatar_formulario">
-                </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
 
-                <div class="modal_container_formulario">
-                    <h3><b>Información Legal</b></h3></br>
-                    <label>El grupo financiero BAJA le informa que, al aceptar los términos y condiciones en esta solicitud, autorizo y doy consentimiento a los funcionarios a realizar consultas en bases de datos con el fin de evaluarme como posible cliente de operaciones de crédito. La información aquí brindada se tratará de forma confidencial.</label>
-                    </br></br>                    
-                    <label>La autorización incluye la creación de un usuario y contraseña para poder acceder a la sucursal electrónica en la que podrá visualizar el estado de la operación solicitada. Dicho usuario y contraseña le serán enviados al correo electrónico registrado en el formulario.</label>
-                    </br></br>                    
-                    <label>La aceptación de los términos y condiciones aquí descritos no garantizan la aprobación del crédito solicitado. La solicitud y el monto quedan sujetos a la aprobación por parte de los funcionarios del banco.</label>
+                $("#Buscar").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#tableData tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
 
-                    <button onclick="document.getElementById('id01').style.display='none'" class="modal_btn button button_formulario pulse">Aceptar</button>
-                </div>
-                <div class="modal_container" style="background-color:#f1f1f1">
-                </div>
-            </div>
-        </div>
+                $('#tableData').paging({
+                    limit: 5
+                });
 
-        <script>
-            // Get the modal
-            var modal = document.getElementById('id01');
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+            });
         </script>
 
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-36251023-1']);
+            _gaq.push(['_setDomainName', 'jqueryscript.net']);
+            _gaq.push(['_trackPageview']);
 
-        <script>
-            function validar() {
-
-                <?php
-                if ($_SESSION['moneda_final'] == 'COLONES') {
-                ?>
-                    var x = document.p.monto_solicita_col.value;
-                    if (x == "") {
-                        alert("Debe ingresar un monto para realizar la solicitud.");
-                        return false;
-                    }
-
-                    if (x >= <?php echo $min_col ?> && x <= <?php echo $max_col ?>) {
-
-                    } else {
-                        alert("Ingrese un monto entre <?php echo 'CRC ' . number_format($min_col, 2) . " y " . 'CRC ' . number_format($max_col, 2) ?>.");
-                        return false;
-                    }
-
-                <?php
-                } else if ($_SESSION['moneda_final'] != 'COLONES') {
-                ?>
-                    var x = document.q.monto_solicita_dol.value;
-                    if (x == "") {
-                        alert("Debe ingresar un monto para realizar la solicitud.");
-                        return false;
-                    }
-
-                    if (x >= <?php echo $min_dol ?> && x <= <?php echo $max_dol ?>) {
-
-                    } else {
-                        alert("Ingrese un monto entre <?php echo '$ ' . number_format($min_dol, 2) . " y " . '$ ' . number_format($max_dol, 2) ?>.");
-                        return false;
-                    }
-                <?php
-                }
-                ?>
-
-                var ced = document.datos0.cedula.value;
-                var nam = document.datos1.nombre.value;
-                var ap1 = document.datos1.ape1.value;
-                var ap2 = document.datos1.ape2.value;
-                var em = document.datos2.email.value;
-
-                if ((ced == "") || (nam == "") || (ap1 == "") || (ap2 == "") || (em == "")) {
-                    alert("Debe buscar su información e ingresar su correo electrónico.");
-                    return false;
-                }
-
-                var response = grecaptcha.getResponse();
-
-                if (document.getElementById('terminos').checked) {
-
-                    if (response.length == 0) {
-                        alert("Captcha no verificado");
-                        return false;
-                    } else {
-                        return true;
-                    }
-
-                } else {
-                    alert("Debe aceptar los Terminos y Codiciones para poder enviar la solicitud.");
-                    return false;
-                }
-            }
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
         </script>
 
         <script>
-            var slider_col = document.getElementById("range_col");
-            var output_col = document.getElementById("demo_col");
-            output_col.innerHTML = slider_col.value;
-
-            // Update the current slider value (each time you drag the slider handle)
-            slider_col.oninput = function() {
-                output_col.innerHTML = this.value;
-            }
-        </script>
-
-        <script>
-            var slider_dol = document.getElementById("range_dol");
-            var output_dol = document.getElementById("demo_dol");
-            output_dol.innerHTML = slider_dol.value;
-
-            // Update the current slider value (each time you drag the slider handle)
-            slider_dol.oninput = function() {
-                output_dol.innerHTML = this.value;
-            }
-        </script>
-
-        <script>
-            function cuota_col() {
-                try {
-
-                    var a = parseFloat(document.p.monto_solicita_col.value),
-                        b = parseFloat(document.p.range_col.value),
-                        c = parseFloat(document.p.tasa_col.value),
-                        s = 'CRC ';
-
-                    if (a >= <?php echo $min_col ?> && a <= <?php echo $max_col ?>) {
-
-                        a_final = (-a);
-                        b_final = (b * 12);
-                        c_final = (c / 1200);
-                        b_c_final = Math.pow(1 + c_final, b_final);
-                        d = -c_final * a_final * (b_c_final) / (b_c_final - 1);
-
-                        var d_final = parseFloat(d).toFixed(2);
-                        var d__final = parseFloat(d_final).toLocaleString('en');
-                        s_d_final = s + d__final;
-
-                        document.p.cuota_mensual_col.value = s_d_final;
-                        document.p.cuota_mensual_natural_col.value = d_final;
-
-                    } else {
-                        document.p.cuota_mensual_col.value = "";
-                        document.p.cuota_mensual_natural_col.value = "";
-                    }
-
-
-                } catch (e) {}
-            }
-
-            function cuota_dol() {
-                try {
-
-                    var a = parseFloat(document.q.monto_solicita_dol.value),
-                        b = parseFloat(document.q.range_dol.value),
-                        c = parseFloat(document.q.tasa_dol.value),
-                        s = '$ ';
-
-                    if (a >= <?php echo $min_dol ?> && a <= <?php echo $max_dol ?>) {
-
-                        a_final = (-a);
-                        b_final = (b * 12);
-                        c_final = (c / 1200);
-                        b_c_final = Math.pow(1 + c_final, b_final);
-                        d = -c_final * a_final * (b_c_final) / (b_c_final - 1);
-
-                        var d_final = parseFloat(d).toFixed(2);
-                        var d__final = parseFloat(d_final).toLocaleString('en');
-                        s_d_final = s + d__final;
-                        document.q.cuota_mensual_dol.value = s_d_final;
-                        document.q.cuota_mensual_natural_dol.value = d_final;
-
-                    } else {
-                        document.q.cuota_mensual_dol.value = "";
-                        document.q.cuota_mensual_natural_dol.value = "";
-                    }
-
-                } catch (e) {}
-            }
-
-            function myFunction_col(id, id2) {
-
-                document.getElementById(id).style.backgroundColor = "#009ad6";
-                document.getElementById(id2).style.backgroundColor = "#004480";
-
-                document.getElementById("monto_solicita_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                            echo $_SESSION['monto_solicita_final'];
-                                                                        } else {
-                                                                        } ?>";
-                document.getElementById("monto_solicita_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                            echo $_SESSION['monto_solicita_final'];
-                                                                        } else {
-                                                                        } ?>";
-
-                document.getElementById("range_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                    echo $_SESSION['range_final'];
-                                                                } else {
-                                                                    echo $plazoMax_col;
-                                                                } ?>";
-                document.getElementById("range_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                    echo $_SESSION['range_final'];
-                                                                } else {
-                                                                    echo $plazoMax_dol;
-                                                                } ?>";
-
-                document.getElementById("tasa_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                    echo $_SESSION['tasa_final'];
-                                                                } else {
-                                                                    echo $tasaInteres_col;
-                                                                } ?>";
-                document.getElementById("tasa_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                    echo $_SESSION['tasa_final'];
-                                                                } else {
-                                                                    echo $tasaInteres_dol;
-                                                                } ?>";
-
-                document.getElementById("cuota_mensual_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                            echo $_SESSION['cuota_mensual_final'];
-                                                                        } else {
-                                                                        } ?>";
-                document.getElementById("cuota_mensual_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                            echo $_SESSION['cuota_mensual_final'];
-                                                                        } else {
-                                                                        } ?>";
-
-
-                var x = document.getElementById("DIV_col");
-                var y = document.getElementById("DIV_dol");
-                if (x.style.display === "none") {
-                    y.style.display = "none";
-                    x.style.display = "block";
-                } else {}
-            }
-
-            function myFunction_dol(id, id2) {
-
-                document.getElementById(id).style.backgroundColor = "#009ad6";
-                document.getElementById(id2).style.backgroundColor = "#004480";
-
-                document.getElementById("monto_solicita_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                            echo $_SESSION['monto_solicita_final'];
-                                                                        } else {
-                                                                        } ?>";
-                document.getElementById("monto_solicita_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                            echo $_SESSION['monto_solicita_final'];
-                                                                        } else {
-                                                                        } ?>";
-
-                document.getElementById("range_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                    echo $_SESSION['range_final'];
-                                                                } else {
-                                                                    echo $plazoMax_col;
-                                                                } ?>";
-                document.getElementById("range_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                    echo $_SESSION['range_final'];
-                                                                } else {
-                                                                    echo $plazoMax_dol;
-                                                                } ?>";
-
-                document.getElementById("tasa_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                    echo $_SESSION['tasa_final'];
-                                                                } else {
-                                                                    echo $tasaInteres_col;
-                                                                } ?>";
-                document.getElementById("tasa_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                    echo $_SESSION['tasa_final'];
-                                                                } else {
-                                                                    echo $tasaInteres_dol;
-                                                                } ?>";
-
-                document.getElementById("cuota_mensual_col").value = "<?php if ($_SESSION['moneda_final'] == 'COLONES') {
-                                                                            echo $_SESSION['cuota_mensual_final'];
-                                                                        } else {
-                                                                        } ?>";
-                document.getElementById("cuota_mensual_dol").value = "<?php if ($_SESSION['moneda_final'] != 'COLONES') {
-                                                                            echo $_SESSION['cuota_mensual_final'];
-                                                                        } else {
-                                                                        } ?>";
-
-                var x = document.getElementById("DIV_col");
-                var y = document.getElementById("DIV_dol");
-                if (y.style.display === "none") {
-                    x.style.display = "none";
-                    y.style.display = "block";
-                } else {}
+            function onlyOne(checkbox) {
+                var checkboxes = document.getElementsByName('num_soli')
+                checkboxes.forEach((item) => {
+                    if (item !== checkbox) item.checked = false
+                })
             }
         </script>
 

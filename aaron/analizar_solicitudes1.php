@@ -1,5 +1,5 @@
 <?php
-include 'conection.php';
+include '../conection.php';
 //session_start();
 // if(isset($_SESSION['u_ID']))
 // {
@@ -8,7 +8,7 @@ include 'conection.php';
 ?>
  <h2>ANÁLISIS DE SOLICITUDES DE CRÉDITO</h2>
 <?php
-$query = "SELECT * FROM ANALIZAR_SOLICITUD";
+$query = "SELECT * FROM aalvarado.ANALIZAR_SOLICITUD";
 $ejecutar = sqlsrv_query($con, $query);
 $num_soli = 0;
 $fecha_soli = date_create("YYYY-MM-DD");

@@ -32,13 +32,13 @@ if ($_SESSION['id_id'] == 1) {
     $tipo_id = "Extranjero";
 }
 
-$_SESSION['CATEGORIA'] = $_POST['Categoria_Prestamo_name'];
-$_SESSION['PRESTAMO_COL'] = $_POST['Tipo_Prestamo_name_col'];
-$_SESSION['PRESTAMO_DOL'] = $_POST['Tipo_Prestamo_name_dol'];
+// $_SESSION['CATEGORIA'] = $_POST['Categoria_Prestamo_name'];
+// $_SESSION['PRESTAMO_COL'] = $_POST['Tipo_Prestamo_name_col'];
+// $_SESSION['PRESTAMO_DOL'] = $_POST['Tipo_Prestamo_name_dol'];
 
-$CATEGORIA = $_SESSION['CATEGORIA'];
-$PRESTAMO_COL = $_SESSION['PRESTAMO_COL'];
-$PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
+// $CATEGORIA = $_SESSION['CATEGORIA'];
+// $PRESTAMO_COL = $_SESSION['PRESTAMO_COL'];
+// $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 
 ?>
 
@@ -68,7 +68,7 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
 <body>
 
     <!--==================== NAV ====================-->
-    <nav class="nav" id="nav">
+    <!-- <nav class="nav" id="nav">
         <div class="nav__menu container" id="nav-menu">
             <div class="nav__shape demo"></div>
 
@@ -149,7 +149,19 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
                             </li>
                             <li class="nav__item">
                                 <a href="../Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
-                                    <i class='bx bx-folder-open'></i> Asignar Préstamos
+                                    <?php
+                                    $queryNum = "SELECT COUNT(*) AS NUM FROM aalvarado.VER_SOLICITUDES_PENDIENTES";
+                                    $resultNum = sqlsrv_query($con, $queryNum);
+                                    while ($rowNum = sqlsrv_fetch_array($resultNum)) {
+                                        $NUM = $rowNum['NUM'];
+                                    }
+                                    ?>
+
+                                    <i class='bx bx-folder-open'></i> Asignar Préstamos <span <?php if ($NUM >= 1) { ?> class="numberCircle" <?php } else { ?> class="" <?php } ?>><?php if ($NUM >= 1) {
+                                                                                                                                                                                        echo $NUM;
+                                                                                                                                                                                    } else {
+                                                                                                                                                                                        echo "";
+                                                                                                                                                                                    } ?></span>
                                 </a>
                             </li>
                             <li class="nav__item">
@@ -225,7 +237,7 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
                         ?>
                         </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <!--==================== MAIN ====================-->
     <main class="main" id="main">
@@ -413,7 +425,7 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
                                                                                                                                                                         } else {
                                                                                                                                                                             echo "";
                                                                                                                                                                         } ?>" placeholder="0" autocomplete="off" readonly />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?> | Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?></h5>
+                                            <!-- <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo 'CRC ' . number_format($min_col, 2) ?> | Monto Maximo: <?php echo 'CRC ' . number_format($max_col, 2) ?></h5> -->
                                         </h4>
                                         <br>
 
@@ -477,7 +489,7 @@ $PRESTAMO_DOL = $_SESSION['PRESTAMO_DOL'];
                                                                                                                                                                         } else {
                                                                                                                                                                             echo "";
                                                                                                                                                                         } ?>" placeholder="0" autocomplete="off" readonly />
-                                            <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?> | Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?></h5>
+                                            <!-- <h5 style="color: hsl(197, 100%, 35%);">Monto Minimo: <?php echo '$ ' . number_format($min_dol, 2) ?> | Monto Maximo: <?php echo '$ ' . number_format($max_dol, 2) ?></h5> -->
                                         </h4>
                                         <br>
 

@@ -138,7 +138,19 @@ $PRESTAMO_DOL = 'Viajes Nacionales Dolares';
                             </li>
                             <li class="nav__item">
                                 <a href="../../Tramitador/asignar_prestamos.php" class="nav__link i__scroll">
-                                    <i class='bx bx-folder-open'></i> Asignar Préstamos
+                                    <?php
+                                    $queryNum = "SELECT COUNT(*) AS NUM FROM aalvarado.VER_SOLICITUDES_PENDIENTES";
+                                    $resultNum = sqlsrv_query($con, $queryNum);
+                                    while ($rowNum = sqlsrv_fetch_array($resultNum)) {
+                                        $NUM = $rowNum['NUM'];
+                                    }
+                                    ?>
+
+                                    <i class='bx bx-folder-open'></i> Asignar Préstamos <span <?php if ($NUM >= 1) { ?> class="numberCircle" <?php } else { ?> class="" <?php } ?>><?php if ($NUM >= 1) {
+                                                                                                                                                                                        echo $NUM;
+                                                                                                                                                                                    } else {
+                                                                                                                                                                                        echo "";
+                                                                                                                                                                                    } ?></span>
                                 </a>
                             </li>
                             <li class="nav__item">

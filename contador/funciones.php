@@ -1,5 +1,6 @@
 <?php
-setlocale(LC_TIME, "spanish");
+date_default_timezone_set('America/Costa_Rica');
+
 
 function fechaInicioYFinDeMes()
 {

@@ -549,6 +549,7 @@ button {
   padding                 : 50px;
 }
 
+
 .home__data-number {
   color        : var(--first-color);
   font-size    : var(--h2-font-size);
@@ -1589,6 +1590,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* For large devices */
 @media screen and (min-width: 1024px) {
+
   .home__video {
     display      : block;
     width        : 150%;
@@ -1730,6 +1732,21 @@ input[type=number]::-webkit-outer-spin-button {
 
     grid-template-columns: repeat(2, 550px);
     column-gap           : 9.5rem;
+  }
+
+  .specialty__category_tabla {
+
+    box-shadow      : 1px 1px 30px -1px #009ad6;
+    border-radius   : 5px;
+    background-color: hsla(224, 100%, 11%, 0.95);
+
+    margin-top   : 3rem;
+    margin-bottom: 0.3rem;
+    margin-left  : -68.5px;
+    padding      : 30px;
+
+    width: 110%;
+
   }
 
   .specialty__line,
@@ -1974,6 +1991,60 @@ input[type=number]::-webkit-outer-spin-button {
   .button_formulario {
     margin-left: -0.5px;
   }
+
+  .numberCircle {
+    border-radius: 50%;
+    width        : 26px;
+    height       : 26px;
+    border       : 2px solid hsl(197, 100%, 65%);
+    color        : hsl(197, 100%, 65%);
+    text-align   : center;
+  }
+
+  /* Solicitudes */
+  .table {
+    border-collapse: collapse;
+    margin-left    : auto;
+    margin-right   : auto;
+    font-size      : var(--small-font-size);
+    width          : 100%;
+  }
+
+  .th {
+    border          : 1px solid #fff;
+    padding         : 0.5em;
+    background-color: hsl(197, 100%, 38%);
+    color: #fff;
+  }
+
+  .thead th {
+    background-color: hsla(224, 100%, 11%, 0.95);
+    color           : #fff;
+    border          : 1px solid #fff;
+  }
+
+  .tbody th {
+    font-family     : arial;
+    font-weight     : normal;
+    background-color: hsl(197, 100%, 38%);
+    color           : #ffff;
+  }
+
+  .td {
+    border          : 1px solid #fff;
+    color           : #fff;
+    padding         : .5em;
+    background-color: hsl(208, 100%, 25%);
+    width           : 100px;
+    text-align      : center;
+  }
+
+  .paging-nav {
+    text-align: center;
+    width     : 100%;
+    margin-top: 15px;
+  }
+
 }
 
 @media screen and (min-width: 1200px) {
@@ -2189,4 +2260,116 @@ span.psw {
 
 .zoom:hover {
   transform: scale(1.05);
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+  table {
+    width: 70%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr:nth-of-type(2n) {
+    background-color: inherit;
+  }
+
+  tr td:first-child {
+    background : #f0f0f0;
+    font-weight: bold;
+    font-size  : 1.3em;
+  }
+
+  tbody td {
+    display   : block;
+    text-align: center;
+  }
+
+  tbody td:before {
+    content   : attr(data-th);
+    display   : block;
+    text-align: center;
+  }
+
+
+  .th {
+    background-color: hsl(197, 100%, 38%);
+    color: #fff;
+  }
+
+  .tbody th {
+    font-family     : arial;
+    font-weight     : normal;
+    background-color: #009ad6;
+    color           : #ffff;
+  }
+
+  .td {
+    border          : 1px solid #000;
+    color           : #fff;
+    background-color: hsl(208, 100%, 25%);
+  }
+
+  .small {
+    width    : 100%;
+    font-size: var(--smaller-font-size);
+  }
+
+  .paging-nav {
+    text-align: center;
+    width     : 75%;
+    margin-top: 15px;
+  }
+
+  .specialty__category_tabla {
+
+    box-shadow      : 1px 1px 30px -1px #009ad6;
+    border-radius   : 5px;
+    background-color: hsla(224, 100%, 11%, 0.95);
+
+    margin-top   : 3rem;
+    margin-bottom: 0.3rem;
+
+    display                 : grid;
+    grid-template-columns   : 375px;
+    /* row-gap              : 2.5rem; */
+    padding                 : 50px;
+  }
+}
+
+.small {
+  background-color: #009af9;
+  border-radius   : 5px;
+  border          : 1px solid #000;
+}
+
+
+.paging-nav a {
+  margin       : auto 1.5px;
+  display      : inline-block;
+  padding      : 3px 8px 6px;
+  background   : #009ad6;
+  color        : white;
+  border-radius: 3px;
+}
+
+.paging-nav .selected-page {
+  background : #044484;
+  font-weight: bold;
+}
+
+
+
+.numberCircle {
+  border-radius: 50%;
+  width        : 26px;
+  height       : 26px;
+  border       : 2px solid hsl(197, 100%, 65%);
+  color        : hsl(197, 100%, 65%);
+  text-align   : center;
+  font-size    : 17px;
 }
