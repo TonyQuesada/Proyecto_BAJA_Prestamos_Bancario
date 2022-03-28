@@ -25,16 +25,32 @@ if (isset($_POST['insert'])) {
         $_SESSION['u_idEmpleado'] = $row['idEmpleado'];
         $_SESSION['u_idCliente'] = $row['idCliente'];
 
-        // echo $_SESSION['u_idUsuario'];
-        // echo $_SESSION['u_Usuario'];
-        // echo $_SESSION['u_Nombre_Usuario'];
-        // echo $_SESSION['u_Correo_electronico'];
-        // echo $_SESSION['u_Contrasena'];
-        // echo $_SESSION['u_idRol'];
-        // echo $_SESSION['u_idEmpleado'];
-        // echo $_SESSION['u_idCliente'];
+        $ID_ROl_EMPLEADO = $_SESSION['u_idRol'];
+
+        if(!is_null($ID_ROl_EMPLEADO)){
+            $categoria = "SELECT * FROM VER_CAT_ROLES WHERE ID_ROL = '$ID_ROl_EMPLEADO'";
+            $categoria_resultado = sqlsrv_query($con, $categoria);
+            
+            while ($fila = sqlsrv_fetch_array($categoria_resultado)) {
+                $_SESSION['u_NombreRol'] = $fila['NOMBRE'];
+            }
+        }
+
+
+
+        // echo "ID: " . $_SESSION['u_idUsuario'] . '<br>';
+        // echo "Usuario: " . $_SESSION['u_Usuario'] . '<br>';
+        // echo "Pass: " . $_SESSION['u_Contrasena'] . '<br>';
+        // echo "Nombre: " . $_SESSION['u_Nombre_Usuario'] . '<br>';
+        // echo "Correo: " . $_SESSION['u_Correo_electronico'] . '<br>';
+        // echo "idRol: " . $_SESSION['u_idRol'] . '<br>';
+        // echo "idEmpleado: " . $_SESSION['u_idEmpleado'] . '<br>';
+        // echo "NombreRolEmpleado: " . $_SESSION['u_NombreRol'] . '<br>';
+        // echo "idCliente: " . $_SESSION['u_idCliente'] . '<br>';
+
 
         // header("Location:../index.php");
+
         echo '<script type="text/javascript">
         history.back();
         </script>';
